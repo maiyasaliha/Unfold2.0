@@ -6,6 +6,7 @@ const ContinueButton = ({ navigation, screenName }) => {
   const handlePress = () => {
     navigation.navigate(screenName)
   }
+
   return (
     <View style={styles.buttonContainer}>
       <Pressable onPress={handlePress} style={styles.purplebutton}>
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     marginTop: 400,
     marginBottom: 20,
     paddingHorizontal: 20,
-  }
+  },
 
 })
 

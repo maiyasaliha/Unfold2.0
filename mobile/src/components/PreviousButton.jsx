@@ -8,10 +8,11 @@ const PreviousButton = ({ navigation, screenName }) => {
     }
     return (
         <View style={styles.buttonContainer}>
-            <Pressable onPress={handlePress} style={styles.purplebutton}>
-                <Text style={styles.text}>Previous</Text>
-            </Pressable>
-        </View>
+      <Pressable onPress={handlePress} style={styles.purplebutton}>
+        <Text style={styles.text}>Previous</Text>
+      </Pressable>
+    </View>
+
 
     )
 }

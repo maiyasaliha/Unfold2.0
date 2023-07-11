@@ -1,14 +1,14 @@
 import { Text, SafeAreaView, StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { ContinueButton, DateInput, PreviousButton } from '../components'
 import { useNavigation } from '@react-navigation/native'
 
 const OnboardingBirthday = () => {
   const navigation = useNavigation()
-
+  
   return (
     <SafeAreaView style={styles.container}>
-      <Text style = {styles.text}>Enter your Birthday</Text>
+      <Text style={styles.text}>Enter your Birthday</Text>
       <DateInput />
       <ContinueButton navigation={navigation} screenName="OnboardingLocation" />
       <PreviousButton navigation={navigation} screenName="SignUpScreen" />
@@ -17,7 +17,7 @@ const OnboardingBirthday = () => {
 }
 
 const styles = StyleSheet.create({
-   text: {
+  text: {
     fontSize: 36,
     color: "#000000",
     fontFamily: 'CantoraOne-Regular',
@@ -26,11 +26,11 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 2, height: 2 },
   },
   container: {
-    flex: 2,
-    justifyContent: 'flex-start', //vertical
-    alignItems: 'center', //horizontal
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     paddingTop: 100,
   },
-
 })
+
 export default OnboardingBirthday

@@ -1,6 +1,6 @@
 import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
 import React from 'react';
-import { UnfoldButton, EmailInput, ForgotPasswordButton, PasswordInputL } from '../components';
+import { UnfoldButton, EmailInput, ForgotPasswordButton, PasswordInputL, BackArrowButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen = () => {
@@ -9,6 +9,7 @@ const LoginScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.contentContainer}>
+        <BackArrowButton navigation={navigation} screenName="LogoScreen" />
         <Text style={styles.text}>Log In</Text>
         <View style={styles.inputContainer}>
           <EmailInput />
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
     textShadowRadius: 3,
     textShadowOffset: { width: 2, height: 2 },
     textAlign: 'center',
-    marginTop: 130,
+    marginTop: 40,
     marginRight: 10,
   },
   container: {
