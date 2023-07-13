@@ -6,6 +6,7 @@ const HeightInput = () => {
 
     const handleHeightChange = (text) => {
         setHeight(text);
+        console.log('Height Entered')
     };
 
     return (

@@ -6,9 +6,10 @@ const EmailInput = () => {
 
     const handleEmailChange = (text) => {
         setEmail(text);
+        console.log('Email Entered')
     };
     return (
-        <View style={styles.container}>
+        <View style={styles.containerbox}>
             <View style={styles.purpleContainer}>
                 <TextInput
                     style={styles.input}
@@ -22,7 +23,7 @@ const EmailInput = () => {
     )
 }
 const styles = StyleSheet.create({
-    container: {
+    containerbox: {
         flexDirection: 'row',
         alignItems: 'center',
         top: 125
@@ -42,6 +43,7 @@ const styles = StyleSheet.create({
         width: 251,
         borderRadius: 12,
         justifyContent: 'center',
+
     },
 });
 

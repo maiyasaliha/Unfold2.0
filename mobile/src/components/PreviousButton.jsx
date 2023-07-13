@@ -5,6 +5,8 @@ const PreviousButton = ({ navigation, screenName }) => {
 
     const handlePress = () => {
         navigation.navigate(screenName)
+    console.log('Previous onPress')
+
     }
     return (
         <View style={styles.buttonContainer}>

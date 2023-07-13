@@ -5,6 +5,7 @@ const ContinueButton = ({ navigation, screenName }) => {
 
   const handlePress = () => {
     navigation.navigate(screenName)
+    console.log('Continue onPress')
   }
 
   return (

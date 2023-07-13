@@ -8,18 +8,12 @@ const LoginScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.contentContainer}>
-        <BackArrowButton navigation={navigation} screenName="LogoScreen" />
-        <Text style={styles.text}>Log In</Text>
-        <View style={styles.inputContainer}>
-          <EmailInput />
-          <PasswordInputL />
-        </View>
-        <ForgotPasswordButton navigation={navigation} screenName="ForgotPassword" />
-      </View>
-      <View style={styles.anotherContainer}>
-        <UnfoldButton navigation={navigation} screenName="HomeScreen" />
-      </View>
+      <BackArrowButton navigation={navigation} screenName="LogoScreen" />
+      <Text style={styles.text}>Log In</Text>
+      <EmailInput />
+      <PasswordInputL />
+      <ForgotPasswordButton navigation={navigation} screenName="ForgotPassword" />
+      <UnfoldButton navigation={navigation} screenName="HomeScreen" />
     </SafeAreaView>
   );
 };
@@ -35,24 +29,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 40,
     marginRight: 10,
+    marginBottom: -30,
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  contentContainer: {
-    flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-  },
-  inputContainer: {
-    marginTop: -30,
-  },
-  anotherContainer: {
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    marginBottom: 100,
   },
 });
 

@@ -5,6 +5,7 @@ const UnfoldButton = ({ navigation, screenName }) => {
 
   const handlePress = () => {
     navigation.navigate(screenName)
+    console.log('Unfold onPress')
   }
   return (
     <View style={styles.buttonContainer}>
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 2, height: 2 },
   },
   buttonContainer: {
-    marginTop: 400,
+    marginTop: 150,
     marginBottom: 20,
     paddingHorizontal: 20,
   }

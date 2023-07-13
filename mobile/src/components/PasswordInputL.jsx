@@ -6,11 +6,13 @@ const PasswordInputL = () => {
 
     const handlePasswordChange = (text) => {
         setPassword(text);
+        console.log('Password Entered')
       };
     return (
         <View style={styles.container}>
             <View style={styles.purpleContainer}>
                 <TextInput 
+                secureTextEntry={true}
                 style={styles.input}
                 placeholder="Password"
                 placeholderTextColor= "#937CA7"

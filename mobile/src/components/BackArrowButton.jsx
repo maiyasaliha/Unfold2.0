@@ -3,14 +3,16 @@ import { Pressable, Image, StyleSheet, View } from 'react-native';
 
 const BackArrowButton = ({ navigation, screenName }) => {
 
-    const handleButtonPress = () => {
-      navigation.navigate(screenName)
-    }
+  const handleButtonPress = () => {
+    navigation.navigate(screenName)
+    console.log('Back onPress')
+
+  }
 
   return (
     <View style={styles.buttonContainer}>
       <Pressable onPress={handleButtonPress} style={styles.button}>
-      <Image source={require('../assets/images/free-arrow-left-icon-3099-thumb.png')} style={styles.image} />
+        <Image source={require('../assets/images/free-arrow-left-icon-3099-thumb.png')} style={styles.image} />
       </Pressable>
     </View>
   );

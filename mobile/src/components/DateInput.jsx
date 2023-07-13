@@ -8,14 +8,17 @@ const DateInput = () => {
 
     const handleDayChange = (text) => {
         setDay(text);
+        console.log('Date Entered')
     };
 
     const handleMonthChange = (text) => {
         setMonth(text);
+        console.log('Month Entered')
     };
 
     const handleYearChange = (text) => {
         setYear(text);
+        console.log('Year Entered')
     };
 
     return (

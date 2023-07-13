@@ -5,6 +5,7 @@ const ForgotPasswordButton = ({ navigation, screenName }) => {
 
     const handlePress = () => {
         navigation.navigate(screenName)
+        console.log('ForgotPassword onPress')
     }
     return (
         <View style={styles.buttonContainer}>

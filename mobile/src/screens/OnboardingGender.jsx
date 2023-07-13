@@ -1,6 +1,6 @@
 import { Text, SafeAreaView, StyleSheet } from 'react-native'
 import React from 'react'
-import { ContinueButton, PreviousButton } from '../components'
+import { ContinueButton, PressableOption, PreviousButton } from '../components'
 import { useNavigation } from '@react-navigation/native'
 
 const OnboardingGender = () => {

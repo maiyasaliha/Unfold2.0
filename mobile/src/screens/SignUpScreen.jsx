@@ -1,6 +1,6 @@
 import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
 import React from 'react';
-import { EmailInput, PasswordInput, NameInput, ContinueButton, ProgressBar, BackArrowButton } from '../components';
+import { EmailInput, PasswordInput, NameInput, ProgressBar, BackArrowButton, ContinueButtonS } from '../components';
 import { useNavigation } from '@react-navigation/native';
 
 const SignUpScreen = () => {
@@ -8,18 +8,12 @@ const SignUpScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.contentContainer}>
-        <BackArrowButton navigation={navigation} screenName="LogoScreen" />
-        <Text style={styles.text}>Sign Up</Text>
-        <View style={styles.inputContainer}>
-          <EmailInput />
-          <NameInput />
-          <PasswordInput />
-        </View>
-      </View>
-      <View style={styles.anotherContainer}>
-        <ContinueButton navigation={navigation} screenName="OnboardingBirthday" />
-      </View>
+      <BackArrowButton navigation={navigation} screenName="LogoScreen" />
+      <Text style={styles.text}>Sign Up</Text>
+      <EmailInput />
+      <NameInput />
+      <PasswordInput />
+      <ContinueButtonS navigation={navigation} screenName="OnboardingBirthday" />
     </SafeAreaView>
   );
 };
@@ -35,24 +29,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 40,
     marginRight: 10,
+    marginBottom: -50,
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  contentContainer: {
-    flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-  },
-  inputContainer: {
-    marginTop: -30,
-  },
-  anotherContainer: {
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    marginBottom: 120,
   },
 });
 

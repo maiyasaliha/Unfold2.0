@@ -8,6 +8,7 @@ const LocationInput = ({ onLocationChange }) => {
         // Remove any non-digit characters from the input
         const formattedPostalCode = text.replace(/\D/g, '')
         setPostalCode(formattedPostalCode)
+        console.log('Location Entered')
     };
 
     return (
