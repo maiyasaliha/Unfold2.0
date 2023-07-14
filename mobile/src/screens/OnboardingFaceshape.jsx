@@ -1,9 +1,7 @@
 import { Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
 import React from 'react';
-import { ContinueButton, PressableOption, PressableOptionwithImage, PreviousButton } from '../components';
+import { ContinueButton, PressableOptionwithImage, PreviousButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
-// import { faCircle} from '@fortawesome/free-solid-svg-icons';
-// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 const OnboardingFaceshape = () => {
   const navigation = useNavigation();
@@ -14,14 +12,34 @@ const OnboardingFaceshape = () => {
       <Text style={styles.text}>shape</Text>
 
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <PressableOption text="Oval                                     " />
-        <PressableOption text="Round                                     " />
-        <PressableOption text="Square                                     " />
-        <PressableOption text="Rectangle                                     " />
-        <PressableOption text="Triangle                                     " />
-        <PressableOption text="Diamond                                    " />
-        <PressableOption text="Oblong                                     " />
-        <PressableOption text="Heart                                     " />
+        <PressableOptionwithImage 
+        text="Oval                   " 
+        image= {require('../assets/images/oval.png')} 
+        />
+        <PressableOptionwithImage 
+        text="Round               " 
+        image= {require('../assets/images/round.png')} 
+        />
+        <PressableOptionwithImage 
+        text="Square              " 
+        image= {require('../assets/images/square.png')} 
+        />
+        <PressableOptionwithImage 
+        text="Rectangle         " 
+        image= {require('../assets/images/rectangle.png')} 
+        />
+        <PressableOptionwithImage 
+        text="Triangle             " 
+        image= {require('../assets/images/triangle.png')} 
+        />
+         <PressableOptionwithImage 
+        text="Diamond          " 
+        image= {require('../assets/images/diamond.png')} 
+        />
+        <PressableOptionwithImage 
+        text="Heart                 " 
+        image= {require('../assets/images/heart.png')} 
+        />
       </ScrollView>
       <ContinueButton navigation={navigation} screenName="OnboardingBodyshape" />
       <PreviousButton navigation={navigation} screenName="OnboardingSkintone" />
@@ -50,6 +68,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between', // Move the justifyContent style here
     paddingTop: 10,
     paddingBottom: 10,
+  },
+  round:{
+    height: 20,
+    width: 20,
   },
 });
 

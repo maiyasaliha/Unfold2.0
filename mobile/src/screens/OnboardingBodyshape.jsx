@@ -14,11 +14,26 @@ const OnboardingBodyshape = () => {
       <Text style={styles.text}>shape</Text>
 
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <PressableOption text="Inverted Triangle                                    " />
-        <PressableOption text="Round                                     " />
-        <PressableOption text="Hourglass                                     " />
-        <PressableOption text="Rectangle                                     " />
-        <PressableOption text="Triangle                                     " />
+      <PressableOptionwithImage 
+        text="Inverted Triangle   " 
+        image= {require('../assets/images/invertedtriangle.png')} 
+        />
+        <PressableOptionwithImage 
+        text="Round                     "
+        image= {require('../assets/images/round.png')} 
+        />
+        <PressableOptionwithImage 
+        text="Hourglass               "
+        image= {require('../assets/images/hourglass.png')} 
+        />
+        <PressableOptionwithImage 
+        text="Rectangle               "
+        image= {require('../assets/images/rectangle.png')} 
+        />
+        <PressableOptionwithImage 
+        text="Triangle                   "
+        image= {require('../assets/images/triangle.png')} 
+        />
       </ScrollView>
       <ContinueButton navigation={navigation} screenName="OnboardingColourcombos" />
       <PreviousButton navigation={navigation} screenName="OnboardingFaceshape" />

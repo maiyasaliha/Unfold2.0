@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { View, Text, Pressable, StyleSheet, Image } from 'react-native';
 
-const PressableOptionwithImage = ({ text, icon }) => {
+const PressableOptionwithImage = ({ text, image }) => {
   const [selected, setSelected] = useState(false);
 
   const handlePress = () => {
@@ -13,9 +12,7 @@ const PressableOptionwithImage = ({ text, icon }) => {
   return (
     <Pressable onPress={handlePress} style={styles.button}>
       <View style={styles.purpleContainer}>
-        {icon && (
-          <FontAwesomeIcon icon={icon} style={{ color: '#937ca7' }} />
-        )}
+        <Image style={styles.image} source={image} />
         <Text style={styles.buttonText}>{text}</Text>
         <View style={styles.radioButton}>
           {selected && <View style={styles.radioInnerCircle} />}
@@ -29,6 +26,7 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
   radioButton: {
     width: 20,
@@ -50,7 +48,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#937CA7',
     fontFamily: 'CabinCondensed-Regular',
-    marginLeft: 35,
     marginRight: 60,
   },
   purpleContainer: {
@@ -67,6 +64,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 4, // Required for Android shadow
+    marginBottom: 20,
+  },
+  image: {
+    height: 35,
+    width: 35,
+    marginRight: 10,
+    marginLeft: 25,
   },
 });
 
