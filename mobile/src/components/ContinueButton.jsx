@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 2, height: 2 },
   },
   buttonContainer: {
-    marginTop: 400,
     marginBottom: 20,
     paddingHorizontal: 20,
   },

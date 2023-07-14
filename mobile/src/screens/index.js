@@ -8,4 +8,8 @@ export { default as OnboardingSkintone} from "./OnboardingSkintone"
 export { default as LoginScreen} from "./LoginScreen"
 export { default as HomeScreen} from "./HomeScreen"
 export { default as ForgotPassword} from "./ForgotPassword"
+export { default as OnboardingFaceshape} from "./OnboardingFaceshape"
+export { default as OnboardingBodyshape} from "./OnboardingBodyshape"
+export { default as OnboardingStyles} from "./OnboardingStyles"
+export { default as OnboardingColourcombos} from "./OnboardingColourcombos"
 

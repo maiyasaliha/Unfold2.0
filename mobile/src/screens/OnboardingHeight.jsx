@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, StyleSheet } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
 import React from 'react'
 import { ContinueButton, HeightInput, PreviousButton } from '../components'
 import { useNavigation } from '@react-navigation/native'
@@ -8,16 +8,18 @@ const OnboardingHeight = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style = {styles.text}>Enter your Height</Text>
+      <Text style={styles.text}>Enter your Height</Text>
       <HeightInput />
-      <ContinueButton navigation={navigation} screenName="OnboardingGender" />
-      <PreviousButton navigation={navigation} screenName="OnboardingLocation" />
+      <View style={styles.buttonContainer}>
+        <ContinueButton navigation={navigation} screenName="OnboardingGender" />
+        <PreviousButton navigation={navigation} screenName="OnboardingLocation" />
+      </View>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-   text: {
+  text: {
     fontSize: 36,
     color: "#000000",
     fontFamily: 'CantoraOne-Regular',
@@ -31,6 +33,8 @@ const styles = StyleSheet.create({
     alignItems: 'center', //horizontal
     paddingTop: 100,
   },
-
+  buttonContainer: {
+    top: 400,
+  },
 })
 export default OnboardingHeight

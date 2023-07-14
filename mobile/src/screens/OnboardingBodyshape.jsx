@@ -1,0 +1,53 @@
+import { Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
+import React from 'react';
+import { ContinueButton, PressableOption, PressableOptionwithImage, PreviousButton } from '../components';
+import { useNavigation } from '@react-navigation/native';
+// import { faCircle} from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+
+const OnboardingBodyshape = () => {
+  const navigation = useNavigation();
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.text}>Choose your Body</Text>
+      <Text style={styles.text}>shape</Text>
+
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <PressableOption text="Inverted Triangle                                    " />
+        <PressableOption text="Round                                     " />
+        <PressableOption text="Hourglass                                     " />
+        <PressableOption text="Rectangle                                     " />
+        <PressableOption text="Triangle                                     " />
+      </ScrollView>
+      <ContinueButton navigation={navigation} screenName="OnboardingColourcombos" />
+      <PreviousButton navigation={navigation} screenName="OnboardingFaceshape" />
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 36,
+    color: '#000000',
+    fontFamily: 'CantoraOne-Regular',
+    textShadowColor: 'rgba(0, 0, 0, 0.5)',
+    textShadowRadius: 3,
+    textShadowOffset: { width: 2, height: 2 },
+    textAlign: 'center',
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingTop: 100,
+    paddingBottom: 40,
+  },
+  scrollContainer: {
+    justifyContent: 'space-between', // Move the justifyContent style here
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+});
+
+export default OnboardingBodyshape;
