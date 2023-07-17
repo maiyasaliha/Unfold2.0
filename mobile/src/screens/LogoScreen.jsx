@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, Image } from 'react-native'
+import { SafeAreaView, StyleSheet, Image, Platform } from 'react-native'
 import React from 'react'
 import { LoginButton, NewHereButton } from '../components'
 import { useNavigation } from '@react-navigation/native'
@@ -10,22 +10,12 @@ const LogoScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Image source={require('../assets/images/uflogo.png')} style={styles.image} />
-      <LoginButton navigation={navigation} screenName="LoginScreen" />
-      <NewHereButton navigation={navigation} screenName="SignUpScreen" />
+      <LoginButton navigation={navigation} screenName="AuthScreen" />
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 36,
-    color: "#000000",
-    fontFamily: 'CantoraOne-Regular',
-    textShadowColor: 'rgba(0, 0, 0, 0.5)',
-    textShadowRadius: 3,
-    textShadowOffset: { width: 2, height: 2 },
-    top: 50,
-  },
   container: {
     flex: 1,
     justifyContent: 'flex-start', //vertical
@@ -33,8 +23,8 @@ const styles = StyleSheet.create({
     paddingTop: 100,
   },
   image: {
-    height: 178,
-    width: 218,
+    height: 213.6,
+    width: 261.6,
     marginBottom: -150,
     top: 25,
     marginRight: 10,

@@ -15,4 +15,5 @@ export { default as OnboardingColourcombos} from "./OnboardingColourcombos"
 export { default as MapScreen} from "./MapScreen"
 export { default as UserScreen} from "./UserScreen"
 export { default as SearchScreen} from "./SearchScreen"
+export { default as AuthScreen} from "./AuthScreen"
 

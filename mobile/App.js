@@ -18,7 +18,8 @@ import {
 	OnboardingColourcombos,
 	SearchScreen,
 	MapScreen,
-	UserScreen} from './src/screens';
+	UserScreen,
+	AuthScreen} from './src/screens';
 import { TailwindProvider } from 'tailwindcss-react-native';
 import * as Font from 'expo-font';
 
@@ -50,6 +51,11 @@ export default function App() {
 			<NavigationContainer>
 				<Stack.Navigator>
 					<Stack.Screen name="LogoScreen" component={LogoScreen}
+						options={{
+							headerShown: false,
+						}}
+					/>
+					<Stack.Screen name="AuthScreen" component={AuthScreen}
 						options={{
 							headerShown: false,
 						}}

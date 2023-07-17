@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, TextInput } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, TextInput, Platform } from 'react-native'
 import React, { useState } from 'react'
 import { ContinueButton, DateInput, PreviousButton } from '../components'
 import { useNavigation } from '@react-navigation/native'
@@ -58,7 +58,7 @@ const OnboardingBirthday = () => {
       </View>
       <View style={styles.buttonContainer}>
         <ContinueButton navigation={navigation} screenName="OnboardingLocation" />
-        <PreviousButton navigation={navigation} screenName="SignUpScreen" />
+        <PreviousButton navigation={navigation} screenName="AuthScreen" />
       </View>
     </SafeAreaView>
   )

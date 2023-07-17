@@ -11,7 +11,7 @@ const ContinueButtonS = ({ onPress, navigation, screenName }) => {
   return (
     <View style={styles.buttonContainer}>
       <Pressable onPress={onPress? onPress : handlePress} style={styles.purplebutton}>
-        <Text style={styles.text}>Continue</Text>
+        <Text style={styles.textwhite}>Continue</Text>
       </Pressable>
     </View>
 
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  text: {
+  textwhite: {
     fontSize: 24,
     color: "#FFFFFF",
     fontFamily: 'CantoraOne-Regular',
