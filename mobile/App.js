@@ -15,15 +15,13 @@ import {
 	OnboardingFaceshape, 
 	OnboardingStyles,
 	OnboardingBodyshape,
-	OnboardingColourcombos} from './src/screens';
+	OnboardingColourcombos,
+	SearchScreen,
+	MapScreen,
+	UserScreen} from './src/screens';
 import { TailwindProvider } from 'tailwindcss-react-native';
 import * as Font from 'expo-font';
-// import { library } from '@fortawesome/fontawesome-svg-core';
-// import { fas } from '@fortawesome/free-solid-svg-icons';
-// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-// import ReactDOM from 'react-dom'
 
-// library.add(fas);
 
 const Stack = createNativeStackNavigator();
 
@@ -117,6 +115,21 @@ export default function App() {
 						}}
 					/>
 					<Stack.Screen name="HomeScreen" component={HomeScreen}
+						options={{
+							headerShown: false,
+						}}
+					/>
+					<Stack.Screen name="MapScreen" component={MapScreen}
+						options={{
+							headerShown: false,
+						}}
+					/>
+					<Stack.Screen name="SearchScreen" component={SearchScreen}
+						options={{
+							headerShown: false,
+						}}
+					/>
+					<Stack.Screen name="UserScreen" component={UserScreen}
 						options={{
 							headerShown: false,
 						}}

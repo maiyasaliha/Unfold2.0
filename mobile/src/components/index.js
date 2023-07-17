@@ -18,4 +18,7 @@ export { default as UnfoldButtonL} from "./UnfoldButtonL"
 export { default as ContinueButtonS} from "./ContinueButtonS"
 export { default as SaveButton} from "./SaveButton"
 export { default as PressableOptionwithImage} from "./PressableOptionwithImage"
+export { default as HomeButton} from "./HomeButton"
+export { default as ToggleBar} from "./ToggleBar"
+export { default as PinButton} from "./PinButton"
 

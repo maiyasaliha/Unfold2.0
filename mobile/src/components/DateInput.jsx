@@ -22,7 +22,7 @@ const DateInput = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <View style={styles.containerbox}>
             <TextInput
                 style={styles.input}
                 placeholder="DD"
@@ -55,7 +55,7 @@ const DateInput = () => {
 };
 
 const styles = StyleSheet.create({
-    container: {
+    containerbox: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',

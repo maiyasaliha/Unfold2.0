@@ -1,7 +1,7 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native'
 import React from 'react'
 
-const UnfoldButton = ({ navigation, screenName }) => {
+const UnfoldButton = ({ onPress, navigation, screenName }) => {
 
   const handlePress = () => {
     navigation.navigate(screenName)
@@ -9,7 +9,7 @@ const UnfoldButton = ({ navigation, screenName }) => {
   }
   return (
     <View style={styles.buttonContainer}>
-      <Pressable onPress={handlePress} style={styles.purplebutton}>
+      <Pressable onPress={onPress? onPress : handlePress} style={styles.purplebutton}>
         <Text style={styles.text}>Unfold</Text>
       </Pressable>
     </View>

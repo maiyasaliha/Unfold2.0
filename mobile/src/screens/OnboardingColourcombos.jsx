@@ -3,6 +3,7 @@ import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
 import ColorPicker from 'react-native-wheel-color-picker';
 import { ContinueButton, PreviousButton, SaveButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 const OnboardingColourcombos = () => {
   const [color, setColor] = useState('');

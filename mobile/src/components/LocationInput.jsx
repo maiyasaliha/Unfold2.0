@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { View, TextInput, Image, StyleSheet } from 'react-native'
 
-const LocationInput = ({ onLocationChange }) => {
+const LocationInput = () => {
     const [postalCode, setPostalCode] = useState('')
 
     const handlePostalCodeChange = (text) => {
@@ -12,7 +12,7 @@ const LocationInput = ({ onLocationChange }) => {
     };
 
     return (
-        <View style={styles.container}>
+        <View style={styles.containerBox}>
             <Image source={require('../assets/images/sgflag.png')} style={styles.image} />
             <TextInput
                 style={styles.input}
@@ -28,14 +28,12 @@ const LocationInput = ({ onLocationChange }) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
+    containerBox: {
         flexDirection: 'row',
         alignItems: 'center',
         marginLeft: 100,
         top: 210,
-
     },
-
     input: {
         flex: 1,
         height: 40,

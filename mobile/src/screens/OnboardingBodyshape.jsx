@@ -2,8 +2,7 @@ import { Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
 import React from 'react';
 import { ContinueButton, PressableOption, PressableOptionwithImage, PreviousButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
-// import { faCircle} from '@fortawesome/free-solid-svg-icons';
-// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import axios from 'axios';
 
 const OnboardingBodyshape = () => {
   const navigation = useNavigation();

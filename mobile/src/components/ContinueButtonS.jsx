@@ -1,7 +1,7 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native'
 import React from 'react'
 
-const ContinueButtonS = ({ navigation, screenName }) => {
+const ContinueButtonS = ({ onPress, navigation, screenName }) => {
 
   const handlePress = () => {
     navigation.navigate(screenName)
@@ -10,7 +10,7 @@ const ContinueButtonS = ({ navigation, screenName }) => {
 
   return (
     <View style={styles.buttonContainer}>
-      <Pressable onPress={handlePress} style={styles.purplebutton}>
+      <Pressable onPress={onPress? onPress : handlePress} style={styles.purplebutton}>
         <Text style={styles.text}>Continue</Text>
       </Pressable>
     </View>

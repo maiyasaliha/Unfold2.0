@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
       textDecorationLine: 'underline',
     },
     buttonContainer: {
-      marginTop: 160,
+      marginTop: 140,
       justifyContent: 'flex-start',
       marginRight: 110,
     },

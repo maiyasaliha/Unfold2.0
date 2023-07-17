@@ -2,6 +2,7 @@ import { Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
 import React from 'react';
 import { ContinueButton, PressableOptionwithImage, PreviousButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 const OnboardingFaceshape = () => {
   const navigation = useNavigation();
