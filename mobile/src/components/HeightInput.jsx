@@ -6,10 +6,11 @@ const HeightInput = () => {
 
     const handleHeightChange = (text) => {
         setHeight(text);
+        console.log('Height Entered')
     };
 
     return (
-        <View style={styles.container}>
+        <View style={styles.containerbox}>
             <TextInput
                 style={styles.input}
                 placeholder="Height in metres"
@@ -23,7 +24,7 @@ const HeightInput = () => {
 }
 
 const styles = StyleSheet.create({
-    container: {
+    containerbox: {
         justifyContent: 'center',
         alignItems: 'center',
         top: 200,

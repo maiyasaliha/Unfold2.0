@@ -6,6 +6,7 @@ const NameInput = () => {
 
     const handleNameChange = (text) => {
         setName(text);
+        console.log('Name Entered')
       };
     return (
         <View style={styles.container}>

@@ -1,10 +1,26 @@
 import React, { useEffect, view } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { OnboardingBirthday, OnboardingLocation, SignUpScreen, LogoScreen, OnboardingHeight, OnboardingSkintone, OnboardingGender, HomeScreen, ForgotPassword, LoginScreen } from './src/screens';
+import { 
+	OnboardingBirthday, 
+	OnboardingLocation, 
+	SignUpScreen, 
+	LogoScreen, 
+	OnboardingHeight, 
+	OnboardingSkintone, 
+	OnboardingGender, 
+	HomeScreen, 
+	ForgotPassword, 
+	LoginScreen, 
+	OnboardingFaceshape, 
+	OnboardingStyles,
+	OnboardingBodyshape,
+	OnboardingColourcombos,
+	SearchScreen,
+	MapScreen,
+	UserScreen} from './src/screens';
 import { TailwindProvider } from 'tailwindcss-react-native';
 import * as Font from 'expo-font';
-
 
 
 const Stack = createNativeStackNavigator();
@@ -78,7 +94,42 @@ export default function App() {
 							headerShown: false,
 						}}
 					/>
+					<Stack.Screen name="OnboardingFaceshape" component={OnboardingFaceshape}
+						options={{
+							headerShown: false,
+						}}
+					/>
+					<Stack.Screen name="OnboardingBodyshape" component={OnboardingBodyshape}
+						options={{
+							headerShown: false,
+						}}
+					/>
+					<Stack.Screen name="OnboardingStyles" component={OnboardingStyles}
+						options={{
+							headerShown: false,
+						}}
+					/>
+					<Stack.Screen name="OnboardingColourcombos" component={OnboardingColourcombos}
+						options={{
+							headerShown: false,
+						}}
+					/>
 					<Stack.Screen name="HomeScreen" component={HomeScreen}
+						options={{
+							headerShown: false,
+						}}
+					/>
+					<Stack.Screen name="MapScreen" component={MapScreen}
+						options={{
+							headerShown: false,
+						}}
+					/>
+					<Stack.Screen name="SearchScreen" component={SearchScreen}
+						options={{
+							headerShown: false,
+						}}
+					/>
+					<Stack.Screen name="UserScreen" component={UserScreen}
 						options={{
 							headerShown: false,
 						}}

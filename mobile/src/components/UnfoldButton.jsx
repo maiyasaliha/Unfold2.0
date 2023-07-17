@@ -1,14 +1,15 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native'
 import React from 'react'
 
-const UnfoldButton = ({ navigation, screenName }) => {
+const UnfoldButton = ({ onPress, navigation, screenName }) => {
 
   const handlePress = () => {
     navigation.navigate(screenName)
+    console.log('Unfold onPress')
   }
   return (
     <View style={styles.buttonContainer}>
-      <Pressable onPress={handlePress} style={styles.purplebutton}>
+      <Pressable onPress={onPress? onPress : handlePress} style={styles.purplebutton}>
         <Text style={styles.text}>Unfold</Text>
       </Pressable>
     </View>
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 2, height: 2 },
   },
   buttonContainer: {
-    marginTop: 400,
+    marginTop: 150,
     marginBottom: 20,
     paddingHorizontal: 20,
   }
