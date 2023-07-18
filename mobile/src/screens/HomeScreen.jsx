@@ -1,11 +1,11 @@
-import { View, Text, Platform } from 'react-native'
+import { View, Platform } from 'react-native'
 import React from 'react'
-import ToggleBar from '../components/ToggleBar'
+import { TopBar, ToggleBar } from '../components'
 
 const HomeScreen = () => {
   return (
     <View>
-      <Text>HomeScreen</Text>
+      <TopBar text="Today"/>
       <ToggleBar />
     </View>
   )

@@ -78,7 +78,7 @@ const AuthScreen = () => {
                         if (!isLogin) { //if not login, signup
                             navigation.navigate('OnboardingBirthday');
                             console.log('Unfold onPress');
-                        } else {
+                        } if (isLogin) {
                             navigation.navigate('HomeScreen');
                             console.log('Unfold onPress');
                         }

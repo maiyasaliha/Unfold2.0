@@ -1,25 +1,28 @@
 import React, { useEffect, view } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { 
-	OnboardingBirthday, 
-	OnboardingLocation, 
-	SignUpScreen, 
-	LogoScreen, 
-	OnboardingHeight, 
-	OnboardingSkintone, 
-	OnboardingGender, 
-	HomeScreen, 
-	ForgotPassword, 
-	LoginScreen, 
-	OnboardingFaceshape, 
+import {
+	OnboardingBirthday,
+	OnboardingLocation,
+	SignUpScreen,
+	LogoScreen,
+	OnboardingHeight,
+	OnboardingSkintone,
+	OnboardingGender,
+	HomeScreen,
+	ForgotPassword,
+	LoginScreen,
+	OnboardingFaceshape,
 	OnboardingStyles,
 	OnboardingBodyshape,
 	OnboardingColourcombos,
 	SearchScreen,
 	MapScreen,
 	UserScreen,
-	AuthScreen} from './src/screens';
+	AuthScreen,
+	ClosetScreen,
+	DressupScreen
+} from './src/screens';
 import { TailwindProvider } from 'tailwindcss-react-native';
 import * as Font from 'expo-font';
 
@@ -50,6 +53,11 @@ export default function App() {
 		<TailwindProvider>
 			<NavigationContainer>
 				<Stack.Navigator>
+					<Stack.Screen name="HomeScreen" component={HomeScreen}
+						options={{
+							headerShown: false,
+						}}
+					/>
 					<Stack.Screen name="LogoScreen" component={LogoScreen}
 						options={{
 							headerShown: false,
@@ -120,7 +128,12 @@ export default function App() {
 							headerShown: false,
 						}}
 					/>
-					<Stack.Screen name="HomeScreen" component={HomeScreen}
+					<Stack.Screen name="ClosetScreen" component={ClosetScreen}
+						options={{
+							headerShown: false,
+						}}
+					/>
+					<Stack.Screen name="DressupScreen" component={DressupScreen}
 						options={{
 							headerShown: false,
 						}}
