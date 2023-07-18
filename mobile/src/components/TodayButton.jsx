@@ -1,0 +1,43 @@
+import { View, Text, Pressable, StyleSheet } from 'react-native'
+import React from 'react'
+
+const TodayButton = ({ navigation, screenName }) => {
+
+    const handlePress = () => {
+        navigation.navigate(screenName)
+        console.log('Today onPress')
+    }
+    return (
+        <View style={styles.buttonContainer}>
+            <Pressable onPress={handlePress} >
+                <Text style={styles.text}>Today</Text>
+                <View style={styles.rectangle} />
+            </Pressable>
+        </View>
+
+    )
+}
+
+const styles = StyleSheet.create({
+    text: {
+        fontSize: 15,
+        color: "#000000",
+        fontFamily: 'CabinCondensed-Regular',
+        textAlign: 'center',
+        bottom: 5,
+    },
+    buttonContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    rectangle: {
+        height: 2,
+        width: 160,
+        backgroundColor: '#3A2D56',
+    },
+
+})
+
+
+export default TodayButton

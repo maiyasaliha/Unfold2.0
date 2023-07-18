@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, StyleSheet, View, TextInput, Image, } from 'react-native'
+import { Text, SafeAreaView, StyleSheet, View, TextInput, Image, Platform} from 'react-native'
 import React, { useState } from 'react'
 import { ContinueButton, PreviousButton } from '../components'
 import { useNavigation } from '@react-navigation/native'

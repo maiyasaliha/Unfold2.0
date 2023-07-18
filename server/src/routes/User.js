@@ -21,10 +21,10 @@ router.post("/login", async (req, res) => {
 
     const user = await User.findOne({ where: { email: email } });
 
-    if (!user) res.json({ message: "User Doesn't Exist" });
+    if (!user) res.json({ error: "User Doesn't Exist" });
 
     bcrypt.compare(password, user.password).then((match) => {
-        if (!match) res.json({ message: "Wrong Password" });
+        if (!match) res.json({ error: "Wrong Password" });
         const message = 'Welcome ' + user.name;
         res.json(message);
     });

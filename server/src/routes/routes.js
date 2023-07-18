@@ -1,9 +1,6 @@
 //defines API endpoints using express
 import express from 'express';
-import { signup } from '../controllers/signup.js';
-import { login } from '../controllers/login.js';
-import { isAuth } from '../controllers/isAuth.js';
-
+import { signup, login, isAuth } from '../controllers/auth.js';
 
 const router = express.Router();
 

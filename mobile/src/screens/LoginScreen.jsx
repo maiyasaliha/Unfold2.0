@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, StyleSheet, View, TextInput } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, View, TextInput, Platform, Pressable } from 'react-native';
 import React, { useState } from 'react'
 import { UnfoldButton, ForgotPasswordButton, BackArrowButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
@@ -11,8 +11,9 @@ const LoginScreen = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [isError, setIsError] = useState(false);
+  const [isValid, setIsValid] = useState(true);
   const [message, setMessage] = useState('');
+
 
   const handleEmailChange = (text) => {
     setEmail(text);
@@ -22,77 +23,23 @@ const LoginScreen = () => {
     setPassword(text);
     console.log('Password Entered')
   };
-  const onLoggedIn = token => {
-    fetch(`${API_URL}/private`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-    })
-      .then(async res => {
-        try {
-          const jsonRes = await res.json();
-          if (res.status === 200) { //if successful
-            setMessage(jsonRes.message);
-            console.log(jsonRes);
-          }
-        } catch (err) {
-          console.log(err);
-        };
-      })
-      .catch(err => {
-        console.log(err);
-      });
-
-  }
-  const onSubmitHandler = () => {
-    const payload = {
-      email,
-      password,
-    };
-    fetch(`${API_URL}/${'login'}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    })
-      .then(async res => {
-        try {
-          const jsonRes = await res.json();
-          if (res.status !== 200) {
-            setIsError(true);
-            setMessage(jsonRes.message);
-          } else {
-            onLoggedIn(jsonRes.token);
-            setIsError(false);
-            setMessage(jsonRes.message);
-          }
-        } catch (err) {
-          console.log(err);
-        };
-      })
-      .catch(err => {
-        console.log(err);
-      });
-      if (!isError) {
-        navigation.navigate('HomeScreen')
-        console.log('Unfold onPress')
-      }
+  const login = () => {
+    const data = { email: email, password: password };
+    axios.post("http://localhost:5000/auth/login", data).then((response) => {
+      console.log(response.data);
+    }).catch(err => {
+      setIsValid(false)
+      console.log('Error:', err);
+    });
+    navigation.navigate('HomeScreen')
+    console.log('Unfold onPress')
   };
-
-  const getMessage = () => {
-    const status = isError ? `Error: ` : `Success: `;
-    return status + message;
-  }
 
   return (
     <SafeAreaView style={styles.container}>
       <BackArrowButton navigation={navigation} screenName="LogoScreen" />
       <Text style={styles.text}>Log In</Text>
       <View style={styles.containerbox}>
-        <Text style={[styles.message, { color: isError ? 'red' : 'green' }]}>{message ? getMessage() : null}</Text>
         <View style={styles.purpleContainer}>
           <TextInput
             style={styles.input}
@@ -114,7 +61,11 @@ const LoginScreen = () => {
         </View>
       </View>
       <ForgotPasswordButton navigation={navigation} screenName="ForgotPassword" />
-      <UnfoldButton onPress={onSubmitHandler} />
+      <View style={styles.buttonContainer}>
+        <Pressable disabled={!isValid} onPress={login} style={styles.purplebutton}>
+          <Text style={styles.textwhite}>Unfold</Text>
+        </Pressable>
+      </View>
     </SafeAreaView>
   );
 };
@@ -161,6 +112,28 @@ const styles = StyleSheet.create({
   message: {
     fontSize: 16,
     marginVertical: '5%',
+  },
+  purplebutton: {
+    backgroundColor: "#937CA7",
+    paddingHorizontal: 25,
+    height: 58,
+    width: 248,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  textwhite: {
+    fontSize: 24,
+    color: "#FFFFFF",
+    fontFamily: 'CantoraOne-Regular',
+    textShadowColor: 'rgba(0, 0, 0, 0.5)',
+    textShadowRadius: 3,
+    textShadowOffset: { width: 2, height: 2 },
+  },
+  buttonContainer: {
+    marginTop: 280,
+    marginBottom: 20,
+    paddingHorizontal: 20,
   },
 });
 

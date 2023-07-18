@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, ScrollView, Platform } from 'react-native';
 import React from 'react';
 import { ContinueButton, PressableOption, PreviousButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
