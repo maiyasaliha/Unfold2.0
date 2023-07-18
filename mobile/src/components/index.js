@@ -26,4 +26,8 @@ export { default as TopBar} from "./TopBar"
 export { default as ClosetButton} from "./ClosetButton"
 export { default as DressupButton} from "./DressupButton"
 export { default as GlobeButton} from "./GlobeButton"
+export { default as WhitePlus} from "./WhitePlus"
+export { default as CreateOutfitButton} from "./CreateOutfitButton"
+export { default as AddItemsButton} from "./AddItemsButton"
+
 

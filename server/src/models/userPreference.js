@@ -4,7 +4,7 @@ import sequelize from '../utils/database.js';
 const UserPreference = sequelize.define('userpreference', {
    userId: {
       type: Sequelize.INTEGER,
-      allowNull: false,
+      allowNull: true,
       primaryKey: true,
    },
    birthday: {

@@ -19,7 +19,7 @@ const OnboardingHeight = () => {
       <View style={styles.containerbox}>
             <TextInput
                 style={styles.input}
-                placeholder="Height in metres"
+                placeholder="Height in centimetres"
                 placeholderTextColor="#937CA7"
                 value={height}
                 onChangeText={handleHeightChange}
@@ -28,7 +28,7 @@ const OnboardingHeight = () => {
         </View>
       <View style={styles.buttonContainer}>
         <ContinueButton navigation={navigation} screenName="OnboardingGender" />
-        <PreviousButton navigation={navigation} screenName="OnboardingLocation" />
+        <PreviousButton navigation={navigation} screenName="OnboardingBirthday" />
       </View>
     </SafeAreaView>
   )
