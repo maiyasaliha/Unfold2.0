@@ -30,34 +30,21 @@ import * as Font from 'expo-font';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+	const loadFonts = async () => {
+		await Font.loadAsync({
+			'CantoraOne-Regular': require('./src/assets/fonts/CantoraOne-Regular.ttf'),
+			'CabinCondensed-Regular': require('./src/assets/fonts/CabinCondensed-Regular.ttf'),
+		});
+	};
 	useEffect(() => {
-		async function loadFont() {
-			await Font.loadAsync({
-				'CantoraOne-Regular': require('./src/assets/fonts/CantoraOne-Regular.ttf'),
-			});
-		}
-
-		loadFont();
-	}, []);
-	useEffect(() => {
-		async function loadFont() {
-			await Font.loadAsync({
-				'CabinCondensed-Regular': require('./src/assets/fonts/CabinCondensed-Regular.ttf'),
-			});
-		}
-
-		loadFont();
+		loadFonts();
 	}, []);
 
 	return (
 		<TailwindProvider>
 			<NavigationContainer>
 				<Stack.Navigator>
-					<Stack.Screen name="HomeScreen" component={HomeScreen}
-						options={{
-							headerShown: false,
-						}}
-					/>
+					
 					<Stack.Screen name="LogoScreen" component={LogoScreen}
 						options={{
 							headerShown: false,
@@ -124,6 +111,11 @@ export default function App() {
 						}}
 					/>
 					<Stack.Screen name="OnboardingColourcombos" component={OnboardingColourcombos}
+						options={{
+							headerShown: false,
+						}}
+					/>
+					<Stack.Screen name="HomeScreen" component={HomeScreen}
 						options={{
 							headerShown: false,
 						}}

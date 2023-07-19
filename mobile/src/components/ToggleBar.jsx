@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import PinButton from './PinButton';
 import UserButton from './UserButton';
 import GlobeButton from './GlobeButton';
+import WhitePlus from './WhitePlus';
 
 const ToggleBar = () => {
     const navigation = useNavigation();
@@ -15,6 +16,7 @@ const ToggleBar = () => {
                 <View style={styles.buttonContainer}>
                     <HomeButton navigation={navigation} screenName="HomeScreen" />
                     <PinButton navigation={navigation} screenName="MapScreen" />
+                    <WhitePlus />
                     <GlobeButton navigation={navigation} screenName="SearchScreen" />
                     <UserButton navigation={navigation} screenName="UserScreen" />
                 </View>

@@ -57,7 +57,7 @@ const OnboardingBirthday = () => {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <ContinueButton navigation={navigation} screenName="OnboardingLocation" />
+        <ContinueButton navigation={navigation} screenName="OnboardingHeight" />
         <PreviousButton navigation={navigation} screenName="AuthScreen" />
       </View>
     </SafeAreaView>
