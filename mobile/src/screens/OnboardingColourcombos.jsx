@@ -1,16 +1,32 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, View, Text, Platform } from 'react-native';
 import ColorPicker from 'react-native-wheel-color-picker';
-import { ContinueButton, PreviousButton, SaveButton } from '../components';
+import { ContinueButton, ContinueButtonS, PreviousButton, SaveButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
+const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.129:5000' : 'http://192.168.0.129:5000';
+
+
 const OnboardingColourcombos = () => {
-  const [color, setColor] = useState('');
+  const [colourCombos, setColor] = useState('');
   const navigation = useNavigation();
 
   const onColorChange = (color) => {
     setColor(color);
+  };
+
+  const handlePress = () => {
+    axios.post(`${API_URL}/colourCombos`, {
+      userId: 37,
+      colourCombos: colourCombos,
+    }).then((response) => {
+      console.log('ColourCombos Added:', colourCombos)
+      navigation.navigate('OnboardingStyles')
+      console.log('Continue onPress')
+    }).catch((err) =>
+      console.log('Error inserting ColourCombos:', err)
+    )
   };
 
   return (
@@ -18,10 +34,10 @@ const OnboardingColourcombos = () => {
       <Text style={styles.text}>Choose your preferred Colour combos</Text>
       <View style={styles.sectionContainer}>
         <View style={styles.colorCircleContainer}>
-          {color ? <View style={[styles.colorCircle, { backgroundColor: color }]} /> : null}
+          {colourCombos ? <View style={[styles.colorCircle, { backgroundColor: colourCombos }]} /> : null}
         </View>
         <ColorPicker
-          color={color}
+          color={colourCombos}
           onColorChange={(color) => onColorChange(color)}
           thumbSize={30}
           sliderSize={30}
@@ -32,7 +48,7 @@ const OnboardingColourcombos = () => {
       </View>
       <SaveButton />
       <View style={styles.buttonContainer}>
-        <ContinueButton navigation={navigation} screenName="OnboardingStyles" />
+        <ContinueButtonS onPress={handlePress} />
         <PreviousButton navigation={navigation} screenName="OnboardingBodyshape" />
       </View>
     </SafeAreaView>

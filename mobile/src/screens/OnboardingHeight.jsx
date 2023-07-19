@@ -1,8 +1,11 @@
 import { View, Text, SafeAreaView, StyleSheet, TextInput, Platform } from 'react-native'
 import React, { useState } from 'react'
-import { ContinueButton, HeightInput, PreviousButton } from '../components'
+import { ContinueButton, ContinueButtonS, HeightInput, PreviousButton } from '../components'
 import { useNavigation } from '@react-navigation/native'
 import axios from 'axios';
+
+const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.129:5000' : 'http://192.168.0.129:5000';
+
 
 const OnboardingHeight = () => {
   const navigation = useNavigation()
@@ -11,6 +14,18 @@ const OnboardingHeight = () => {
     const handleHeightChange = (text) => {
         setHeight(text);
         console.log('Height Entered')
+    };
+    const handlePress = () => {
+      axios.post(`${API_URL}/height`, {
+        userId: 37,
+        height: height,
+      }).then((response) => {
+        console.log('Height Added:', height)
+        navigation.navigate('OnboardingGender')
+        console.log('Continue onPress')
+      }).catch((err) =>
+        console.log('Error inserting Height:', err)
+      )
     };
 
   return (
@@ -27,8 +42,8 @@ const OnboardingHeight = () => {
             />
         </View>
       <View style={styles.buttonContainer}>
-        <ContinueButton navigation={navigation} screenName="OnboardingGender" />
-        <PreviousButton navigation={navigation} screenName="OnboardingBirthday" />
+        <ContinueButtonS onPress={handlePress} />
+        <PreviousButton navigation={navigation} screenName="OnboardingLocation" />
       </View>
     </SafeAreaView>
   )

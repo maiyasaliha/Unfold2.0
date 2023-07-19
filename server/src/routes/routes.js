@@ -1,7 +1,7 @@
 //defines API endpoints using express
 import express from 'express';
 import { signup, login, isAuth } from '../controllers/auth.js';
-import { birthday, gender, height, faceshape, bodyshape, colourCombos, skintone, styles, preference } from '../controllers/preference.js';
+import { birthday, gender, height, faceshape, bodyshape, colourCombos, skintone, styles, preference, getId, location } from '../controllers/preference.js';
 
 
 const router = express.Router();
@@ -16,6 +16,7 @@ router.get('/private', isAuth);
 //preference
 router.post('/preference', preference);
 router.post('/birthday', birthday);
+router.post('/location', location);
 router.post('/gender', gender);
 router.post('/height', height);
 router.post('/faceshape', faceshape);
@@ -23,6 +24,7 @@ router.post('/bodyshape', bodyshape);
 router.post('/colourCombos', colourCombos);
 router.post('/skintone', skintone);
 router.post('/styles', styles);
+router.get('/getId', getId);
 
 
 

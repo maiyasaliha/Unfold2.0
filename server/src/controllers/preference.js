@@ -1,6 +1,28 @@
 //contains actions to be executed when requests are received
 import jwt from 'jsonwebtoken';
 import UserPreference from '../models/userPreference.js';
+import User from '../models/user.js';
+
+const getId = (req, res, next) => {
+    const { email } = req.query;
+    User.findOne({ where : {
+        email: email, 
+    }}).then(dbUser => {
+        if (dbUser) {
+            // If the user is found in the database, send the userId in the response
+            const userId = dbUser.userId; // Assuming the User model has a field named 'id' for the userId
+            return res.status(200).json({ userId });
+          } else {
+            // If the user is not found, send an appropriate error response
+            return res.status(404).json({ error: 'User not found' });
+          }
+        })
+        .catch(err => {
+          // If there is an error while querying the database, handle it
+          console.error('Error executing query:', err);
+          return res.status(500).json({ error: 'Internal server error' });
+        });
+    };
 
 const birthday = (req, res, next) => { 
     const { userId, birthday } = req.body;
@@ -28,6 +50,18 @@ const preference = (req, res, next) => {
     });
     console.log('user preference created');
     res.json({ message: "user preference created" })
+};
+
+const location = (req, res, next) => { 
+    const { userId, location } = req.body;
+    UserPreference.update({ location: location}, { where: { userId: userId }})
+    .then(() => {
+        console.log('location inserted/updated');
+    })
+    .catch(err => {
+        console.error('Error inserting/updating location:', err);
+    });
+    res.json({ message: "location inserted/updated" })
 };
 
 const gender = (req, res, next) => { 
@@ -113,4 +147,4 @@ const styles = (req, res, next) => {
     });
     res.json({ message: "styles inserted/updated" })
 };
-export { birthday, gender, height, skintone, faceshape, bodyshape, colourCombos, styles, preference };
+export { birthday, gender, height, skintone, faceshape, bodyshape, colourCombos, styles, preference, getId, location };

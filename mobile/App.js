@@ -44,7 +44,11 @@ export default function App() {
 		<TailwindProvider>
 			<NavigationContainer>
 				<Stack.Navigator>
-					
+					<Stack.Screen name="OnboardingLocation" component={OnboardingLocation}
+						options={{
+							headerShown: false,
+						}}
+					/>
 					<Stack.Screen name="LogoScreen" component={LogoScreen}
 						options={{
 							headerShown: false,
@@ -71,11 +75,6 @@ export default function App() {
 						}}
 					/>
 					<Stack.Screen name="OnboardingBirthday" component={OnboardingBirthday}
-						options={{
-							headerShown: false,
-						}}
-					/>
-					<Stack.Screen name="OnboardingLocation" component={OnboardingLocation}
 						options={{
 							headerShown: false,
 						}}
