@@ -1,20 +1,34 @@
 import { Text, SafeAreaView, StyleSheet, View, TextInput, Image, Platform} from 'react-native'
 import React, { useState } from 'react'
-import { ContinueButton, PreviousButton } from '../components'
+import { ContinueButton, ContinueButtonS, PreviousButton } from '../components'
 import { useNavigation } from '@react-navigation/native'
 import axios from 'axios';
 
+const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.129:5000' : 'http://192.168.0.129:5000';
+
+
 const OnboardingLocation = () => {
   const navigation = useNavigation()
-  const [postalCode, setPostalCode] = useState('')
+  const [location, setLocation] = useState('')
 
   const handlePostalCodeChange = (text) => {
     // Remove any non-digit characters from the input
     const formattedPostalCode = text.replace(/\D/g, '')
-    setPostalCode(formattedPostalCode)
+    setLocation(formattedPostalCode)
     console.log('Location Entered')
   };
-
+  const handlePress = () => {
+    axios.post(`${API_URL}/location`, {
+      userId: 37,
+      location: location,
+    }).then((response) => {
+      console.log('Location Added:', location)
+      navigation.navigate('OnboardingHeight')
+      console.log('Continue onPress')
+    }).catch((err) =>
+      console.log('Error inserting Location:', err)
+    )
+  };
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.text}>Choose your Location</Text>
@@ -26,12 +40,12 @@ const OnboardingLocation = () => {
                 placeholderTextColor="#937CA7"
                 keyboardType="numeric"
                 maxLength={6}
-                value={postalCode}
+                value={location}
                 onChangeText={handlePostalCodeChange}
             />
         </View>
       <View style={styles.buttonContainer}>
-        <ContinueButton navigation={navigation} screenName="OnboardingHeight" />
+        <ContinueButtonS onPress={handlePress} />
         <PreviousButton navigation={navigation} screenName="OnboardingBirthday" />
       </View>
     </SafeAreaView>

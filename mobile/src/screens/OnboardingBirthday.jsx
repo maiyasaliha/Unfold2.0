@@ -1,8 +1,12 @@
 import { View, Text, SafeAreaView, StyleSheet, TextInput, Platform } from 'react-native'
 import React, { useState } from 'react'
-import { ContinueButton, DateInput, PreviousButton } from '../components'
+import { ContinueButton, ContinueButtonS, PreviousButton } from '../components'
 import { useNavigation } from '@react-navigation/native'
 import axios from 'axios';
+import { getId } from '../tempstore/userPreferenceStore';
+
+const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.129:5000' : 'http://192.168.0.129:5000';
+
 
 const OnboardingBirthday = () => {
   const navigation = useNavigation()
@@ -24,6 +28,21 @@ const OnboardingBirthday = () => {
     setYear(text);
     console.log('Year Entered')
   };
+  const birthday = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+
+  const handlePress = () => {
+    axios.post(`${API_URL}/birthday`, {
+      userId: 37,
+      birthday: birthday,
+    }).then((response) => {
+      console.log('Birthday Added:', birthday)
+      navigation.navigate('OnboardingLocation')
+      console.log('Continue onPress')
+    }).catch((err) =>
+      console.log('Error inserting Birthday:', err)
+    )
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.text}>Enter your Birthday</Text>
@@ -57,7 +76,7 @@ const OnboardingBirthday = () => {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <ContinueButton navigation={navigation} screenName="OnboardingHeight" />
+        <ContinueButtonS onPress={handlePress} />
         <PreviousButton navigation={navigation} screenName="AuthScreen" />
       </View>
     </SafeAreaView>

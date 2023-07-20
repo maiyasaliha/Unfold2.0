@@ -1,11 +1,73 @@
-import { Text, SafeAreaView, StyleSheet, ScrollView, Platform } from 'react-native';
-import React from 'react';
-import { ContinueButton, PressableOptionwithImage, PreviousButton } from '../components';
+import { Text, SafeAreaView, StyleSheet, ScrollView, View, Platform, Pressable, Image } from 'react-native';
+import React, { useState } from 'react';
+import { ContinueButton, PressableOptionwithImage, FaceshapeOption, PreviousButton, ContinueButtonS } from '../components';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
+const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.129:5000' : 'http://192.168.0.129:5000';
+
+
 const OnboardingFaceshape = () => {
   const navigation = useNavigation();
+
+  const [faceshape, setFaceShape] = useState('');
+
+  const [ovalSelected, setOvalselected] = useState(false);
+  const [roundSelected, setRoundselected] = useState(false);
+  const [squareSelected, setSquareselected] = useState(false);
+  const [rectangleSelected, setRectangleselected] = useState(false);
+  const [triangleSelected, setTriangleselected] = useState(false);
+  const [diamondSelected, setDiamondselected] = useState(false);
+  const [heartSelected, setHeartselected] = useState(false);
+
+  const ovalPress = () => {
+    setOvalselected(!ovalSelected);
+    setFaceShape('Oval');
+    console.log('Oval Option Pressed')
+  };
+  const roundPress = () => {
+    setRoundselected(!roundSelected);
+    setFaceShape('Round');
+    console.log('Round Option Pressed')
+  };
+  const squarePress = () => {
+    setSquareselected(!squareSelected);
+    setFaceShape('Square');
+    console.log('Square Option Pressed')
+  };
+  const rectanglePress = () => {
+    setRectangleselected(!rectangleSelected);
+    setFaceShape('Rectangle');
+    console.log('Rectangle Option Pressed')
+  };
+  const trianglePress = () => {
+    setTriangleselected(!triangleSelected);
+    setFaceShape('Triangle');
+    console.log('Triangle Option Pressed')
+  };
+  const diamondPress = () => {
+    setDiamondselected(!diamondSelected);
+    setFaceShape('Diamond');
+    console.log('Diamond Option Pressed')
+  };
+  const heartPress = () => {
+    setHeartselected(!heartSelected);
+    setFaceShape('Heart');
+    console.log('Heart Option Pressed')
+  };
+
+  const handlePress = () => {
+    axios.post(`${API_URL}/faceshape`, {
+      userId: 37,
+      faceshape: faceshape,
+    }).then((response) => {
+      console.log('FaceShape Added:', faceshape)
+      navigation.navigate('OnboardingBodyshape')
+      console.log('Continue onPress')
+    }).catch((err) =>
+      console.log('Error inserting FaceShape:', err)
+    )
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -13,36 +75,71 @@ const OnboardingFaceshape = () => {
       <Text style={styles.text}>shape</Text>
 
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <PressableOptionwithImage 
-        text="Oval                   " 
-        image= {require('../assets/images/oval.png')} 
-        />
-        <PressableOptionwithImage 
-        text="Round               " 
-        image= {require('../assets/images/round.png')} 
-        />
-        <PressableOptionwithImage 
-        text="Square              " 
-        image= {require('../assets/images/square.png')} 
-        />
-        <PressableOptionwithImage 
-        text="Rectangle         " 
-        image= {require('../assets/images/rectangle.png')} 
-        />
-        <PressableOptionwithImage 
-        text="Triangle             " 
-        image= {require('../assets/images/triangle.png')} 
-        />
-         <PressableOptionwithImage 
-        text="Diamond          " 
-        image= {require('../assets/images/diamond.png')} 
-        />
-        <PressableOptionwithImage 
-        text="Heart                 " 
-        image= {require('../assets/images/heart.png')} 
-        />
+        <Pressable onPress={ovalPress} style={styles.button}>
+          <View style={styles.purpleContainer}>
+            <Image style={styles.image} source={require('../assets/images/oval.png')} />
+            <Text style={styles.buttonText}>Oval                   </Text>
+            <View style={styles.radioButton}>
+              {ovalSelected && <View style={styles.radioInnerCircle} />}
+            </View>
+          </View>
+        </Pressable>
+        <Pressable onPress={roundPress} style={styles.button}>
+          <View style={styles.purpleContainer}>
+            <Image style={styles.image} source={require('../assets/images/round.png')} />
+            <Text style={styles.buttonText}>Round               </Text>
+            <View style={styles.radioButton}>
+              {roundSelected && <View style={styles.radioInnerCircle} />}
+            </View>
+          </View>
+        </Pressable>
+        <Pressable onPress={squarePress} style={styles.button}>
+          <View style={styles.purpleContainer}>
+            <Image style={styles.image} source={require('../assets/images/square.png')} />
+            <Text style={styles.buttonText}>Square              </Text>
+            <View style={styles.radioButton}>
+              {squareSelected && <View style={styles.radioInnerCircle} />}
+            </View>
+          </View>
+        </Pressable>
+        <Pressable onPress={rectanglePress} style={styles.button}>
+          <View style={styles.purpleContainer}>
+            <Image style={styles.image} source={require('../assets/images/rectangle.png')} />
+            <Text style={styles.buttonText}>Rectangle         </Text>
+            <View style={styles.radioButton}>
+              {rectangleSelected && <View style={styles.radioInnerCircle} />}
+            </View>
+          </View>
+        </Pressable>
+        <Pressable onPress={trianglePress} style={styles.button}>
+          <View style={styles.purpleContainer}>
+            <Image style={styles.image} source={require('../assets/images/triangle.png')} />
+            <Text style={styles.buttonText}>Triangle             </Text>
+            <View style={styles.radioButton}>
+              {triangleSelected && <View style={styles.radioInnerCircle} />}
+            </View>
+          </View>
+        </Pressable>
+        <Pressable onPress={diamondPress} style={styles.button}>
+          <View style={styles.purpleContainer}>
+            <Image style={styles.image} source={require('../assets/images/diamond.png')} />
+            <Text style={styles.buttonText}>Diamond          </Text>
+            <View style={styles.radioButton}>
+              {diamondSelected && <View style={styles.radioInnerCircle} />}
+            </View>
+          </View>
+        </Pressable>
+        <Pressable onPress={heartPress} style={styles.button}>
+          <View style={styles.purpleContainer}>
+            <Image style={styles.image} source={require('../assets/images/heart.png')} />
+            <Text style={styles.buttonText}>Heart                 </Text>
+            <View style={styles.radioButton}>
+              {heartSelected && <View style={styles.radioInnerCircle} />}
+            </View>
+          </View>
+        </Pressable>
       </ScrollView>
-      <ContinueButton navigation={navigation} screenName="OnboardingBodyshape" />
+      <ContinueButtonS onPress={handlePress} />
       <PreviousButton navigation={navigation} screenName="OnboardingSkintone" />
     </SafeAreaView>
   );
@@ -70,9 +167,58 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
   },
-  round:{
+  round: {
     height: 20,
     width: 20,
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  radioButton: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    borderWidth: 3,
+    borderColor: '#937CA7',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 30,
+  },
+  radioInnerCircle: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: '#937CA7',
+  },
+  buttonText: {
+    fontSize: 20,
+    color: '#937CA7',
+    fontFamily: 'CabinCondensed-Regular',
+    marginRight: 60,
+  },
+  purpleContainer: {
+    backgroundColor: '#E7DBF1',
+    paddingHorizontal: 25,
+    height: 58,
+    width: 295,
+    borderRadius: 12,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 4, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4, // Required for Android shadow
+    marginBottom: 20,
+  },
+  image: {
+    height: 35,
+    width: 35,
+    marginRight: 10,
+    marginLeft: 25,
   },
 });
 

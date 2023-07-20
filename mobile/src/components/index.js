@@ -29,5 +29,11 @@ export { default as GlobeButton} from "./GlobeButton"
 export { default as WhitePlus} from "./WhitePlus"
 export { default as CreateOutfitButton} from "./CreateOutfitButton"
 export { default as AddItemsButton} from "./AddItemsButton"
+export { default as GenderOption} from "./GenderOption"
+export { default as SkintoneOption} from "./SkintoneOption"
+export { default as FaceshapeOption} from "./FaceshapeOption"
+export { default as BodyshapeOption} from "./BodyshapeOption"
+export { default as StylesOption} from "./StylesOption"
+
 
 

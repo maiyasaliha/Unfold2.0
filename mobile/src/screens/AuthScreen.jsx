@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput, Platform, Pressabl
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackArrowButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
+import { setUserId } from '../tempstore/userPreferenceStore';
 
 const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.129:5000' : 'http://192.168.0.129:5000';
 
@@ -15,7 +16,6 @@ const AuthScreen = () => {
     const [isError, setIsError] = useState(false);
     const [message, setMessage] = useState('');
     const [isLogin, setIsLogin] = useState(true);
-    const [isDisabled, setIsDisabled] = useState(true); //disabled to begin with
 
     const navigation = useNavigation();
 
@@ -49,6 +49,36 @@ const AuthScreen = () => {
 
     }
 
+    const fetchUserIdByEmail = email => {
+        return fetch(`${API_URL}/getId?email=${email}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(async response => {
+                // Check if the response status is OK (200)
+                try {
+                    const jsonRes = await response.json();
+                    if (response.status === 200) {
+                        console.log(jsonRes);
+                        setUserId(jsonRes.userId);
+                    }
+                } catch (err) {
+                    console.log(err);
+                };
+            })
+            // .then((data) => {
+            //     // Extract the userId from the response data
+            //     const userId = data.userId;
+            //     setUserId(userId);
+            // })
+            .catch((error) => {
+                // Handle any errors that occurred during the fetch
+                console.log('Error fetching user ID:', error.message);
+            });
+    };
+
     const onSubmitHandler = () => {
         const payload = {
             email,
@@ -74,7 +104,7 @@ const AuthScreen = () => {
                         setIsError(false);
                         setMessage(jsonRes.message);
                         console.log(jsonRes);
-                        setIsDisabled(true);
+                        fetchUserIdByEmail(email);
                         if (!isLogin) { //if not login, signup
                             navigation.navigate('OnboardingBirthday');
                             console.log('Unfold onPress');
@@ -82,7 +112,7 @@ const AuthScreen = () => {
                             navigation.navigate('HomeScreen');
                             console.log('Unfold onPress');
                         }
-                        
+
                     }
                 } catch (err) {
                     console.log(err);
@@ -143,6 +173,7 @@ const AuthScreen = () => {
         </SafeAreaView>
     );
 };
+
 
 const styles = StyleSheet.create({
     container: {
