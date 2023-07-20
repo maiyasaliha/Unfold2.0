@@ -1,6 +1,6 @@
 import { Text, SafeAreaView, StyleSheet, View, TextInput, Image, Platform} from 'react-native'
 import React, { useState } from 'react'
-import { ContinueButton, ContinueButtonS, PreviousButton } from '../components'
+import { ContinueButtonS, PreviousButton } from '../components'
 import { useNavigation } from '@react-navigation/native'
 import axios from 'axios';
 

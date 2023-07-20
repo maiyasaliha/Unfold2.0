@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, View, Text, Platform } from 'react-native';
 import ColorPicker from 'react-native-wheel-color-picker';
-import { ContinueButton, ContinueButtonS, PreviousButton, SaveButton } from '../components';
+import { ContinueButtonS, PreviousButton, SaveButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 

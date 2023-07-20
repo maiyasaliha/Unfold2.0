@@ -1,6 +1,6 @@
 import { SafeAreaView, StyleSheet, Image, Platform } from 'react-native'
 import React from 'react'
-import { LoginButton, NewHereButton } from '../components'
+import { LoginButton } from '../components'
 import { useNavigation } from '@react-navigation/native'
 
 

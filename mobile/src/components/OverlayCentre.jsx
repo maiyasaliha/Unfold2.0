@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, Dimensions, Pressable, Image } from 'react-native';
+import ChooseOutfitButton from './ChooseOutfitButton';
 
 
 const OverlayCentre = ({ visible, onPress }) => {
@@ -9,6 +10,7 @@ const OverlayCentre = ({ visible, onPress }) => {
 
   return (
     <View style={styles.overlay}>
+      <ChooseOutfitButton />
       <TouchableOpacity style={styles.overlayContent} onPress={onPress}>
         <Pressable onPress={onPress} style={styles.button}>
         <Image source={require('../assets/images/purpleplus.png')} style={styles.image} />

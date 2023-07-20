@@ -5,26 +5,95 @@ import User from '../models/user.js';
 
 const getId = (req, res, next) => {
     const { email } = req.query;
-    User.findOne({ where : {
-        email: email, 
-    }}).then(dbUser => {
+    User.findOne({
+        where: {
+            email: email,
+        }
+    }).then(dbUser => {
         if (dbUser) {
             // If the user is found in the database, send the userId in the response
             const userId = dbUser.userId; // Assuming the User model has a field named 'id' for the userId
             return res.status(200).json({ userId });
-          } else {
+        } else {
             // If the user is not found, send an appropriate error response
             return res.status(404).json({ error: 'User not found' });
-          }
-        })
+        }
+    })
         .catch(err => {
-          // If there is an error while querying the database, handle it
-          console.error('Error executing query:', err);
-          return res.status(500).json({ error: 'Internal server error' });
+            // If there is an error while querying the database, handle it
+            console.error('Error executing query:', err);
+            return res.status(500).json({ error: 'Internal server error' });
         });
-    };
+};
 
-const birthday = (req, res, next) => { 
+const getName = (req, res, next) => {
+    const { userId } = req.query;
+    User.findOne({
+        where: {
+            userId: userId,
+        }
+    }).then(dbUser => {
+        if (dbUser) {
+            // If the user is found in the database, send the userId in the response
+            const name = dbUser.name; // Assuming the User model has a field named 'id' for the userId
+            return res.status(200).json({ name });
+        } else {
+            // If the user is not found, send an appropriate error response
+            return res.status(404).json({ error: 'User & Name not found' });
+        }
+    })
+        .catch(err => {
+            // If there is an error while querying the database, handle it
+            console.error('Error executing query:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        });
+};
+
+const getUser = (req, res, next) => {
+    const { userId } = req.query;
+    User.findOne({
+        where: {
+            userId: userId,
+        }
+    }).then(dbUser => {
+        if (dbUser) {
+            // If the user is found in the database, send the user in the response
+            return res.status(200).json(dbUser);
+        } else {
+            // If the user is not found, send an appropriate error response
+            return res.status(404).json({ error: 'User not found' });
+        }
+    })
+        .catch(err => {
+            // If there is an error while querying the database, handle it
+            console.error('Error executing query:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        });
+};
+
+const getPreference = (req, res, next) => {
+    const { userId } = req.query;
+    UserPreference.findOne({
+        where: {
+            userId: userId,
+        }
+    }).then(dbUser => {
+        if (dbUser) {
+            // If the user is found in the database, send the user in the response
+            return res.status(200).json(dbUser);
+        } else {
+            // If the user is not found, send an appropriate error response
+            return res.status(404).json({ error: 'User Preference not found' });
+        }
+    })
+        .catch(err => {
+            // If there is an error while querying the database, handle it
+            console.error('Error executing query:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        });
+};
+
+const birthday = (req, res, next) => {
     const { userId, birthday } = req.body;
     UserPreference.create({
         userId: userId,
@@ -34,7 +103,7 @@ const birthday = (req, res, next) => {
     res.json({ message: "entry created and birthday inserted" })
 };
 
-const preference = (req, res, next) => { 
+const preference = (req, res, next) => {
     const { userId, birthday, location, gender, height, skintone, colourCombos, faceshape, bodyshape, styles } = req.body;
     UserPreference.create({
         userId: userId,
@@ -52,99 +121,99 @@ const preference = (req, res, next) => {
     res.json({ message: "user preference created" })
 };
 
-const location = (req, res, next) => { 
+const location = (req, res, next) => {
     const { userId, location } = req.body;
-    UserPreference.update({ location: location}, { where: { userId: userId }})
-    .then(() => {
-        console.log('location inserted/updated');
-    })
-    .catch(err => {
-        console.error('Error inserting/updating location:', err);
-    });
+    UserPreference.update({ location: location }, { where: { userId: userId } })
+        .then(() => {
+            console.log('location inserted/updated');
+        })
+        .catch(err => {
+            console.error('Error inserting/updating location:', err);
+        });
     res.json({ message: "location inserted/updated" })
 };
 
-const gender = (req, res, next) => { 
+const gender = (req, res, next) => {
     const { userId, gender } = req.body;
-    UserPreference.update({ gender: gender}, { where: { userId: userId }})
-    .then(() => {
-        console.log('gender inserted/updated');
-    })
-    .catch(err => {
-        console.error('Error inserting/updating gender:', err);
-    });
+    UserPreference.update({ gender: gender }, { where: { userId: userId } })
+        .then(() => {
+            console.log('gender inserted/updated');
+        })
+        .catch(err => {
+            console.error('Error inserting/updating gender:', err);
+        });
     res.json({ message: "gender inserted/updated" })
 };
 
-const height = (req, res, next) => { 
+const height = (req, res, next) => {
     const { userId, height } = req.body;
-    UserPreference.update({ height: height}, { where: { userId: userId }})
-    .then(() => {
-        console.log('height inserted/updated');
-    })
-    .catch(err => {
-        console.error('Error inserting/updating height:', err);
-    });
+    UserPreference.update({ height: height }, { where: { userId: userId } })
+        .then(() => {
+            console.log('height inserted/updated');
+        })
+        .catch(err => {
+            console.error('Error inserting/updating height:', err);
+        });
     res.json({ message: "height inserted/updated" })
 };
 
-const skintone = (req, res, next) => { 
+const skintone = (req, res, next) => {
     const { userId, skintone } = req.body;
-    UserPreference.update({ skintone: skintone}, { where: { userId: userId }})
-    .then(() => {
-        console.log('skintone inserted/updated');
-    })
-    .catch(err => {
-        console.error('Error inserting/updating skintone:', err);
-    });
+    UserPreference.update({ skintone: skintone }, { where: { userId: userId } })
+        .then(() => {
+            console.log('skintone inserted/updated');
+        })
+        .catch(err => {
+            console.error('Error inserting/updating skintone:', err);
+        });
     res.json({ message: "skintone inserted/updated" })
 };
 
-const faceshape = (req, res, next) => { 
+const faceshape = (req, res, next) => {
     const { userId, faceshape } = req.body;
-    UserPreference.update({ faceshape: faceshape}, { where: { userId: userId }})
-    .then(() => {
-        console.log('faceshape inserted/updated');
-    })
-    .catch(err => {
-        console.error('Error inserting/updating faceshape:', err);
-    });
+    UserPreference.update({ faceshape: faceshape }, { where: { userId: userId } })
+        .then(() => {
+            console.log('faceshape inserted/updated');
+        })
+        .catch(err => {
+            console.error('Error inserting/updating faceshape:', err);
+        });
     res.json({ message: "faceshape inserted/updated" })
 };
 
-const bodyshape = (req, res, next) => { 
+const bodyshape = (req, res, next) => {
     const { userId, bodyshape } = req.body;
-    UserPreference.update({ bodyshape: bodyshape}, { where: { userId: userId }})
-    .then(() => {
-        console.log('bodyshape inserted/updated');
-    })
-    .catch(err => {
-        console.error('Error inserting/updating bodyshape:', err);
-    });
+    UserPreference.update({ bodyshape: bodyshape }, { where: { userId: userId } })
+        .then(() => {
+            console.log('bodyshape inserted/updated');
+        })
+        .catch(err => {
+            console.error('Error inserting/updating bodyshape:', err);
+        });
     res.json({ message: "bodyshape inserted/updated" })
 };
 
-const colourCombos = (req, res, next) => { 
+const colourCombos = (req, res, next) => {
     const { userId, colourCombos } = req.body;
-    UserPreference.update({ colourCombos: colourCombos}, { where: { userId: userId }})
-    .then(() => {
-        console.log('colours inserted/updated');
-    })
-    .catch(err => {
-        console.error('Error inserting/updating colours:', err);
-    });
+    UserPreference.update({ colourCombos: colourCombos }, { where: { userId: userId } })
+        .then(() => {
+            console.log('colours inserted/updated');
+        })
+        .catch(err => {
+            console.error('Error inserting/updating colours:', err);
+        });
     res.json({ message: "colourCombos inserted/updated" })
 };
 
-const styles = (req, res, next) => { 
+const styles = (req, res, next) => {
     const { userId, styles } = req.body;
-    UserPreference.update({ styles: styles}, { where: { userId: userId }})
-    .then(() => {
-        console.log('styles inserted/updated');
-    })
-    .catch(err => {
-        console.error('Error inserting/updating styles:', err);
-    });
+    UserPreference.update({ styles: styles }, { where: { userId: userId } })
+        .then(() => {
+            console.log('styles inserted/updated');
+        })
+        .catch(err => {
+            console.error('Error inserting/updating styles:', err);
+        });
     res.json({ message: "styles inserted/updated" })
 };
-export { birthday, gender, height, skintone, faceshape, bodyshape, colourCombos, styles, preference, getId, location };
+export { birthday, gender, height, skintone, faceshape, bodyshape, colourCombos, styles, preference, getId, location, getPreference, getUser, getName };

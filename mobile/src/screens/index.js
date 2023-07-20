@@ -18,5 +18,6 @@ export { default as SearchScreen} from "./SearchScreen"
 export { default as AuthScreen} from "./AuthScreen"
 export { default as ClosetScreen} from "./ClosetScreen"
 export { default as DressupScreen} from "./DressupScreen"
+export { default as AddItemScreen} from "./AddItemScreen"
 
 

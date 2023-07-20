@@ -1,6 +1,6 @@
 import { Text, SafeAreaView, StyleSheet, ScrollView, View, Platform, Pressable, Image } from 'react-native';
 import React, { useState } from 'react';
-import { ContinueButton, PressableOptionwithImage, FaceshapeOption, PreviousButton, ContinueButtonS } from '../components';
+import { PreviousButton, ContinueButtonS } from '../components';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
