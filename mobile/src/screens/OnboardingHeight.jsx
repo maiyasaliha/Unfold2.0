@@ -1,10 +1,11 @@
 import { View, Text, SafeAreaView, StyleSheet, TextInput, Platform } from 'react-native'
 import React, { useState } from 'react'
-import { ContinueButton, ContinueButtonS, HeightInput, PreviousButton } from '../components'
+import { ContinueButtonS, PreviousButton } from '../components'
 import { useNavigation } from '@react-navigation/native'
 import axios from 'axios';
 
-const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.129:5000' : 'http://192.168.0.129:5000';
+const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
+
 
 
 const OnboardingHeight = () => {
@@ -63,6 +64,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start', //vertical
     alignItems: 'center', //horizontal
     paddingTop: 100,
+    top: 100,
   },
   buttonContainer: {
     top: 400,

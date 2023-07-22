@@ -1,6 +1,6 @@
 import { SafeAreaView, StyleSheet, Image, Platform } from 'react-native'
 import React from 'react'
-import { LoginButton, NewHereButton } from '../components'
+import { LoginButton } from '../components'
 import { useNavigation } from '@react-navigation/native'
 
 
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     height: 213.6,
     width: 261.6,
     marginBottom: -150,
-    top: 25,
+    top: 90,
     marginRight: 10,
   },
 })

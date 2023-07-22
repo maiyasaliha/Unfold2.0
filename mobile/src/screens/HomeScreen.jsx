@@ -9,7 +9,7 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView>
-      <TopBar text="Today" />
+      <TopBar text="Today" today={true} closet={false} dressup={false}/>
       <View style={styles.container}>
         <View style={styles.purplebox}>
           <PurplePlus />
@@ -33,6 +33,9 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    flexDirection: 'column',
+    alignContent: 'space-around'
+    
   },
   text: {
     color: "#3A2D56",

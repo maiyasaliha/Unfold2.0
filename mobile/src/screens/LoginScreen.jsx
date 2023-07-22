@@ -1,6 +1,6 @@
 import { Text, SafeAreaView, StyleSheet, View, TextInput, Platform, Pressable } from 'react-native';
 import React, { useState } from 'react'
-import { UnfoldButton, ForgotPasswordButton, BackArrowButton } from '../components';
+import { ForgotPasswordButton, BackArrowButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 

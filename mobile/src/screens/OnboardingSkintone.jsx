@@ -1,10 +1,11 @@
 import { Text, SafeAreaView, StyleSheet, ScrollView, View, Platform, Pressable } from 'react-native';
 import React, { useState } from 'react';
-import { ContinueButton, SkintoneOption, PreviousButton, ContinueButtonS } from '../components';
+import { PreviousButton, ContinueButtonS } from '../components';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
-const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.129:5000' : 'http://192.168.0.129:5000';
+const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
+
 
 
 const OnboardingSkintone = () => {
@@ -87,8 +88,10 @@ const OnboardingSkintone = () => {
           </View>
         </Pressable>
       </ScrollView>
-      <ContinueButtonS onPress={handlePress} />
-      <PreviousButton navigation={navigation} screenName="OnboardingGender" />
+      <View style ={styles.buttoncontainer}>
+        <ContinueButtonS onPress={handlePress} />
+        <PreviousButton navigation={navigation} screenName="OnboardingGender" />
+      </View>
     </SafeAreaView>
   );
 };
@@ -109,6 +112,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 100,
     paddingBottom: 40,
+    top: 100,
   },
   scrollContainer: {
     paddingTop: 30,
@@ -164,6 +168,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
 
   },
+  buttoncontainer: {
+    top: -165,
+  }
 });
 
 export default OnboardingSkintone;

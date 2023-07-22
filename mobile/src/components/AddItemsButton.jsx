@@ -1,9 +1,13 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native'
 import React from 'react'
+import { useNavigation } from '@react-navigation/native';
 
 const AddItemsButton = () => {
 
+  const navigation = useNavigation();
+
   const handlePress = () => {
+    navigation.navigate('AddItemScreen')
     console.log('Add Items onPress')
   }
 

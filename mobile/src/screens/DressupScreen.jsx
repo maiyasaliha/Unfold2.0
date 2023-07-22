@@ -5,7 +5,7 @@ import { TopBar, ToggleBar } from '../components'
 const DressupScreen = () => {
   return (
     <View>
-      <TopBar text="Dressup"/>
+      <TopBar text="Dressup" today={false} closet={false} dressup={true}/>
       <ToggleBar />
     </View>
   )

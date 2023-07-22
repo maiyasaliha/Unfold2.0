@@ -1,7 +1,25 @@
 //defines API endpoints using express
 import express from 'express';
 import { signup, login, isAuth } from '../controllers/auth.js';
-import { birthday, gender, height, faceshape, bodyshape, colourCombos, skintone, styles, preference, getId, location } from '../controllers/preference.js';
+import {
+    birthday,
+    gender,
+    height,
+    faceshape,
+    bodyshape,
+    colourCombos,
+    skintone,
+    styles,
+    preference,
+    getId,
+    location,
+    getUser,
+    getPreference,
+    getName
+} from '../controllers/preference.js';
+
+import { addItem, getItems, addItemwithdesc, getItem, getFavItems, like, getItemfromurl} from '../controllers/clothing.js';
+
 
 
 const router = express.Router();
@@ -25,6 +43,20 @@ router.post('/colourCombos', colourCombos);
 router.post('/skintone', skintone);
 router.post('/styles', styles);
 router.get('/getId', getId);
+router.get('/getPreference', getPreference);
+router.get('/getUser', getUser);
+router.get('/getName', getName);
+
+//clothing
+router.post('/addItem', addItem);
+router.post('/addItemwithdesc', addItemwithdesc);
+router.get('/getItems', getItems);
+router.get('/getFavItems', getFavItems);
+router.get('/getItem', getItem);
+router.post('/like', like);
+router.get('/getItemfromurl', getItemfromurl);
+
+
 
 
 

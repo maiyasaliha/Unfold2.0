@@ -12,7 +12,7 @@ const CreateNewButton = () => {
 
   return (
     <View style={styles.buttonContainer}>
-      <Pressable onPress={handlePress} style={styles.purplebutton}>
+      <Pressable onPress={handlePress} style={styles.whitebutton}>
         <Text style={styles.text}>Create New</Text>
       </Pressable>
     </View>
@@ -21,17 +21,17 @@ const CreateNewButton = () => {
 }
 
 const styles = StyleSheet.create({
-  purplebutton: {
+  whitebutton: {
     backgroundColor: "#FFFFFF",
     paddingHorizontal: 25,
-    height: 72.2,
-    width: 204,
-    borderRadius: 24,
+    height: 62,
+    width: 160,
+    borderRadius: 40,
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
-    fontSize: 22,
+    fontSize: 19,
     color: "#000000",
     fontFamily: 'CabinCondensed-Regular',
     textShadowColor: 'rgba(0, 0, 0, 0.5)',
@@ -39,10 +39,9 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 2, height: 2 },
   },
   buttonContainer: {
-    marginBottom: 20,
+    marginBottom: 285,
     paddingHorizontal: 20,
   },
-
 })
 
 export default CreateNewButton

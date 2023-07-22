@@ -1,6 +1,6 @@
 import { Text, SafeAreaView, StyleSheet, View, TextInput, Pressable, Platform } from 'react-native';
 import React, { useState } from 'react'
-import { ProgressBar, BackArrowButton, ContinueButtonS } from '../components';
+import { ProgressBar, BackArrowButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
 import axios, { Axios } from 'axios';
 import * as yup from 'yup';

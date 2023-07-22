@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, View, Text, Platform } from 'react-native';
 import ColorPicker from 'react-native-wheel-color-picker';
-import { ContinueButton, ContinueButtonS, PreviousButton, SaveButton } from '../components';
+import { ContinueButtonS, PreviousButton, SaveButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
-const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.129:5000' : 'http://192.168.0.129:5000';
+const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
 
 
 const OnboardingColourcombos = () => {
@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: 100,
+    top: 100,
   },
   colorPicker: {
     flex: 1,

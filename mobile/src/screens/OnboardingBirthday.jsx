@@ -1,11 +1,12 @@
 import { View, Text, SafeAreaView, StyleSheet, TextInput, Platform } from 'react-native'
 import React, { useState } from 'react'
-import { ContinueButton, ContinueButtonS, PreviousButton } from '../components'
+import { ContinueButtonS, PreviousButton } from '../components'
 import { useNavigation } from '@react-navigation/native'
 import axios from 'axios';
 import { getId } from '../tempstore/userPreferenceStore';
 
-const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.129:5000' : 'http://192.168.0.129:5000';
+const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
+
 
 
 const OnboardingBirthday = () => {
@@ -32,7 +33,7 @@ const OnboardingBirthday = () => {
 
   const handlePress = () => {
     axios.post(`${API_URL}/birthday`, {
-      userId: 37,
+      userId: 30,
       birthday: birthday,
     }).then((response) => {
       console.log('Birthday Added:', birthday)
@@ -97,6 +98,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: 100,
+    top: 100,
   },
   buttonContainer: {
     top: 400,
