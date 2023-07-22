@@ -4,6 +4,7 @@ import AddItemsButton from './AddItemsButton';
 import CreateNewButton from './CreateNewButton';
 import MyOutfitsButton from './MyOutfitsButton';
 import ChooseOutfitButtonPurple from './ChooseOutfitButtonPurple';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 const ChooseOutfitOverlay = ({ visible, onPress }) => {
@@ -12,7 +13,7 @@ const ChooseOutfitOverlay = ({ visible, onPress }) => {
     }
 
     return (
-        <View style={styles.overlay}>
+        <SafeAreaView style={styles.overlay}>
             <ChooseOutfitButtonPurple />
             <MyOutfitsButton />
             <CreateNewButton />
@@ -21,7 +22,7 @@ const ChooseOutfitOverlay = ({ visible, onPress }) => {
                     <Image source={require('../assets/images/purpleplus.png')} style={styles.image} />
                 </Pressable>
             </TouchableOpacity>
-        </View>
+        </SafeAreaView>
     );
 };
 

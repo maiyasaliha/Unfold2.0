@@ -1,0 +1,65 @@
+import { View, Platform, StyleSheet, ScrollView, Text } from 'react-native';
+import React, { useState } from 'react';
+import { TopBar, ToggleBar, WardrobeContainer, ItemsButton, OutfitsButton } from '../components';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+
+const ClosetOutfitsScreen = () => {
+  const [haveItems, setHaveItems] = useState(false);
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <TopBar text="Closet" today={false} closet={true} dressup={false} />
+      <View style={styles.contentcontainer}>
+        <View style={styles.buttoncontainer}>
+          <ItemsButton isPressed={false}/>
+          <OutfitsButton isPressed={true}/>
+        </View>
+        {!haveItems ? (
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>Create outfits to view them!</Text>
+          </View>
+        ) : (
+          <ScrollView style={styles.scrollContainer}>
+            <WardrobeContainer />
+          </ScrollView>
+        )}
+      </View>
+
+      <ToggleBar />
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  scrollContainer: {
+
+  },
+  text: {
+    fontSize: 20,
+    color: '#937CA7',
+    fontFamily: 'CabinCondensed-Regular',
+  },
+  textContainer: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    top: 20,
+
+  },
+  contentcontainer: {
+    flex: 1,
+    top: 100,
+
+  },
+  buttoncontainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 135,
+  }
+});
+
+export default ClosetOutfitsScreen;

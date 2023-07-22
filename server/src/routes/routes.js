@@ -18,7 +18,7 @@ import {
     getName
 } from '../controllers/preference.js';
 
-import { addItem } from '../controllers/clothing.js';
+import { addItem, getItems, addItemwithdesc, getItem} from '../controllers/clothing.js';
 
 
 
@@ -49,6 +49,11 @@ router.get('/getName', getName);
 
 //clothing
 router.post('/addItem', addItem);
+router.post('/addItemwithdesc', addItemwithdesc);
+router.get('/getItems', getItems);
+router.get('/getItem', getItem);
+
+
 
 
 router.get('/public', (req, res, next) => {

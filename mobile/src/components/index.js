@@ -24,8 +24,7 @@ export { default as ChooseOutfitButton} from "./ChooseOutfitButton"
 export { default as ChooseOutfitButtonPurple} from "./ChooseOutfitButtonPurple"
 export { default as CreateNewButton} from "./CreateNewButton"
 export { default as MyOutfitsButton} from "./MyOutfitsButton"
-
-
-
-
-
+export { default as WardrobeContainer} from "./WardrobeContainer"
+export { default as HeartButton} from "./HeartButton"
+export { default as ItemsButton} from "./ItemsButton"
+export { default as OutfitsButton} from "./OutfitsButton"

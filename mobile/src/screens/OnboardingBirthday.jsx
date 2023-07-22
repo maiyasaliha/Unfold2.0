@@ -5,7 +5,8 @@ import { useNavigation } from '@react-navigation/native'
 import axios from 'axios';
 import { getId } from '../tempstore/userPreferenceStore';
 
-const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.129:5000' : 'http://192.168.0.129:5000';
+const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
+
 
 
 const OnboardingBirthday = () => {

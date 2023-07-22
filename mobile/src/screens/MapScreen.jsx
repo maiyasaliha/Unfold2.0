@@ -16,7 +16,7 @@ const MapScreen = () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
     console.log('Location permission status:', status);
     if (status !== 'granted') {
-      setErrorMsg('Please grant permission to access location');
+      alert('Please grant permission to access location');
     }
     let location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true });
     setMapRegion({

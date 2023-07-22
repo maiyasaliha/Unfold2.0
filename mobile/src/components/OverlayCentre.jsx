@@ -22,6 +22,7 @@ const OverlayCentre = ({ visible, onPress }) => {
 
 const styles = StyleSheet.create({
   overlay: {
+    flex: 1,
     position: 'absolute',
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background color
     justifyContent: 'flex-end',

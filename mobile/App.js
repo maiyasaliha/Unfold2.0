@@ -22,24 +22,25 @@ import {
 	AuthScreen,
 	ClosetScreen,
 	DressupScreen,
-	AddItemScreen
+	AddItemScreen,
+	ClosetOutfitsScreen
 } from './src/screens';
 import { TailwindProvider } from 'tailwindcss-react-native';
 import * as Font from 'expo-font';
+import { useFonts } from 'expo-font';
 
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-	const loadFonts = async () => {
-		await Font.loadAsync({
-			'CantoraOne-Regular': require('./src/assets/fonts/CantoraOne-Regular.ttf'),
-			'CabinCondensed-Regular': require('./src/assets/fonts/CabinCondensed-Regular.ttf'),
-		});
-	};
-	useEffect(() => {
-		loadFonts();
-	}, []);
+	const [fontsLoaded] = useFonts({
+		'CantoraOne-Regular': require('./src/assets/fonts/CantoraOne-Regular.ttf'),
+		'CabinCondensed-Regular': require('./src/assets/fonts/CabinCondensed-Regular.ttf'),
+	});
+
+	if (!fontsLoaded) {
+		return null; // or a loading screen/component
+	}
 
 	return (
 		<NavigationContainer>
@@ -49,12 +50,12 @@ export default function App() {
 						headerShown: false,
 					}}
 				/>
-				<Stack.Screen name="AddItemScreen" component={AddItemScreen}
+				<Stack.Screen name="LogoScreen" component={LogoScreen}
 					options={{
 						headerShown: false,
 					}}
 				/>
-				<Stack.Screen name="LogoScreen" component={LogoScreen}
+				<Stack.Screen name="AddItemScreen" component={AddItemScreen}
 					options={{
 						headerShown: false,
 					}}
@@ -125,6 +126,11 @@ export default function App() {
 					}}
 				/>
 				<Stack.Screen name="ClosetScreen" component={ClosetScreen}
+					options={{
+						headerShown: false,
+					}}
+				/>
+				<Stack.Screen name="ClosetOutfitsScreen" component={ClosetOutfitsScreen}
 					options={{
 						headerShown: false,
 					}}

@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, Dimensions, Pressable, Image } from 'react-native';
 import AddItemsButton from './AddItemsButton';
 import CreateOutfitButton from './CreateOutfitButton';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Overlay = ({ visible, onPress }) => {
   if (!visible) {
@@ -9,7 +10,7 @@ const Overlay = ({ visible, onPress }) => {
   }
 
   return (
-    <View style={styles.overlay}>
+    <SafeAreaView style={styles.overlay}>
       <TouchableOpacity style={styles.overlayContent} onPress={onPress}>
         <AddItemsButton />
         <CreateOutfitButton />
@@ -17,7 +18,7 @@ const Overlay = ({ visible, onPress }) => {
         <Image source={require('../assets/images/whitecross.png')} style={styles.image} />
       </Pressable>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -35,8 +36,6 @@ const styles = StyleSheet.create({
   overlayContent: {
     padding: 16,
     borderRadius: 8,
-    
-  
   },
   overlayText: {
     fontSize: 18,

@@ -1,21 +1,19 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/native';;
 import TodayButton from './TodayButton';
 import ClosetButton from './ClosetButton';
 import DressupButton from './DressupButton';
 
-const TopBar = ({ text }) => {
-    const navigation = useNavigation();
-
+const TopBar = ({ text, today, closet, dressup }) => {
+    
     return (
         <View style={styles.container}>
             <View style={styles.whiteContainer}>
                 <Text style={styles.text}>{text}</Text>
                 <View style={styles.buttonContainer}>
-                    <TodayButton navigation={navigation} screenName='HomeScreen' />
-                    <ClosetButton navigation={navigation} screenName='ClosetScreen' />
-                    <DressupButton navigation={navigation} screenName='DressupScreen' />
+                    <TodayButton isPressed={today}/>
+                    <ClosetButton isPressed={closet}/>
+                    <DressupButton isPressed={dressup}/>
                 </View>
                 <View style={styles.line} />
             </View>
@@ -40,7 +38,7 @@ const styles = StyleSheet.create({
     container: {
         position: 'absolute',
         width: '100%',
-        justifyContent: 'flex-end',
+        justifyContent: 'flex-start',
         alignItems: 'center',
     },
     text: {
