@@ -18,7 +18,6 @@ const AuthScreen = () => {
     const [isLogin, setIsLogin] = useState(true);
 
     const navigation = useNavigation();
-    const { publicVariable, setPublicVariable } = useContext(AppContext);
 
     const onChangeHandler = () => {
         setIsLogin(!isLogin);

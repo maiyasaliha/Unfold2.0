@@ -88,8 +88,10 @@ const OnboardingSkintone = () => {
           </View>
         </Pressable>
       </ScrollView>
-      <ContinueButtonS onPress={handlePress} />
-      <PreviousButton navigation={navigation} screenName="OnboardingGender" />
+      <View style ={styles.buttoncontainer}>
+        <ContinueButtonS onPress={handlePress} />
+        <PreviousButton navigation={navigation} screenName="OnboardingGender" />
+      </View>
     </SafeAreaView>
   );
 };
@@ -110,6 +112,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 100,
     paddingBottom: 40,
+    top: 100,
   },
   scrollContainer: {
     paddingTop: 30,
@@ -165,6 +168,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
 
   },
+  buttoncontainer: {
+    top: -165,
+  }
 });
 
 export default OnboardingSkintone;

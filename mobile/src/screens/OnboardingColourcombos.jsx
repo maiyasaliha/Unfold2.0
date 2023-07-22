@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: 100,
+    top: 100,
   },
   colorPicker: {
     flex: 1,

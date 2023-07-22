@@ -1,19 +1,26 @@
 import { View, Platform, StyleSheet, ScrollView, Text } from 'react-native';
 import React, { useState } from 'react';
-import { TopBar, ToggleBar, WardrobeContainer, ItemsButton, OutfitsButton } from '../components';
+import { TopBar, ToggleBar, WardrobeContainer, ItemsButton, OutfitsButton, FavouritesButton } from '../components';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
+
 
 
 const ClosetOutfitsScreen = () => {
   const [haveItems, setHaveItems] = useState(false);
+  const navigation = useNavigation()
+
 
   return (
     <SafeAreaView style={styles.container}>
       <TopBar text="Closet" today={false} closet={true} dressup={false} />
       <View style={styles.contentcontainer}>
+        <View style={styles.heartcontainer}>
+          <FavouritesButton isPressed={false} navigation={navigation} screenName={'OutfitsFavScreen'} />
+        </View>
         <View style={styles.buttoncontainer}>
-          <ItemsButton isPressed={false}/>
-          <OutfitsButton isPressed={true}/>
+          <ItemsButton isPressed={false} />
+          <OutfitsButton isPressed={true} />
         </View>
         {!haveItems ? (
           <View style={styles.textContainer}>
@@ -59,7 +66,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 135,
-  }
+  },
+  heartcontainer: {
+    left: 100,
+}
 });
 
 export default ClosetOutfitsScreen;

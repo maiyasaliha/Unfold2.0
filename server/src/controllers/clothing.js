@@ -89,6 +89,55 @@ const getItems = async (req, res, next) => {
   }
 };
 
+const like = (req, res, next) => {
+  const { imageurl, favourite } = req.body;
+  ItemsWardrobe.update({ favourite: favourite }, { where: { imageurl: imageurl } })
+      .then(() => {
+          console.log('favourite updated');
+      })
+      .catch(err => {
+          console.error('Error liking item:', err);
+      });
+  res.json({ message: "favourite updated" })
+};
+
+const getItemfromurl = (req, res, next) => {
+  const { imageurl } = req.query;
+  ItemsWardrobe.findOne({
+    where: {
+      imageurl: imageurl
+    }
+  }).then(dbUser => {
+    if (dbUser) {
+      // If the user is found in the database, send the user in the response
+      return res.status(200).json(dbUser);
+    } else {
+      // If the user is not found, send an appropriate error response
+      return res.status(404).json({ error: 'Item not found' });
+    }
+  })
+    .catch(err => {
+      // If there is an error while querying the database, handle it
+      console.error('Error executing query:', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    });
+  };
+
+const getFavItems = async (req, res, next) => {
+  try {
+    const listOfItems = await ItemsWardrobe.findAll({
+      where: {
+          favourite: 1,
+      }
+  });
+    res.json(listOfItems);
+  } catch (error) {
+    // Handle the error here
+    console.error('Error fetching items:', error);
+    res.status(500).json({ error: 'Failed to fetch items.' });
+  }
+};
+
 const getItem = (req, res, next) => {
   const { userId } = req.query;
   ItemsWardrobe.findOne({
@@ -111,4 +160,4 @@ const getItem = (req, res, next) => {
     });
   };
 
-  export { addItem, getItems, addItemwithdesc, getItem };
+  export { addItem, getItems, addItemwithdesc, getItem, getFavItems, like, getItemfromurl };

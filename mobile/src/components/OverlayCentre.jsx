@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-    top: -240,
+    top: -260,
     left: -107,
   },
   overlayContent: {
@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    bottom: 298,
-    left: 1,
+    bottom: 339,
+    left: 2,
   },
   image: {
     width: 180,

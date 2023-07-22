@@ -33,7 +33,7 @@ const OnboardingBirthday = () => {
 
   const handlePress = () => {
     axios.post(`${API_URL}/birthday`, {
-      userId: 37,
+      userId: 30,
       birthday: birthday,
     }).then((response) => {
       console.log('Birthday Added:', birthday)
@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: 100,
+    top: 100,
   },
   buttonContainer: {
     top: 400,

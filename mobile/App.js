@@ -23,7 +23,10 @@ import {
 	ClosetScreen,
 	DressupScreen,
 	AddItemScreen,
-	ClosetOutfitsScreen
+	ClosetOutfitsScreen,
+	ItemsFavScreen,
+	OutfitsFavScreen,
+	ItemCardScreen
 } from './src/screens';
 import { TailwindProvider } from 'tailwindcss-react-native';
 import * as Font from 'expo-font';
@@ -151,6 +154,21 @@ export default function App() {
 					}}
 				/>
 				<Stack.Screen name="UserScreen" component={UserScreen}
+					options={{
+						headerShown: false,
+					}}
+				/>
+				<Stack.Screen name="ItemsFavScreen" component={ItemsFavScreen}
+					options={{
+						headerShown: false,
+					}}
+				/>
+				<Stack.Screen name="OutfitsFavScreen" component={OutfitsFavScreen}
+					options={{
+						headerShown: false,
+					}}
+				/>
+				<Stack.Screen name="ItemCardScreen" component={ItemCardScreen}
 					options={{
 						headerShown: false,
 					}}

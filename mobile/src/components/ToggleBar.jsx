@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'flex-end',
         alignItems: 'center',
-        top: 707,
+        top: 766,
       },
 });
 

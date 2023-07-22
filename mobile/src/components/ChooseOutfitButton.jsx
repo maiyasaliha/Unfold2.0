@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 2, height: 2 },
   },
   buttonContainer: {
-    marginBottom: 285,
+    marginBottom: 330,
     paddingHorizontal: 20,
   },
   purplebutton: {

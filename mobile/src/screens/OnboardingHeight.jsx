@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start', //vertical
     alignItems: 'center', //horizontal
     paddingTop: 100,
+    top: 100,
   },
   buttonContainer: {
     top: 400,

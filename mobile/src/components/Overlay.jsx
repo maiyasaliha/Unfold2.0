@@ -25,8 +25,8 @@ const Overlay = ({ visible, onPress }) => {
 const styles = StyleSheet.create({
   overlay: {
     position: 'absolute',
-    top: -639,
-    left: -147,
+    top: -700,
+    left: -145,
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background color
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   button: {
-    marginBottom: -27,
+    marginBottom: -60,
     marginLeft: 72,
 
   },

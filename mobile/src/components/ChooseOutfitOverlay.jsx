@@ -34,8 +34,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
-        top: -257,
-        left: -97,
+        top: -279,
+        left: -95,
     },
     overlayContent: {
         justifyContent: 'center',

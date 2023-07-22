@@ -51,7 +51,7 @@ const OnboardingGender = () => {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Pressable onPress={malePress} style={styles.button}>
           <View style={styles.purpleContainer}>
-            <Text value= {gender} style={styles.buttonText}>Male                                </Text>
+            <Text value={gender} style={styles.buttonText}>Male                                </Text>
             <View style={styles.radioButton}>
               {mselected && <View style={styles.radioInnerCircle} />}
             </View>
@@ -59,7 +59,7 @@ const OnboardingGender = () => {
         </Pressable>
         <Pressable onPress={femalePress} style={styles.button}>
           <View style={styles.purpleContainer}>
-            <Text value= {gender} style={styles.buttonText}>Female                                </Text>
+            <Text value={gender} style={styles.buttonText}>Female                                </Text>
             <View style={styles.radioButton}>
               {fselected && <View style={styles.radioInnerCircle} />}
             </View>
@@ -67,7 +67,7 @@ const OnboardingGender = () => {
         </Pressable>
         <Pressable onPress={customPress} style={styles.button}>
           <View style={styles.purpleContainer}>
-            <Text value= {gender} style={styles.buttonText}>Custom                                </Text>
+            <Text value={gender} style={styles.buttonText}>Custom                                </Text>
             <View style={styles.radioButton}>
               {cselected && <View style={styles.radioInnerCircle} />}
             </View>
@@ -76,8 +76,10 @@ const OnboardingGender = () => {
       </ScrollView>
       <Text style={styles.smallText}>select to indicate the clothes you</Text>
       <Text style={styles.smallText}>predominantly wear</Text>
-      <ContinueButtonS onPress={handlePress} />
-      <PreviousButton navigation={navigation} screenName="OnboardingHeight" />
+      <View style={styles.buttoncontainer}>
+        <ContinueButtonS onPress={handlePress} />
+        <PreviousButton navigation={navigation} screenName="OnboardingHeight" />
+      </View>
     </SafeAreaView>
   );
 };
@@ -96,7 +98,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: 100,
-    paddingBottom: 40,
+    top: 100,
   },
   scrollContainer: {
     paddingTop: 30,
@@ -108,7 +110,7 @@ const styles = StyleSheet.create({
     color: '#937CA7',
     fontFamily: 'CabinCondensed-Regular',
     textAlign: 'center',
-    top: -100,
+    top: -250,
   },
   button: {
     flexDirection: 'row',
@@ -157,8 +159,10 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 4, // Required for Android shadow
     marginBottom: 20,
-
   },
+  buttoncontainer:{
+    top: -165,
+  }
 });
 
 export default OnboardingGender;
