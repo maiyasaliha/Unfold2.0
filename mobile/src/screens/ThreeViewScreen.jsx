@@ -4,12 +4,15 @@ import { TopBar, ToggleBar, CheckboxButton, PurpleView } from '../components'
 import Carousel from 'react-native-snap-carousel';
 import axios from 'axios';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { getUserId } from '../tempstore/userPreferenceStore';
+
 
 
 const ThreeViewScreen = () => {
   const [selectedTop, setSelectedTop] = useState(null);
   const [selectedBottom, setSelectedBottom] = useState(null);
   const [selectedShoe, setSelectedShoe] = useState(null);
+  const id = getUserId();
 
   const [listOfTops, setlistOfTops] = useState([]);
   const [listOfBottoms, setlistOfBottoms] = useState([]);
@@ -18,7 +21,7 @@ const ThreeViewScreen = () => {
 
   const fetchTops = async () => {
     try {
-      const response = await axios.get(`${API_URL}/getTops`);
+      const response = await axios.get(`${API_URL}/getTops?userId=${id}`);
       console.log(response.data);
       setlistOfTops(response.data);
       //setlistOfItems(listOfItems.map(x => x.imageurl));
@@ -31,7 +34,7 @@ const ThreeViewScreen = () => {
 
   const fetchBottoms = async () => {
     try {
-      const response = await axios.get(`${API_URL}/getBottoms`);
+      const response = await axios.get(`${API_URL}/getBottoms?userId=${id}`);
       console.log(response.data);
       setlistOfBottoms(response.data);
       //setlistOfItems(listOfItems.map(x => x.imageurl));
@@ -44,7 +47,7 @@ const ThreeViewScreen = () => {
 
   const fetchShoes = async () => {
     try {
-      const response = await axios.get(`${API_URL}/getShoes`);
+      const response = await axios.get(`${API_URL}/getShoes?userId=${id}`);
       console.log(response.data);
       setlistOfShoes(response.data);
       //setlistOfItems(listOfItems.map(x => x.imageurl));
@@ -107,49 +110,78 @@ const ThreeViewScreen = () => {
     setSelectedShoe(listOfShoes[index]);
   };
 
-  const handleConfirmSelection = () => {
-    // if (selectedTop && selectedBottom) {
-    //   // Show a dress-up preview with the selected combination
-    //   showDressUpPreview(selectedTop, selectedBottom);
-    // } else {
-    //   alert("Please select both a top and a bottom before confirming.");
-    // }
+  const handleConfirmSelection = async () => {
+    if (selectedTop && selectedShoe && selectedBottom) {
+      try {
+        const response = await axios.post(`${API_URL}/addOutfit`, {
+          userId: id,
+          top: selectedTop.imageurl,
+          bottom: selectedBottom.imageurl,
+          shoes: selectedShoe.imageurl,
+        });
+
+        if (response.status === 200) {
+          console.log('Outfit uploaded successfully.');
+          alert('Outfit uploaded successfully.');
+        } else {
+          console.error('Failed to upload Outfit.');
+        }
+      } catch (error) {
+        console.error('Error uploading Outfit:', error);
+      }
+    } else {
+      alert("Please select a top, bottom and shoes before confirming.");
+    }
     console.log('Confirm Selection onPress');
   }
 
+  const allArraysEmpty =
+    listOfTops.length === 0 &&
+    listOfBottoms.length === 0 &&
+    listOfShoes.length === 0;
+
   return (
     <SafeAreaView style={styles.container}>
-      <TopBar text="Dress Up" today={false} closet={false} dressup={true} />
-      <CheckboxButton onPress={handleConfirmSelection} />
-      <View style={{ height: 220, marginTop: 80, bottom: -20 }}>
-        <Carousel
-          data={listOfTops}
-          renderItem={renderTopItem}
-          sliderWidth={400}
-          itemWidth={200}
-          onSnapToItem={handleTopSelection}
-        />
-      </View>
-      <View style={{ height: 250, top: -40 }}>
-        <Carousel
-          data={listOfBottoms}
-          renderItem={renderBottomItem}
-          sliderWidth={400}
-          itemWidth={200}
-          onSnapToItem={handleBottomSelection}
-        />
-      </View>
-      <View style={{ height: 100, top: -40}}>
-        <Carousel
-          data={listOfShoes}
-          renderItem={renderShoeItem}
-          sliderWidth={400}
-          itemWidth={200}
-          onSnapToItem={handleShoeSelection}
-        />
-      </View>
+      {allArraysEmpty ? (
+        <View>
+          <Text style={styles.emptyMessage}>Insert items into your wardrobe</Text>
+          <Text style={styles.emptyMessage}>Dress Up!</Text>
+        </View>
+      ) : (
+        <View>
+          <View style={{ height: 220, marginTop: 120, bottom: -20 }}>
+            <Carousel
+              data={listOfTops}
+              renderItem={renderTopItem}
+              sliderWidth={400}
+              itemWidth={200}
+              onSnapToItem={handleTopSelection}
+            />
+          </View>
+          <View style={{ height: 250, top: -40 }}>
+            <Carousel
+              data={listOfBottoms}
+              renderItem={renderBottomItem}
+              sliderWidth={400}
+              itemWidth={200}
+              onSnapToItem={handleBottomSelection}
+            />
+          </View>
+          <View style={{ height: 100, top: -40 }}>
+            <Carousel
+              data={listOfShoes}
+              renderItem={renderShoeItem}
+              sliderWidth={400}
+              itemWidth={200}
+              onSnapToItem={handleShoeSelection}
+            />
+          </View>
+        </View>
+      )}
       <ToggleBar />
       <PurpleView is2Press={false} is3Press={true} is4Press={false} />
+      <CheckboxButton onPress={handleConfirmSelection} />
+      <TopBar text="Dress Up" today={false} closet={false} dressup={true} />
     </SafeAreaView>
   );
 };
@@ -179,6 +211,13 @@ const styles = StyleSheet.create({
     width: 170,
     height: 170,
     borderRadius: 10,
+  },
+  emptyMessage: {
+    top: 130,
+    fontSize: 20,
+    color: '#937CA7',
+    textAlign: 'center',
+    fontFamily: 'CabinCondensed-Regular',
   },
 });
 

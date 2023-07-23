@@ -4,6 +4,8 @@ import { TopBar, ToggleBar, WardrobeContainer, ItemsButton, OutfitsButton, Favou
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from "axios";
 import { useNavigation } from '@react-navigation/native';
+import { getUserId } from '../tempstore/userPreferenceStore';
+
 
 API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
 
@@ -11,6 +13,7 @@ API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0
 const ClosetScreen = () => {
 
     const numColumns = 2; // Set the number of columns you want to display
+    const id = getUserId();
     const itemWidth = Dimensions.get('window').width / numColumns;
 
     const [haveItems, setHaveItems] = useState(false);
@@ -19,9 +22,10 @@ const ClosetScreen = () => {
     const navigation = useNavigation()
 
 
+
     const fetchItems = async () => {
         try {
-            const response = await axios.get(`${API_URL}/getItems`);
+            const response = await axios.get(`${API_URL}/getItem?userId=${id}`);
             console.log(response.data);
             setlistOfItems(response.data);
             //setlistOfItems(listOfItems.map(x => x.imageurl));

@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
         width: 400,
         justifyContent: 'flex-end',
         alignItems: 'center', // Align items in the center on the x-axis
+        position: 'absolute'
     },
     buttonContainer: {
         alignItems: 'center', // Align the HomeButton in the center on the x-axis

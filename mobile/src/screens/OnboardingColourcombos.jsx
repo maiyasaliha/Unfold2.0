@@ -4,6 +4,7 @@ import ColorPicker from 'react-native-wheel-color-picker';
 import { ContinueButtonS, PreviousButton, SaveButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
+import { getUserId } from '../tempstore/userPreferenceStore';
 
 const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
 
@@ -18,7 +19,7 @@ const OnboardingColourcombos = () => {
 
   const handlePress = () => {
     axios.post(`${API_URL}/colourCombos`, {
-      userId: 37,
+      userId: getUserId(),
       colourCombos: colourCombos,
     }).then((response) => {
       console.log('ColourCombos Added:', colourCombos)

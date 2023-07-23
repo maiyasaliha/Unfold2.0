@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { ContinueButtonS, PreviousButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
+import { getUserId } from '../tempstore/userPreferenceStore';
+
 
 const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
 
@@ -34,7 +36,7 @@ const OnboardingGender = () => {
 
   const handlePress = () => {
     axios.post(`${API_URL}/gender`, {
-      userId: 37,
+      userId: getUserId(),
       gender: gender,
     }).then((response) => {
       console.log('Gender Added:', gender)

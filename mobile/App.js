@@ -50,16 +50,6 @@ export default function App() {
 	return (
 		<NavigationContainer>
 			<Stack.Navigator>
-				<Stack.Screen name="FourViewScreen" component={FourViewScreen}
-					options={{
-						headerShown: false,
-					}}
-				/>
-				<Stack.Screen name="ThreeViewScreen" component={ThreeViewScreen}
-					options={{
-						headerShown: false,
-					}}
-				/>
 				<Stack.Screen name="HomeScreen" component={HomeScreen}
 					options={{
 						headerShown: false,
@@ -151,6 +141,16 @@ export default function App() {
 					}}
 				/>
 				<Stack.Screen name="DressupScreen" component={DressupScreen}
+					options={{
+						headerShown: false,
+					}}
+				/>
+				<Stack.Screen name="FourViewScreen" component={FourViewScreen}
+					options={{
+						headerShown: false,
+					}}
+				/>
+				<Stack.Screen name="ThreeViewScreen" component={ThreeViewScreen}
 					options={{
 						headerShown: false,
 					}}

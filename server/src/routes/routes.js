@@ -17,7 +17,8 @@ import {
     getPreference,
     getName,
     SetDp,
-    getPicture
+    getPicture,
+    getUsers
 } from '../controllers/preference.js';
 
 import {
@@ -32,7 +33,9 @@ import {
     getBottoms,
     getOnepiece,
     getShoes,
-    getAccessories
+    getAccessories,
+    getOutfits,
+    addOutfit
 } from '../controllers/clothing.js';
 
 
@@ -76,6 +79,11 @@ router.get('/getBottoms', getBottoms);
 router.get('/getOnepiece', getOnepiece);
 router.get('/getShoes', getShoes);
 router.get('/getAccessories', getAccessories);
+router.get('/getOutfits', getOutfits);
+router.post('/addOutfit', addOutfit);
+router.get('/getUsers', getUsers);
+
+
 
 
 //general

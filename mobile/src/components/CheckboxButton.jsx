@@ -11,8 +11,9 @@ const CheckboxButton = ({onPress}) => {
 
 const styles = StyleSheet.create({
   container: {
-    left: 140,
-    top: 90,
+    left: 300,
+    top: 130,
+    position: 'absolute'
   },
   image: {
     height: 50,

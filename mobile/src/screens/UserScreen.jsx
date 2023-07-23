@@ -4,6 +4,8 @@ import { ToggleBar } from '../components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
+import { getUserId } from '../tempstore/userPreferenceStore';
+
 
 
 const UserScreen = () => {
@@ -24,7 +26,7 @@ const UserScreen = () => {
 
 
 
-  const id = 2;
+  const id = getUserId();
 
   const fetchUser = async () => {
     try {

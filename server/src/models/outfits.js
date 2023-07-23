@@ -8,6 +8,10 @@ const Outfits = sequelize.define('outfits', {
         allowNull: false,
         primaryKey: true,
     },
+    pieces: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+    },
     isDeleted: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,

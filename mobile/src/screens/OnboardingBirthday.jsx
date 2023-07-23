@@ -3,7 +3,8 @@ import React, { useState } from 'react'
 import { ContinueButtonS, PreviousButton } from '../components'
 import { useNavigation } from '@react-navigation/native'
 import axios from 'axios';
-import { getId } from '../tempstore/userPreferenceStore';
+import { getUserId } from '../tempstore/userPreferenceStore';
+
 
 const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
 
@@ -33,7 +34,7 @@ const OnboardingBirthday = () => {
 
   const handlePress = () => {
     axios.post(`${API_URL}/birthday`, {
-      userId: 30,
+      userId: getUserId(),
       birthday: birthday,
     }).then((response) => {
       console.log('Birthday Added:', birthday)
@@ -53,7 +54,6 @@ const OnboardingBirthday = () => {
           placeholder="DD"
           placeholderTextColor="#937CA7"
           maxLength={2}
-          keyboardType="numeric"
           value={day}
           onChangeText={handleDayChange}
         />
@@ -62,7 +62,6 @@ const OnboardingBirthday = () => {
           placeholder="MM"
           placeholderTextColor="#937CA7"
           maxLength={2}
-          keyboardType="numeric"
           value={month}
           onChangeText={handleMonthChange}
         />
@@ -71,7 +70,6 @@ const OnboardingBirthday = () => {
           placeholder="YYYY"
           placeholderTextColor="#937CA7"
           maxLength={4}
-          keyboardType="numeric"
           value={year}
           onChangeText={handleYearChange}
         />

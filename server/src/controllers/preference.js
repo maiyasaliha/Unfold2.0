@@ -45,6 +45,17 @@ const getName = (req, res, next) => {
         });
 };
 
+const getUsers = async (req, res, next) => {
+    try {
+      const listOfUsers = await User.findAll();
+      res.json(listOfUsers);
+    } catch (error) {
+      // Handle the error here
+      console.error('Error fetching users:', error);
+      res.status(500).json({ error: 'Failed to fetch user.' });
+    }
+  };
+
 const getUser = (req, res, next) => {
     const { userId } = req.query;
     User.findOne({
@@ -256,5 +267,6 @@ export {
     getUser,
     getName,
     SetDp,
-    getPicture
+    getPicture,
+    getUsers
 };
