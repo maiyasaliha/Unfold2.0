@@ -45,11 +45,11 @@ const ItemsFavScreen = () => {
         <SafeAreaView style={styles.container}>
             <TopBar text="Closet" today={false} closet={true} dressup={false} />
             <View style={styles.contentcontainer}>
-            <View style={styles.buttoncontainer}>
+                <View style={styles.buttoncontainer}>
                     <ItemsButton isPressed={true} />
                     <OutfitsButton isPressed={false} />
                     <View style={styles.heartcontainer}>
-                        <FavouritesButton isPressed={false} navigation={navigation} screenName={'ItemsFavScreen'} />
+                        <FavouritesButton isPressed={true} navigation={navigation} screenName={'ClosetScreen'} />
                     </View>
                 </View>
                 {listOfItems.length === 0 ? (

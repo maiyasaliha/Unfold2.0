@@ -15,12 +15,10 @@ const getId = (req, res, next) => {
             const userId = dbUser.userId; // Assuming the User model has a field named 'id' for the userId
             return res.status(200).json({ userId });
         } else {
-            // If the user is not found, send an appropriate error response
             return res.status(404).json({ error: 'User not found' });
         }
     })
         .catch(err => {
-            // If there is an error while querying the database, handle it
             console.error('Error executing query:', err);
             return res.status(500).json({ error: 'Internal server error' });
         });
@@ -34,16 +32,14 @@ const getName = (req, res, next) => {
         }
     }).then(dbUser => {
         if (dbUser) {
-            // If the user is found in the database, send the userId in the response
-            const name = dbUser.name; // Assuming the User model has a field named 'id' for the userId
+            // If the user is found in the database, send the name in the response
+            const name = dbUser.name; // Assuming the User model has a field named 'name' for the userId
             return res.status(200).json({ name });
         } else {
-            // If the user is not found, send an appropriate error response
             return res.status(404).json({ error: 'User & Name not found' });
         }
     })
         .catch(err => {
-            // If there is an error while querying the database, handle it
             console.error('Error executing query:', err);
             return res.status(500).json({ error: 'Internal server error' });
         });
@@ -60,12 +56,30 @@ const getUser = (req, res, next) => {
             // If the user is found in the database, send the user in the response
             return res.status(200).json(dbUser);
         } else {
-            // If the user is not found, send an appropriate error response
             return res.status(404).json({ error: 'User not found' });
         }
     })
         .catch(err => {
-            // If there is an error while querying the database, handle it
+            console.error('Error executing query:', err);
+            return res.status(500).json({ error: 'Internal server error' });
+        });
+};
+
+const getPicture = (req, res, next) => {
+    const { userId } = req.query;
+    User.findOne({
+        where: {
+            userId: userId,
+        }
+    }).then(dbUser => {
+        if (dbUser) {
+            // If the user is found in the database, send the user in the response
+            return res.status(200).json(dbUser.profilepicture);
+        } else {
+            return res.status(404).json({ error: 'User not found' });
+        }
+    })
+        .catch(err => {
             console.error('Error executing query:', err);
             return res.status(500).json({ error: 'Internal server error' });
         });
@@ -82,12 +96,10 @@ const getPreference = (req, res, next) => {
             // If the user is found in the database, send the user in the response
             return res.status(200).json(dbUser);
         } else {
-            // If the user is not found, send an appropriate error response
             return res.status(404).json({ error: 'User Preference not found' });
         }
     })
         .catch(err => {
-            // If there is an error while querying the database, handle it
             console.error('Error executing query:', err);
             return res.status(500).json({ error: 'Internal server error' });
         });
@@ -119,6 +131,18 @@ const preference = (req, res, next) => {
     });
     console.log('user preference created');
     res.json({ message: "user preference created" })
+};
+
+const SetDp = (req, res, next) => {
+    const { userId, profilepicture } = req.body;
+    UserPreference.update({ profilepicture: profilepicture }, { where: { userId: userId } })
+        .then(() => {
+            console.log('profile picture inserted/updated');
+        })
+        .catch(err => {
+            console.error('Error inserting/updating profile picture:', err);
+        });
+    res.json({ message: "profile picture inserted/updated" })
 };
 
 const location = (req, res, next) => {
@@ -216,4 +240,21 @@ const styles = (req, res, next) => {
         });
     res.json({ message: "styles inserted/updated" })
 };
-export { birthday, gender, height, skintone, faceshape, bodyshape, colourCombos, styles, preference, getId, location, getPreference, getUser, getName };
+export {
+    birthday,
+    gender,
+    height,
+    skintone,
+    faceshape,
+    bodyshape,
+    colourCombos,
+    styles,
+    preference,
+    getId,
+    location,
+    getPreference,
+    getUser,
+    getName,
+    SetDp,
+    getPicture
+};

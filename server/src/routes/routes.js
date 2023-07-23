@@ -15,7 +15,9 @@ import {
     location,
     getUser,
     getPreference,
-    getName
+    getName,
+    SetDp,
+    getPicture
 } from '../controllers/preference.js';
 
 import {
@@ -57,6 +59,9 @@ router.get('/getId', getId);
 router.get('/getPreference', getPreference);
 router.get('/getUser', getUser);
 router.get('/getName', getName);
+router.post('/SetDp', SetDp);
+router.get('/getPicture', getPicture);
+
 
 //clothing
 router.post('/addItem', addItem);

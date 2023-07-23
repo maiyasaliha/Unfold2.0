@@ -18,7 +18,7 @@ const ItemCardScreen = ({ route }) => {
             // });
             // console.log(response.data);
             // setItemInfo(response.data);
-            console.log('successfully retrieved items');
+            console.log('successfully retrieved info');
         } catch (error) {
             console.error('Error fetching item info:', error);
         }

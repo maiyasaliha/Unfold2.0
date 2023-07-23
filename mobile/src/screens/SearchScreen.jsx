@@ -7,7 +7,6 @@ const SearchScreen = () => {
   return (
     <SafeAreaView style={styles.container}> 
       <Text>SearchScreen</Text>
-      <PurpleView is2Press={true} is3Press={false} is4Press={false}/>
       <ToggleBar />
     </SafeAreaView>
   )

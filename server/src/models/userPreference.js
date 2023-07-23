@@ -43,6 +43,10 @@ const UserPreference = sequelize.define('userpreference', {
       type: Sequelize.STRING,
       allowNull: true,
    },
+   profilepicture: {
+      type: Sequelize.STRING,
+      allowNull: true,
+   },
 });
 
 export default UserPreference;
