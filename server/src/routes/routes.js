@@ -18,7 +18,20 @@ import {
     getName
 } from '../controllers/preference.js';
 
-import { addItem, getItems, addItemwithdesc, getItem, getFavItems, like, getItemfromurl} from '../controllers/clothing.js';
+import {
+    addItem,
+    getItems,
+    addItemwithdesc,
+    getItem,
+    getFavItems,
+    like,
+    getItemfromurl,
+    getTops,
+    getBottoms,
+    getOnepiece,
+    getShoes,
+    getAccessories
+} from '../controllers/clothing.js';
 
 
 
@@ -26,9 +39,7 @@ const router = express.Router();
 
 //auth
 router.post('/login', login);
-
 router.post('/signup', signup);
-
 router.get('/private', isAuth);
 
 //preference
@@ -55,11 +66,14 @@ router.get('/getFavItems', getFavItems);
 router.get('/getItem', getItem);
 router.post('/like', like);
 router.get('/getItemfromurl', getItemfromurl);
+router.get('/getTops', getTops);
+router.get('/getBottoms', getBottoms);
+router.get('/getOnepiece', getOnepiece);
+router.get('/getShoes', getShoes);
+router.get('/getAccessories', getAccessories);
 
 
-
-
-
+//general
 router.get('/public', (req, res, next) => {
     res.status(200).json({ message: "here is your public resource" });
 });

@@ -15,6 +15,7 @@ const ClosetOutfitsScreen = () => {
     <SafeAreaView style={styles.container}>
       <TopBar text="Closet" today={false} closet={true} dressup={false} />
       <View style={styles.contentcontainer}>
+
         <View style={styles.heartcontainer}>
           <FavouritesButton isPressed={false} navigation={navigation} screenName={'OutfitsFavScreen'} />
         </View>
@@ -22,6 +23,7 @@ const ClosetOutfitsScreen = () => {
           <ItemsButton isPressed={false} />
           <OutfitsButton isPressed={true} />
         </View>
+        
         {!haveItems ? (
           <View style={styles.textContainer}>
             <Text style={styles.text}>Create outfits to view them!</Text>

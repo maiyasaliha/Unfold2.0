@@ -89,6 +89,61 @@ const getItems = async (req, res, next) => {
   }
 };
 
+const getTops = async (req, res, next) => {
+  try {
+    const listOfItems = await ItemsWardrobe.findAll({where: {type: "top"}});
+    res.json(listOfItems);
+  } catch (error) {
+    // Handle the error here
+    console.error('Error fetching tops:', error);
+    res.status(500).json({ error: 'Failed to fetch tops.' });
+  }
+};
+
+const getShoes = async (req, res, next) => {
+  try {
+    const listOfItems = await ItemsWardrobe.findAll({where: {type: "shoe"}});
+    res.json(listOfItems);
+  } catch (error) {
+    // Handle the error here
+    console.error('Error fetching shoes:', error);
+    res.status(500).json({ error: 'Failed to fetch shoes.' });
+  }
+};
+
+const getBottoms = async (req, res, next) => {
+  try {
+    const listOfItems = await ItemsWardrobe.findAll({where: {type: "bottom"}});
+    res.json(listOfItems);
+  } catch (error) {
+    // Handle the error here
+    console.error('Error fetching bottoms:', error);
+    res.status(500).json({ error: 'Failed to fetch bottoms.' });
+  }
+};
+
+const getOnepiece = async (req, res, next) => {
+  try {
+    const listOfItems = await ItemsWardrobe.findAll({where: {type: "onepiece"}});
+    res.json(listOfItems);
+  } catch (error) {
+    // Handle the error here
+    console.error('Error fetching onepiece:', error);
+    res.status(500).json({ error: 'Failed to fetch onepiece.' });
+  }
+};
+
+const getAccessories = async (req, res, next) => {
+  try {
+    const listOfItems = await ItemsWardrobe.findAll({where: {type: "accessories"}});
+    res.json(listOfItems);
+  } catch (error) {
+    // Handle the error here
+    console.error('Error fetching accessories:', error);
+    res.status(500).json({ error: 'Failed to fetch accessories.' });
+  }
+};
+
 const like = (req, res, next) => {
   const { imageurl, favourite } = req.body;
   ItemsWardrobe.update({ favourite: favourite }, { where: { imageurl: imageurl } })
@@ -160,4 +215,4 @@ const getItem = (req, res, next) => {
     });
   };
 
-  export { addItem, getItems, addItemwithdesc, getItem, getFavItems, like, getItemfromurl };
+  export { addItem, getItems, addItemwithdesc, getItem, getFavItems, like, getItemfromurl, getTops, getBottoms, getOnepiece, getShoes, getAccessories };

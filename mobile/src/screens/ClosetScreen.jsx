@@ -45,12 +45,12 @@ const ClosetScreen = () => {
         <SafeAreaView style={styles.container}>
             <TopBar text="Closet" today={false} closet={true} dressup={false} />
             <View style={styles.contentcontainer}>
-                <View style={styles.heartcontainer}>
-                    <FavouritesButton isPressed={false} navigation={navigation} screenName={'ItemsFavScreen'} />
-                </View>
                 <View style={styles.buttoncontainer}>
                     <ItemsButton isPressed={true} />
                     <OutfitsButton isPressed={false} />
+                    <View style={styles.heartcontainer}>
+                        <FavouritesButton isPressed={false} navigation={navigation} screenName={'ItemsFavScreen'} />
+                    </View>
                 </View>
                 {listOfItems.length === 0 ? (
                     <View style={styles.textContainer}>
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     heartcontainer: {
-        left: 100,
+        left: 65,
     }
 });
 

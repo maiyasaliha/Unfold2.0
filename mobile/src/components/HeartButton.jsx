@@ -28,7 +28,7 @@ const HeartButton = ({imageurl}) => {
     <Pressable onPress={handlePress} style={styles.button}>
       {({ pressed }) => (
         <Image
-          source={require('../assets/images/heart.png')} // Replace with your actual image path
+          source={require('../assets/images/heart.png')} 
           style={[
             styles.image,
             { tintColor: isPressed ? '#937CA7' : '#D3D3D3' }, // Use isPressed instead of pressed

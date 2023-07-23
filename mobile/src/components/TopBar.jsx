@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'flex-start',
         alignItems: 'center',
+        flex: 1,
     },
     text: {
         fontSize: 20,
