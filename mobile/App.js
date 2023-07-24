@@ -26,7 +26,9 @@ import {
 	ClosetOutfitsScreen,
 	ItemsFavScreen,
 	OutfitsFavScreen,
-	ItemCardScreen
+	ItemCardScreen,
+	ThreeViewScreen,
+	FourViewScreen
 } from './src/screens';
 import { TailwindProvider } from 'tailwindcss-react-native';
 import * as Font from 'expo-font';
@@ -143,6 +145,16 @@ export default function App() {
 						headerShown: false,
 					}}
 				/>
+				<Stack.Screen name="FourViewScreen" component={FourViewScreen}
+					options={{
+						headerShown: false,
+					}}
+				/>
+				<Stack.Screen name="ThreeViewScreen" component={ThreeViewScreen}
+					options={{
+						headerShown: false,
+					}}
+				/>
 				<Stack.Screen name="MapScreen" component={MapScreen}
 					options={{
 						headerShown: false,
@@ -173,6 +185,7 @@ export default function App() {
 						headerShown: false,
 					}}
 				/>
+
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

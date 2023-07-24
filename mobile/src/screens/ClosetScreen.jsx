@@ -4,6 +4,8 @@ import { TopBar, ToggleBar, WardrobeContainer, ItemsButton, OutfitsButton, Favou
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from "axios";
 import { useNavigation } from '@react-navigation/native';
+import { getUserId } from '../tempstore/userPreferenceStore';
+
 
 API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
 
@@ -11,6 +13,7 @@ API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0
 const ClosetScreen = () => {
 
     const numColumns = 2; // Set the number of columns you want to display
+    const id = getUserId();
     const itemWidth = Dimensions.get('window').width / numColumns;
 
     const [haveItems, setHaveItems] = useState(false);
@@ -19,9 +22,10 @@ const ClosetScreen = () => {
     const navigation = useNavigation()
 
 
+
     const fetchItems = async () => {
         try {
-            const response = await axios.get(`${API_URL}/getItems`);
+            const response = await axios.get(`${API_URL}/getItem?userId=${id}`);
             console.log(response.data);
             setlistOfItems(response.data);
             //setlistOfItems(listOfItems.map(x => x.imageurl));
@@ -45,12 +49,12 @@ const ClosetScreen = () => {
         <SafeAreaView style={styles.container}>
             <TopBar text="Closet" today={false} closet={true} dressup={false} />
             <View style={styles.contentcontainer}>
-                <View style={styles.heartcontainer}>
-                    <FavouritesButton isPressed={false} navigation={navigation} screenName={'ItemsFavScreen'} />
-                </View>
                 <View style={styles.buttoncontainer}>
                     <ItemsButton isPressed={true} />
                     <OutfitsButton isPressed={false} />
+                    <View style={styles.heartcontainer}>
+                        <FavouritesButton isPressed={false} navigation={navigation} screenName={'ItemsFavScreen'} />
+                    </View>
                 </View>
                 {listOfItems.length === 0 ? (
                     <View style={styles.textContainer}>
@@ -111,7 +115,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     heartcontainer: {
-        left: 100,
+        left: 65,
     }
 });
 

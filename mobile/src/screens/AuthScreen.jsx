@@ -61,7 +61,7 @@ const AuthScreen = () => {
                 try {
                     const jsonRes = await response.json();
                     if (response.status === 200) {
-                        console.log(jsonRes);
+                        console.log(jsonRes.userId);
                         setUserId(jsonRes.userId);
                     }
                 } catch (err) {

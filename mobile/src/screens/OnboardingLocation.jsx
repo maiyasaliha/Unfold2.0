@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { ContinueButtonS, PreviousButton } from '../components'
 import { useNavigation } from '@react-navigation/native'
 import axios from 'axios';
+import { getUserId } from '../tempstore/userPreferenceStore';
+
 
 const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
 
@@ -20,7 +22,7 @@ const OnboardingLocation = () => {
   };
   const handlePress = () => {
     axios.post(`${API_URL}/location`, {
-      userId: 37,
+      userId: getUserId(),
       location: location,
     }).then((response) => {
       console.log('Location Added:', location)
@@ -39,7 +41,6 @@ const OnboardingLocation = () => {
                 style={styles.input}
                 placeholder="Enter postal code"
                 placeholderTextColor="#937CA7"
-                keyboardType="numeric"
                 maxLength={6}
                 value={location}
                 onChangeText={handlePostalCodeChange}

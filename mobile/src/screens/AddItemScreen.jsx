@@ -5,12 +5,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 import { BackArrowButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
+import { getUserId } from '../tempstore/userPreferenceStore';
+
 
 
 const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
 
 
-//const userId = 20;
+const userId = getUserId();
 
 const AddItemScreen = () => {
 
@@ -137,10 +139,9 @@ const AddItemScreen = () => {
 
     const uploadImage = async () => {
         try {
-            //   Make the API request using Axios to send the Base64 image data to the backend
             const response = await axios.post(`${API_URL}/addItemwithdesc`, {
-                userId: 10,
-                image: image, // Send the Base64 data in the request body
+                userId: userId,
+                image: image, 
                 colour: colour,
                 type: type,
                 toe: toe,
@@ -159,6 +160,7 @@ const AddItemScreen = () => {
 
             if (response.status === 200) {
                 console.log('Item uploaded successfully.');
+                alert('Item uploaded successfully.');
             } else {
                 console.error('Failed to upload item.');
             }
