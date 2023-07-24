@@ -13,7 +13,7 @@ API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0
 const ClosetOutfitsScreen = () => {
 
     const numColumns = 2; // Set the number of columns you want to display
-    const id = 10;
+    const id = getUserId();
     const itemWidth = Dimensions.get('window').width / numColumns;
 
     const [haveOutfits, setHaveOutfits] = useState(false);
