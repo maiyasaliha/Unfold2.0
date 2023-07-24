@@ -12,8 +12,6 @@ import { getUserId } from '../tempstore/userPreferenceStore';
 const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
 
 
-const userId = getUserId();
-
 const AddItemScreen = () => {
 
     const [hasGalleryPermission, setGallerPermission] = useState(null);
@@ -140,7 +138,7 @@ const AddItemScreen = () => {
     const uploadImage = async () => {
         try {
             const response = await axios.post(`${API_URL}/addItemwithdesc`, {
-                userId: userId,
+                userId: getUserId(),
                 image: image, 
                 colour: colour,
                 type: type,
