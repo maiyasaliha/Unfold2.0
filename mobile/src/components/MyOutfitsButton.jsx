@@ -7,7 +7,7 @@ const MyOutfitsButton = () => {
   const navigation = useNavigation()
   
   const handlePress = () => {
-    navigation.navigate('ClosetScreen')
+    navigation.navigate('ClosetOutfitsScreen')
     console.log('My Outfits onPress')
   }
 
