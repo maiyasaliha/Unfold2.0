@@ -3,12 +3,10 @@ import React, { useState } from 'react'
 import { ContinueButtonS, PreviousButton } from '../components'
 import { useNavigation } from '@react-navigation/native'
 import axios from 'axios';
-import { getUserId } from '../tempstore/userPreferenceStore';
+import { getUserId, getApiUrl } from '../tempstore/userPreferenceStore';
 
 
-const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
-
-
+API_URL = getApiUrl();
 
 const OnboardingHeight = () => {
   const navigation = useNavigation()

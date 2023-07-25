@@ -4,9 +4,10 @@ import { TopBar, ToggleBar, WardrobeContainer, ItemsButton, OutfitsButton, Favou
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from "axios";
 import { useNavigation } from '@react-navigation/native';
+import { getApiUrl } from '../tempstore/userPreferenceStore'
 
-API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
 
+API_URL = getApiUrl();
 
 const ItemsFavScreen = () => {
 

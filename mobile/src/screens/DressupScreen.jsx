@@ -5,6 +5,10 @@ import Carousel from 'react-native-snap-carousel';
 import axios from 'axios';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { getUserId } from '../tempstore/userPreferenceStore';
+import { getApiUrl } from '../tempstore/userPreferenceStore'
+
+
+API_URL = getApiUrl();
 
 
 const DressupScreen = () => {

@@ -1,13 +1,13 @@
 import { View, Text, FlatList, Platform, StyleSheet, TextInput, ActivityIndicator, Image } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { CheckboxButton, PurpleView, ToggleBar } from '../components'
+import { ToggleBar, UserRectangle } from '../components'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import axios from 'axios'
 import { filter } from 'lodash';
+import { getApiUrl } from '../tempstore/userPreferenceStore'
 
 
-API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
-
+API_URL = getApiUrl();
 
 const SearchScreen = () => {
   const [searchQuery, setSearchQuery] = useState("")
@@ -83,7 +83,7 @@ const SearchScreen = () => {
         keyExtractor={(item) => item.name}
         renderItem={({ item }) => (
             <View style={styles.userContainer}>
-              <Text style={styles.textName}>{item.name}</Text>
+              <UserRectangle text={item.name} id={item.userId}/>
             </View>
         )}
       />

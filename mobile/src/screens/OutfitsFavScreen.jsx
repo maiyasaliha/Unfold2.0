@@ -3,7 +3,10 @@ import React, { useState } from 'react';
 import { TopBar, ToggleBar, WardrobeContainer, ItemsButton, OutfitsButton, FavouritesButton } from '../components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+import { getApiUrl } from '../tempstore/userPreferenceStore';
 
+
+API_URL = getApiUrl();
 
 
 const OutfitsFavScreen = () => {

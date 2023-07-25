@@ -61,6 +61,8 @@
 
 let userId = 10;
 
+let API_URL = Platform.OS === 'ios' ? 'http://172.20.10.5:5000' : 'http://172.20.10.5:5000';
+
 export function setUserId(int) {
   userId = int;
 }
@@ -68,4 +70,7 @@ export function setUserId(int) {
 export function getUserId() {
   return userId;
 }
-  
+
+export function getApiUrl() {
+  return API_URL;
+}

@@ -6,11 +6,10 @@ import axios from 'axios';
 import { BackArrowButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
 import { getUserId } from '../tempstore/userPreferenceStore';
+import { getApiUrl } from '../tempstore/userPreferenceStore'
 
 
-
-const API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
-
+API_URL = getApiUrl();
 
 const AddItemScreen = () => {
 
