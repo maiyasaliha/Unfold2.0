@@ -4,9 +4,10 @@ import { TopBar, ToggleBar, CheckboxButton, PurpleView } from '../components'
 import Carousel from 'react-native-snap-carousel';
 import axios from 'axios';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { getUserId } from '../tempstore/userPreferenceStore';
+import { getUserId, getApiUrl } from '../tempstore/userPreferenceStore';
 
 
+API_URL = getApiUrl();
 
 const ThreeViewScreen = () => {
   const [selectedTop, setSelectedTop] = useState(null);

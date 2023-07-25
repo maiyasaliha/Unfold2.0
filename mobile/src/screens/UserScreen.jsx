@@ -4,9 +4,10 @@ import { ToggleBar } from '../components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
-import { getUserId } from '../tempstore/userPreferenceStore';
+import { getUserId, getApiUrl } from '../tempstore/userPreferenceStore';
 
 
+API_URL = getApiUrl();
 
 const UserScreen = () => {
   const [user, setUser] = useState();

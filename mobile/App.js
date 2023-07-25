@@ -28,11 +28,13 @@ import {
 	OutfitsFavScreen,
 	ItemCardScreen,
 	ThreeViewScreen,
-	FourViewScreen
+	FourViewScreen,
+	FriendScreen
 } from './src/screens';
 import { TailwindProvider } from 'tailwindcss-react-native';
 import * as Font from 'expo-font';
 import { useFonts } from 'expo-font';
+import FriendOutfitsScreen from './src/screens/FriendOutfitsScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -50,6 +52,16 @@ export default function App() {
 	return (
 		<NavigationContainer>
 			<Stack.Navigator>
+				<Stack.Screen name="SearchScreen" component={SearchScreen}
+					options={{
+						headerShown: false,
+					}}
+				/>
+				<Stack.Screen name="FriendScreen" component={FriendScreen}
+					options={{
+						headerShown: false,
+					}}
+				/>
 				<Stack.Screen name="LogoScreen" component={LogoScreen}
 					options={{
 						headerShown: false,
@@ -160,11 +172,6 @@ export default function App() {
 						headerShown: false,
 					}}
 				/>
-				<Stack.Screen name="SearchScreen" component={SearchScreen}
-					options={{
-						headerShown: false,
-					}}
-				/>
 				<Stack.Screen name="UserScreen" component={UserScreen}
 					options={{
 						headerShown: false,
@@ -185,7 +192,11 @@ export default function App() {
 						headerShown: false,
 					}}
 				/>
-
+				<Stack.Screen name="FriendOutfitsScreen" component={FriendOutfitsScreen}
+					options={{
+						headerShown: false,
+					}}
+				/>
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

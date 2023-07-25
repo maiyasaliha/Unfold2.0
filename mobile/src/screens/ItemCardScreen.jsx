@@ -4,11 +4,16 @@ import { BackArrowButton, LaundryButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
+import { getApiUrl } from '../tempstore/userPreferenceStore'
+
+
+API_URL = getApiUrl();
 
 
 const ItemCardScreen = ({ route }) => {
     const navigation = useNavigation();
     const image = route.params;
+    
     const [itemInfo, setItemInfo] = useState()
     const [colour, setColour] = useState('');
     const [type, setType] = useState('');
