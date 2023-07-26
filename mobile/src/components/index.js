@@ -39,4 +39,5 @@ export { default as LaundryButton} from "./LaundryButton"
 export { default as UserRectangle} from "./UserRectangle"
 export { default as LikedButton} from "./LikedButton"
 export { default as FavouritesItemContainer} from "./FavouritesItemContainer"
+export { default as HeartOutfits} from "./HeartOutfits"
 
