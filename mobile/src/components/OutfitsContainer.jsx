@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         right: 20,
     },
     bottom: {
-        height: 100,
+        height: 115,
         width: 70,
         top: 195,
     },

@@ -10,22 +10,20 @@ import { getApiUrl } from '../tempstore/userPreferenceStore'
 
 API_URL = getApiUrl();
 
+
 const FourViewScreen = () => {
   const [selectedTop, setSelectedTop] = useState(null);
   const [selectedBottom, setSelectedBottom] = useState(null);
   const [selectedShoe, setSelectedShoe] = useState(null);
   const [selectedAccessory, setSelectedAccessory] = useState(null);
-  const id = getUserId();
-
-
+  const [listOfAccessories, setlistOfAccessories] = useState([]);
+  const [listOfShoes, setlistOfShoes] = useState([]);
   const [listOfTops, setlistOfTops] = useState([]);
   const [listOfBottoms, setlistOfBottoms] = useState([]);
-  const [listOfShoes, setlistOfShoes] = useState([]);
-  const [listOfAccessories, setlistOfAccessories] = useState([]);
 
+  const id = getUserId();
 
-
-  const fetchTops = async () => {
+  const fetchTop = async () => {
     try {
       const response = await axios.get(`${API_URL}/getTops?userId=${id}`);
       console.log(response.data);
@@ -38,7 +36,7 @@ const FourViewScreen = () => {
     }
   };
 
-  const fetchBottoms = async () => {
+  const fetchBottom = async () => {
     try {
       const response = await axios.get(`${API_URL}/getBottoms?userId=${id}`);
       console.log(response.data);
@@ -51,7 +49,7 @@ const FourViewScreen = () => {
     }
   };
 
-  const fetchShoes = async () => {
+  const fetchShoe = async () => {
     try {
       const response = await axios.get(`${API_URL}/getShoes?userId=${id}`);
       console.log(response.data);
@@ -78,11 +76,12 @@ const FourViewScreen = () => {
 
   // Call fetchItems when the component mounts
   useEffect(() => {
+    fetchTop();
+    fetchBottom();
+    fetchShoe();
     fetchAccessories();
-    fetchTops();
-    fetchBottoms();
-    fetchShoes();
   }, []);
+
 
   const renderTopItem = ({ item }) => {
     return (
@@ -107,6 +106,7 @@ const FourViewScreen = () => {
       </View>
     );
   };
+
   const renderAccessoryItem = ({ item }) => {
     return (
       <View style={styles.carouselItem}>
@@ -117,33 +117,34 @@ const FourViewScreen = () => {
 
   const handleTopSelection = (index) => {
     setSelectedTop(listOfTops[index]);
+    console.log(selectedTop);
   };
 
   const handleBottomSelection = (index) => {
     setSelectedBottom(listOfBottoms[index]);
-  };
+    console.log(selectedBottom);
 
+  };
   const handleShoeSelection = (index) => {
     setSelectedShoe(listOfShoes[index]);
-  };
+    console.log(selectedShoe);
 
+  };
   const handleAccessorySelection = (index) => {
     setSelectedAccessory(listOfAccessories[index]);
+    console.log(selectedAccessory);
+
   };
 
   const handleConfirmSelection = async () => {
-    if (selectedTop && selectedShoe && selectedBottom && selectedAccessory) {
-      console.log(selectedAccessory.imageurl);
-      console.log(selectedBottom.imageurl);
-      console.log(selectedTop.imageurl);
-      console.log(selectedShoe.imageurl);
+    if (selectedTop && selectedBottom && selectedShoe && selectedAccessory) {
       try {
         const response = await axios.post(`${API_URL}/addOutfit`, {
           userId: id,
           top: selectedTop.imageurl,
           bottom: selectedBottom.imageurl,
-          accessories: selectedAccessory.imageurl,
           shoes: selectedShoe.imageurl,
+          accessories: selectedAccessory.imageurl,
         });
 
         if (response.status === 200) {
@@ -156,16 +157,15 @@ const FourViewScreen = () => {
         console.error('Error uploading Outfit:', error);
       }
     } else {
-      alert("Please select a top, bottom, shoes and accessories before confirming.");
+      alert("Please select a top, bottom, accessory and shoe before confirming.");
     }
     console.log('Confirm Selection onPress');
   }
-
   const allArraysEmpty =
     listOfTops.length === 0 &&
     listOfBottoms.length === 0 &&
-    listOfShoes.length === 0 &&
-    listOfAccessories.length === 0;
+    listOfAccessories.length === 0 &&
+    listOfShoes.length === 0;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -176,7 +176,7 @@ const FourViewScreen = () => {
         </View>
       ) : (
         <View>
-          <View style={{ height: 150, marginTop: 120 }}>
+          <View style={{ height: 150, marginTop: 120, }}>
             <Carousel
               data={listOfAccessories}
               renderItem={renderAccessoryItem}
@@ -185,7 +185,7 @@ const FourViewScreen = () => {
               onSnapToItem={handleAccessorySelection}
             />
           </View>
-          <View style={{ height: 220, bottom: -40, top: -45 }}>
+          <View style={{ height: 300, top: -50 }}>
             <Carousel
               data={listOfTops}
               renderItem={renderTopItem}
@@ -194,7 +194,7 @@ const FourViewScreen = () => {
               onSnapToItem={handleTopSelection}
             />
           </View>
-          <View style={{ height: 250, top: -140 }}>
+          <View style={{ height: 200, top: -220 }}>
             <Carousel
               data={listOfBottoms}
               renderItem={renderBottomItem}
@@ -203,7 +203,7 @@ const FourViewScreen = () => {
               onSnapToItem={handleBottomSelection}
             />
           </View>
-          <View style={{ height: 100, top: -170 }}>
+          <View style={{ height: 90, top: -210 }}>
             <Carousel
               data={listOfShoes}
               renderItem={renderShoeItem}
@@ -215,7 +215,7 @@ const FourViewScreen = () => {
         </View>
       )}
       <ToggleBar />
-      <PurpleView is2Press={false} is3Press={false} is4Press={true} />
+      <PurpleView is2Press={true} is3Press={false} is4Press={false} />
       <CheckboxButton onPress={handleConfirmSelection} />
       <TopBar text="Dress Up" today={false} closet={false} dressup={true} />
     </SafeAreaView>
@@ -223,6 +223,9 @@ const FourViewScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  checkboxcontainer: {
+
+  },
   container: {
     flex: 1,
     justifyContent: 'flex-start',
@@ -234,8 +237,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageBottom: {
-    width: 220,
-    height: 220,
+    width: 210,
+    height: 210,
     borderRadius: 10,
   },
   imageTop: {
@@ -248,17 +251,17 @@ const styles = StyleSheet.create({
     height: 150,
     borderRadius: 10,
   },
-  imageAccessory: {
-    width: 100,
-    height: 100,
-    borderRadius: 10,
-  },
   emptyMessage: {
     top: 130,
     fontSize: 20,
     color: '#937CA7',
     textAlign: 'center',
     fontFamily: 'CabinCondensed-Regular',
+  },
+  imageAccessory: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
   },
 });
 

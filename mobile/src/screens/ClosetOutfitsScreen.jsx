@@ -68,7 +68,7 @@ const ClosetOutfitsScreen = () => {
                         numColumns={numColumns} // Use the calculated number of columns
                         renderItem={({ item }) => (
                             <View style={{ width: itemWidth, ...styles.scrollContainer }}>
-                                <OutfitsContainer key={item.id} onePiece={item.onepiece} shoes={item.shoes} />
+                                <OutfitsContainer key={item.id} onePiece={item.onepiece} shoes={item.shoes} top={item.top} bottom={item.bottom} accessory={item.accessories}/>
                             </View>
                         )}
                     />

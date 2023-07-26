@@ -2,13 +2,13 @@ import React from 'react';
 import { View, Pressable, StyleSheet, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const ItemsButton = ({ isPressed, screenName, image, text, id  }) => {
+const ItemsButton = ({ isPressed, screenName }) => {
   const navigation = useNavigation();
 
   const onPressButton = () => {
     screenName 
     ? navigation.navigate(screenName)
-    : navigation.navigate('ClosetScreen', {image: image, text: text, id: id});
+    : navigation.navigate('ClosetScreen');
     console.log('Items onPress');
   };
 

@@ -35,7 +35,8 @@ import {
     getShoes,
     getAccessories,
     getOutfits,
-    addOutfit
+    addOutfit,
+    getLike
 } from '../controllers/clothing.js';
 
 
@@ -82,6 +83,8 @@ router.get('/getAccessories', getAccessories);
 router.get('/getOutfits', getOutfits);
 router.post('/addOutfit', addOutfit);
 router.get('/getUsers', getUsers);
+router.get('/getLike', getLike);
+
 
 
 

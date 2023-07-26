@@ -9,34 +9,10 @@ import { getApiUrl } from '../tempstore/userPreferenceStore'
 
 API_URL = getApiUrl();
 
-const FriendOutfitsScreen = ({ route }) => {
-
-    const numColumns = 2; // Set the number of columns you want to display
-    const itemWidth = Dimensions.get('window').width / numColumns;
-    const { text, id, image } = route.params;
-    const [haveItems, setHaveItems] = useState(false);
-    const [listOfItems, setlistOfItems] = useState([]);
-    const [item, setItem] = useState();
+const FriendOutfitsScreen = () => {
     const navigation = useNavigation()
 
 
-
-    const fetchItems = async () => {
-        try {
-            const response = await axios.get(`${API_URL}/getItem?userId=${id}`);
-            console.log(response.data);
-            setlistOfItems(response.data);
-            setHaveItems(true);
-            console.log('successfully retrieved items');
-        } catch (error) {
-            console.error('Error fetching items:', error);
-        }
-    };
-
-    // Call fetchItems when the component mounts
-    useEffect(() => {
-        fetchItems();
-    }, []);
 
 
 
@@ -44,30 +20,11 @@ const FriendOutfitsScreen = ({ route }) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.contentcontainer}>
-                <BackArrowButton navigation={navigation} screenName='SearchScreen' />
-                <Image style={styles.image} source={require('../assets/images/deafultusericonjpg.jpg')} />
-                
-                <View style={styles.buttoncontainer}>
-                    <ItemsButton isPressed={false} screenName='FriendScreen' id={id} text={text} image={image} />
-                    <OutfitsButton isPressed={true} screenName='FriendOutfitsScreen' id={id} text={text} image={image} />
+                <View style={styles.backContainer}>
+                    <BackArrowButton navigation={navigation} screenName='SearchScreen' />
                 </View>
-                {listOfItems.length === 0 ? (
-                    <View style={styles.textContainer}>
-                        <Text style={styles.text}>{text} has no items to display</Text>
-                    </View>
-                ) : (
-                    <FlatList
-                        data={listOfItems}
-                        keyExtractor={(item) => item.id.toString()}
-                        numColumns={numColumns} // Use the calculated number of columns
-                        renderItem={({ item }) => (
-                            <View style={{ width: itemWidth, ...styles.scrollContainer }}>
-                                <WardrobeContainer key={item.id} image={item.imageurl} />
-                            </View>
-                        )}
-                    />
-
-                )}
+                <Image style={styles.image} source={require('../assets/images/lock.png')} />
+                <Text style={styles.text}>Unlock Friend Outfits in Unfold 2.0!</Text>
             </View>
         </SafeAreaView>
     )
@@ -76,11 +33,8 @@ const FriendOutfitsScreen = ({ route }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'flex-start'
-    },
-    scrollContainer: {
-        flexDirection: 'row',
-        paddingTop: 15,
+        justifyContent: 'flex-start',
+        backgroundColor: '#FFFFFF'
     },
     text: {
         fontSize: 20,
@@ -95,21 +49,21 @@ const styles = StyleSheet.create({
     },
     contentcontainer: {
         flex: 1,
-        top: 90,
+        justifyContent: 'flex-start',
+        alignItems: 'center'
 
     },
-    buttoncontainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 135,
-    },
     image: {
-        width: 116,
-        height: 116,
-        borderRadius: 58,
+        height: 130,
+        width: 100,
         alignSelf: 'center',
-        marginBottom: 20
-      },
+        marginBottom: 30,
+        marginTop: 150,
+        tintColor: '#937CA7'
+    },
+    backContainer: {
+        top: -30
+    }
 });
 
 export default FriendOutfitsScreen;

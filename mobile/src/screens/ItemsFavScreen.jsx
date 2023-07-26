@@ -1,6 +1,6 @@
 import { View, Platform, StyleSheet, ScrollView, Text, FlatList, Dimensions } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { TopBar, ToggleBar, WardrobeContainer, ItemsButton, OutfitsButton, FavouritesButton } from '../components';
+import { TopBar, ToggleBar, WardrobeContainer, ItemsButton, OutfitsButton, FavouritesButton, FavouritesItemContainer } from '../components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from "axios";
 import { useNavigation } from '@react-navigation/native';
@@ -65,7 +65,7 @@ const ItemsFavScreen = () => {
                         numColumns={numColumns} // Use the calculated number of columns
                         renderItem={({ item }) => (
                             <View style={{ width: itemWidth, ...styles.scrollContainer }}>
-                                <WardrobeContainer key={item.id} image={item.imageurl} />
+                                <FavouritesItemContainer key={item.id} image={item.imageurl} />
                             </View>
                         )}
                     />

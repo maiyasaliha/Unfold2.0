@@ -4,23 +4,24 @@ import { TopBar, ToggleBar, CheckboxButton, PurpleView } from '../components'
 import Carousel from 'react-native-snap-carousel';
 import axios from 'axios';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { getUserId, getApiUrl } from '../tempstore/userPreferenceStore';
+import { getUserId } from '../tempstore/userPreferenceStore';
+import { getApiUrl } from '../tempstore/userPreferenceStore'
 
 
 API_URL = getApiUrl();
+
 
 const ThreeViewScreen = () => {
   const [selectedTop, setSelectedTop] = useState(null);
   const [selectedBottom, setSelectedBottom] = useState(null);
   const [selectedShoe, setSelectedShoe] = useState(null);
-  const id = getUserId();
-
+  const [listOfShoes, setlistOfShoes] = useState([]);
   const [listOfTops, setlistOfTops] = useState([]);
   const [listOfBottoms, setlistOfBottoms] = useState([]);
-  const [listOfShoes, setlistOfShoes] = useState([]);
 
+  const id = getUserId();
 
-  const fetchTops = async () => {
+  const fetchTop = async () => {
     try {
       const response = await axios.get(`${API_URL}/getTops?userId=${id}`);
       console.log(response.data);
@@ -33,7 +34,7 @@ const ThreeViewScreen = () => {
     }
   };
 
-  const fetchBottoms = async () => {
+  const fetchBottom = async () => {
     try {
       const response = await axios.get(`${API_URL}/getBottoms?userId=${id}`);
       console.log(response.data);
@@ -46,7 +47,7 @@ const ThreeViewScreen = () => {
     }
   };
 
-  const fetchShoes = async () => {
+  const fetchShoe = async () => {
     try {
       const response = await axios.get(`${API_URL}/getShoes?userId=${id}`);
       console.log(response.data);
@@ -61,19 +62,11 @@ const ThreeViewScreen = () => {
 
   // Call fetchItems when the component mounts
   useEffect(() => {
-    fetchTops();
-    fetchBottoms();
-    fetchShoes();
+    fetchTop();
+    fetchBottom();
+    fetchShoe();
   }, []);
 
-  // useEffect(() => {
-  //   console.log('listOfTops:', listOfTops);
-  //   console.log('listOfBottoms:', listOfBottoms);
-  // }, [listOfTops, listOfBottoms]);
-
-  // const topsData = listOfTops.map(x => x.imageurl);
-
-  // const bottomsData = listOfBottoms.map(x => x.imageurl);
 
   const renderTopItem = ({ item }) => {
     return (
@@ -101,18 +94,22 @@ const ThreeViewScreen = () => {
 
   const handleTopSelection = (index) => {
     setSelectedTop(listOfTops[index]);
+    console.log(selectedTop);
   };
 
   const handleBottomSelection = (index) => {
     setSelectedBottom(listOfBottoms[index]);
-  };
+    console.log(selectedBottom);
 
+  };
   const handleShoeSelection = (index) => {
     setSelectedShoe(listOfShoes[index]);
+    console.log(selectedShoe);
+
   };
 
   const handleConfirmSelection = async () => {
-    if (selectedTop && selectedShoe && selectedBottom) {
+    if (selectedTop && selectedBottom && selectedShoe) {
       try {
         const response = await axios.post(`${API_URL}/addOutfit`, {
           userId: id,
@@ -131,11 +128,10 @@ const ThreeViewScreen = () => {
         console.error('Error uploading Outfit:', error);
       }
     } else {
-      alert("Please select a top, bottom and shoes before confirming.");
+      alert("Please select a top, bottom and shoe before confirming.");
     }
     console.log('Confirm Selection onPress');
   }
-
   const allArraysEmpty =
     listOfTops.length === 0 &&
     listOfBottoms.length === 0 &&
@@ -150,7 +146,7 @@ const ThreeViewScreen = () => {
         </View>
       ) : (
         <View>
-          <View style={{ height: 220, marginTop: 120, bottom: -20 }}>
+          <View style={{ height: 300, marginTop: 90, bottom: -40 }}>
             <Carousel
               data={listOfTops}
               renderItem={renderTopItem}
@@ -159,7 +155,7 @@ const ThreeViewScreen = () => {
               onSnapToItem={handleTopSelection}
             />
           </View>
-          <View style={{ height: 250, top: -40 }}>
+          <View style={{ height: 300, top: -100 }}>
             <Carousel
               data={listOfBottoms}
               renderItem={renderBottomItem}
@@ -168,7 +164,7 @@ const ThreeViewScreen = () => {
               onSnapToItem={handleBottomSelection}
             />
           </View>
-          <View style={{ height: 100, top: -40 }}>
+          <View style={{ height: 300, top: -150 }}>
             <Carousel
               data={listOfShoes}
               renderItem={renderShoeItem}
@@ -180,7 +176,7 @@ const ThreeViewScreen = () => {
         </View>
       )}
       <ToggleBar />
-      <PurpleView is2Press={false} is3Press={true} is4Press={false} />
+      <PurpleView is2Press={true} is3Press={false} is4Press={false} />
       <CheckboxButton onPress={handleConfirmSelection} />
       <TopBar text="Dress Up" today={false} closet={false} dressup={true} />
     </SafeAreaView>
@@ -188,6 +184,9 @@ const ThreeViewScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  checkboxcontainer: {
+
+  },
   container: {
     flex: 1,
     justifyContent: 'flex-start',
