@@ -44,29 +44,31 @@ const FriendScreen = ({ route }) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.contentcontainer}>
-                <BackArrowButton navigation={navigation} screenName='SearchScreen' />
+                <View style={styles.backContainer}>
+                    <BackArrowButton navigation={navigation} screenName='SearchScreen' />
+                </View>
                 <Image style={styles.image} source={require('../assets/images/deafultusericonjpg.jpg')} />
-                
+                {listOfItems.length === 0 ? (null)
+                :(<Text style={styles.name}>{text}</Text>)}
                 <View style={styles.buttoncontainer}>
-                    <ItemsButton isPressed={true} screenName='FriendScreen' id={id} text={text} image={image} />
-                    <OutfitsButton isPressed={false} screenName='FriendOutfitsScreen' id={id} text={text} image={image}/>
+                    <ItemsButton isPressed={true} screenName='FriendScreen' />
+                    <OutfitsButton isPressed={false} screenName='FriendOutfitsScreen' />
                 </View>
                 {listOfItems.length === 0 ? (
                     <View style={styles.textContainer}>
                         <Text style={styles.text}>{text} has no items to display</Text>
                     </View>
                 ) : (
-                    <FlatList
-                        data={listOfItems}
-                        keyExtractor={(item) => item.id.toString()}
-                        numColumns={numColumns} // Use the calculated number of columns
-                        renderItem={({ item }) => (
-                            <View style={{ width: itemWidth, ...styles.scrollContainer }}>
-                                <WardrobeContainer key={item.id} image={item.imageurl} />
-                            </View>
-                        )}
-                    />
-
+                        <FlatList
+                            data={listOfItems}
+                            keyExtractor={(item) => item.id.toString()}
+                            numColumns={numColumns} // Use the calculated number of columns
+                            renderItem={({ item }) => (
+                                <View style={{ width: itemWidth, ...styles.scrollContainer }}>
+                                    <WardrobeContainer key={item.id} image={item.imageurl} />
+                                </View>
+                            )}
+                        />
                 )}
             </View>
         </SafeAreaView>
@@ -87,6 +89,13 @@ const styles = StyleSheet.create({
         color: '#937CA7',
         fontFamily: 'CabinCondensed-Regular',
     },
+    name: {
+        fontSize: 20,
+        color: '#937CA7',
+        fontFamily: 'CabinCondensed-Regular',
+        textAlign: 'center',
+        marginBottom: 10
+    },
     textContainer: {
         flex: 1,
         justifyContent: 'flex-start',
@@ -95,7 +104,7 @@ const styles = StyleSheet.create({
     },
     contentcontainer: {
         flex: 1,
-        top: 90,
+        justifyContent: 'flex-start'
 
     },
     buttoncontainer: {
@@ -108,8 +117,12 @@ const styles = StyleSheet.create({
         height: 116,
         borderRadius: 58,
         alignSelf: 'center',
-        marginBottom: 20
-      },
+        marginBottom: 20,
+    },
+    backContainer: {
+        left: 30,
+        top: -30
+    }
 });
 
 export default FriendScreen;

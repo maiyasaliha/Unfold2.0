@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, Pressable, } from 'rea
 import React from 'react';
 import HeartButton from './HeartButton';
 import { useNavigation } from '@react-navigation/native';
+import HeartOutfits from './HeartOutfits';
 
 const OutfitsContainer = ({ top, bottom, onePiece, shoes, accessory }) => {
     //   const navigation = useNavigation();
@@ -14,6 +15,9 @@ const OutfitsContainer = ({ top, bottom, onePiece, shoes, accessory }) => {
     return (
         <View style={styles.container}>
             <Pressable onPress={handlePress} style={styles.whitebox}>
+                <View style={styles.heartcontainer}>
+                    <HeartOutfits />
+                </View>
                 <Image style={styles.bottom} source={{ uri: bottom }} />
                 <Image style={styles.top} source={{ uri: top }} />
                 <Image style={styles.onePiece} source={{ uri: onePiece }} />
@@ -46,17 +50,18 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         marginTop: 10,
         left: 50,
+        bottom: 67
     },
     top: {
-        height: 80,
-        width: 80,
+        height: 70,
+        width: 70,
         top: 40,
         right: 20,
     },
     bottom: {
-        height: 100,
+        height: 115,
         width: 70,
-        top: 195,
+        top: 185,
     },
     onePiece: {
         height: 130,

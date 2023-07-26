@@ -16,7 +16,7 @@ const WardrobeContainer = ({ image }) => {
     <View style={styles.container}>
       <Pressable onPress={handlePress} style={styles.whitebox}>
         <View style={styles.heartcontainer}>
-          <HeartButton image={image} />
+          <HeartButton imageurl={image} />
         </View>
         <Image style={styles.image} source={{ uri: image }} />
       </Pressable>

@@ -184,6 +184,27 @@ const like = (req, res, next) => {
   res.json({ message: "favourite updated" })
 };
 
+
+const getLike = (req, res, next) => {
+  const { imageurl } = req.query;
+  ItemsWardrobe.findOne({
+      where: {
+        imageurl: imageurl,
+      }
+  }).then(dbUser => {
+      if (dbUser) {
+          // If the user is found in the database, send the user in the response
+          return res.status(200).json(dbUser.favourite);
+      } else {
+          return res.status(404).json({ error: 'Item not found' });
+      }
+  })
+      .catch(err => {
+          console.error('Error executing query:', err);
+          return res.status(500).json({ error: 'Internal server error' });
+      });
+};
+
 const getItemfromurl = (req, res, next) => {
   const { imageurl } = req.query;
   ItemsWardrobe.findOne({
@@ -279,5 +300,6 @@ export {
   getShoes,
   getAccessories,
   addOutfit,
-  getOutfits
+  getOutfits,
+  getLike
 };
