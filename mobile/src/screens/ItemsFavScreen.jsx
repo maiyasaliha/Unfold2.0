@@ -4,7 +4,7 @@ import { TopBar, ToggleBar, WardrobeContainer, ItemsButton, OutfitsButton, Favou
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from "axios";
 import { useNavigation } from '@react-navigation/native';
-import { getApiUrl } from '../tempstore/userPreferenceStore'
+import { getApiUrl, getUserId } from '../tempstore/userPreferenceStore'
 
 
 API_URL = getApiUrl();
@@ -18,11 +18,12 @@ const ItemsFavScreen = () => {
     const [listOfItems, setlistOfItems] = useState([]);
     const [item, setItem] = useState();
     const navigation = useNavigation()
+    const id = getUserId();
 
 
     const fetchItems = async () => {
         try {
-            const response = await axios.get(`${API_URL}/getFavItems`);
+            const response = await axios.get(`${API_URL}/getFavItems?userId=${id}`);
             console.log(response.data);
             setlistOfItems(response.data);
             //setlistOfItems(listOfItems.map(x => x.imageurl));

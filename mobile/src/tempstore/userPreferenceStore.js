@@ -59,11 +59,11 @@
 //     return temp;
 //   }
 
-let userId = 2;
+let userId = 1;
 
 //let API_URL = Platform.OS === 'ios' ? 'https://unfold-backend.onrender.com:5000' : 'https://unfold-backend.onrender.com:5000';
-//let API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
-let API_URL = Platform.OS === 'ios' ? 'https://unfold-backend.onrender.com' : 'https://unfold-backend.onrender.com';
+let API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
+//let API_URL = Platform.OS === 'ios' ? 'https://unfold-backend.onrender.com' : 'https://unfold-backend.onrender.com';
 
 export function setUserId(int) {
   userId = int;

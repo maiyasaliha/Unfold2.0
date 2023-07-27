@@ -227,21 +227,42 @@ const getItemfromurl = (req, res, next) => {
     });
 };
 
-const getFavItems = async (req, res, next) => {
-  try {
-    const listOfItems = await ItemsWardrobe.findAll({
-      where: {
-        favourite: 1,
-      }
+// const getFavItems = async (req, res, next) => {
+//   try {
+//     const listOfItems = await ItemsWardrobe.findAll({
+//       where: {
+//         favourite: 1,
+//       }
+//     });
+//     res.json(listOfItems);
+//   } catch (error) {
+//     // Handle the error here
+//     console.error('Error fetching items:', error);
+//     res.status(500).json({ error: 'Failed to fetch items.' });
+//   }
+// };
+const getFavItems = (req, res, next) => {
+  const { userId } = req.query;
+  ItemsWardrobe.findAll({
+    where: {
+      userId: userId,
+      favourite: 1,
+    }
+  }).then(dbUser => {
+    if (dbUser) {
+      // If the user is found in the database, send the user in the response
+      return res.status(200).json(dbUser);
+    } else {
+      // If the user is not found, send an appropriate error response
+      return res.status(404).json({ error: 'Item not found' });
+    }
+  })
+    .catch(err => {
+      // If there is an error while querying the database, handle it
+      console.error('Error executing query:', err);
+      return res.status(500).json({ error: 'Internal server error' });
     });
-    res.json(listOfItems);
-  } catch (error) {
-    // Handle the error here
-    console.error('Error fetching items:', error);
-    res.status(500).json({ error: 'Failed to fetch items.' });
-  }
 };
-
 const getItem = (req, res, next) => {
   const { userId } = req.query;
   ItemsWardrobe.findAll({
