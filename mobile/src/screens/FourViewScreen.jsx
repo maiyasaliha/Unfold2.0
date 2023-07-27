@@ -203,7 +203,7 @@ const FourViewScreen = () => {
               onSnapToItem={handleBottomSelection}
             />
           </View>
-          <View style={{ height: 90, top: -210 }}>
+          <View style={{ height: 90, top: -230 }}>
             <Carousel
               data={listOfShoes}
               renderItem={renderShoeItem}

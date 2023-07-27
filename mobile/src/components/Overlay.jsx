@@ -4,6 +4,8 @@ import AddItemsButton from './AddItemsButton';
 import CreateOutfitButton from './CreateOutfitButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+const { width, height } = Dimensions.get("window");
+
 const Overlay = ({ visible, onPress }) => {
   if (!visible) {
     return null; // Render nothing if the overlay is not visible
@@ -25,8 +27,8 @@ const Overlay = ({ visible, onPress }) => {
 const styles = StyleSheet.create({
   overlay: {
     position: 'absolute',
-    top: -700,
-    left: -145,
+    top: -height*0.827,
+    left: -width*0.37,
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background color
     justifyContent: 'flex-end',
     alignItems: 'center',

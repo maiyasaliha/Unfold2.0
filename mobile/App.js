@@ -52,6 +52,16 @@ export default function App() {
 	return (
 		<NavigationContainer>
 			<Stack.Navigator>
+			<Stack.Screen name="HomeScreen" component={HomeScreen}
+					options={{
+						headerShown: false,
+					}}
+				/>
+				<Stack.Screen name="LogoScreen" component={LogoScreen}
+					options={{
+						headerShown: false,
+					}}
+				/>
 				<Stack.Screen name="SearchScreen" component={SearchScreen}
 					options={{
 						headerShown: false,
@@ -62,16 +72,7 @@ export default function App() {
 						headerShown: false,
 					}}
 				/>
-				<Stack.Screen name="LogoScreen" component={LogoScreen}
-					options={{
-						headerShown: false,
-					}}
-				/>
-				<Stack.Screen name="HomeScreen" component={HomeScreen}
-					options={{
-						headerShown: false,
-					}}
-				/>
+				
 				<Stack.Screen name="AddItemScreen" component={AddItemScreen}
 					options={{
 						headerShown: false,

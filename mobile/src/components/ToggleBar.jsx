@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import HomeButton from './HomeButton';
 import { useNavigation } from '@react-navigation/native';
 import PinButton from './PinButton';
 import UserButton from './UserButton';
 import GlobeButton from './GlobeButton';
 import WhitePlus from './WhitePlus';
+
+const { width, height } = Dimensions.get("window");
 
 const ToggleBar = () => {
     const navigation = useNavigation();
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#654F77',
         paddingHorizontal: 25,
         height: 78,
-        width: 400,
+        width: width,
         justifyContent: 'center',
         alignItems: 'center', // Align items in the center on the x-axis
     },
@@ -45,7 +47,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'flex-end',
         alignItems: 'center',
-        top: 766,
+        top: height-78,
       },
 });
 

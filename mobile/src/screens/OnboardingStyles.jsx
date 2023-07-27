@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, StyleSheet, ScrollView, View, Platform, Pressable } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, Dimensions, ScrollView, View, Platform, Pressable } from 'react-native';
 import React, { useState } from 'react';
 import { PreviousButton, ContinueButtonS } from '../components';
 import { useNavigation } from '@react-navigation/native';
@@ -7,6 +7,7 @@ import { getUserId, getApiUrl } from '../tempstore/userPreferenceStore';
 
 
 API_URL = getApiUrl();
+const { width, height } = Dimensions.get("window");
 
 const OnboardingStyles = () => {
   const navigation = useNavigation();
@@ -129,7 +130,6 @@ const OnboardingStyles = () => {
   };
   
   
-
   const handlePress = () => {
     axios.post(`${API_URL}/styles`, {
       userId: getUserId(),

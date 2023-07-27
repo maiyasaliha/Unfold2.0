@@ -21,9 +21,9 @@ const styles = StyleSheet.create({
         width: 24,
         height: 24,
         borderRadius: 12,
-        backgroundColor: 'rgba(255, 0, 255, 0.3)',
+        backgroundColor: 'rgba(147,124,167, 0.3)',
         borderWidth: 1,
-        borderColor: 'purple',
+        borderColor: '#937CA7',
         justifyContent: 'center',
         alignItems: 'center',
       },
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         width: 8,
         height: 8,
         borderRadius: 4,
-        backgroundColor: 'purple',
+        backgroundColor: '#937CA7',
       }
 })
 

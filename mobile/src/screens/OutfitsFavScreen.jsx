@@ -1,4 +1,4 @@
-import { View, Platform, StyleSheet, ScrollView, Text } from 'react-native';
+import { View, Platform, StyleSheet, ScrollView, Text, Image } from 'react-native';
 import React, { useState } from 'react';
 import { TopBar, ToggleBar, WardrobeContainer, ItemsButton, OutfitsButton, FavouritesButton } from '../components';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -27,8 +27,8 @@ const OutfitsFavScreen = () => {
         </View>
         {!haveItems ? (
           <View style={styles.textContainer}>
-            <Text style={styles.text}>No favourite outfits found in your Closet</Text>
-            <Text style={styles.text}>Like outfits to view them!</Text>
+            <Image style={styles.image} source={require('../assets/images/lock.png')} />
+                <Text style={styles.text}>Unlock Favourite Outfits in Unfold 2.0!</Text>
 
           </View>
         ) : (
@@ -74,7 +74,15 @@ const styles = StyleSheet.create({
   },
   heartcontainer: {
     left: 65,
-  }
+  },
+  image: {
+    height: 130,
+    width: 100,
+    alignSelf: 'center',
+    marginBottom: 30,
+    marginTop: 150,
+    tintColor: '#937CA7'
+},
 });
 
 export default OutfitsFavScreen;

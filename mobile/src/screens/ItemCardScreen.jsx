@@ -9,11 +9,12 @@ import { getApiUrl } from '../tempstore/userPreferenceStore'
 
 API_URL = getApiUrl();
 
+const { width, height } = Dimensions.get("window");
 
 const ItemCardScreen = ({ route }) => {
     const navigation = useNavigation();
     const image = route.params;
-    
+
     const [itemInfo, setItemInfo] = useState()
     const [colour, setColour] = useState('');
     const [type, setType] = useState('');
@@ -79,7 +80,6 @@ const ItemCardScreen = ({ route }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.shadow} />
             <View style={styles.imageContainer}>
                 <Image style={styles.image} source={{ uri: image }} />
             </View>
@@ -152,9 +152,9 @@ const ItemCardScreen = ({ route }) => {
 
             </View>
             <View style={styles.launderyRow}>
-                    <Text style={styles.itemInfoLabel}>Laundry</Text>
-                    <LaundryButton />
-                </View>
+                <Text style={styles.itemInfoLabel}>Laundry</Text>
+                <LaundryButton />
+            </View>
             <View style={styles.commentsContainer}>
                 <TextInput
                     style={styles.commentInput}
@@ -217,13 +217,18 @@ const styles = StyleSheet.create({
         height: 400,
         width: Dimensions.get('window').width,
     },
+    whitebox: {
+        height: height * 0.4,
+        width: width,
+        backgroundColor: '#FFFFFF'
+    },
     shadow: {
         position: 'absolute',
         bottom: 400,
         left: 0,
         right: 0,
-        height: 100, 
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+        height: 100,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
         shadowColor: '#000',
         shadowOffset: {
             width: 0,
