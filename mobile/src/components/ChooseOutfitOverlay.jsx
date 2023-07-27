@@ -50,6 +50,8 @@ const styles = StyleSheet.create({
     image: {
         width: 180,
         height: 180,
+        tintColor: 'rgba(0, 0, 0, 0)'
+
     },
 });
 

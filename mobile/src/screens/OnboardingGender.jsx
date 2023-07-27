@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, StyleSheet, ScrollView, View, Platform, Pressable } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, ScrollView, View, Platform, Pressable, Dimensions } from 'react-native';
 import React, { useState } from 'react';
 import { ContinueButtonS, PreviousButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
@@ -7,6 +7,8 @@ import { getUserId, getApiUrl } from '../tempstore/userPreferenceStore';
 
 
 API_URL = getApiUrl();
+const { width, height } = Dimensions.get("window");
+
 
 const OnboardingGender = () => {
   const navigation = useNavigation();
@@ -97,8 +99,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingTop: 100,
-    top: 100,
+    top: height*0.1,
+
   },
   scrollContainer: {
     paddingTop: 30,
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   buttoncontainer:{
-    top: -165,
+    top: -100,
   }
 });
 

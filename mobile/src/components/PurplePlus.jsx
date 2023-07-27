@@ -1,6 +1,8 @@
-import { View, Text, Pressable, StyleSheet, Image } from 'react-native'
+import { View, Text, Pressable, StyleSheet, Image, Dimensions } from 'react-native'
 import React, { useState } from 'react';
 import OverlayCentre from './OverlayCentre';
+
+const { width, height } = Dimensions.get("window");
 
 const PurplePlus = () => {
   const [showOverlay, setShowOverlay] = useState(false);
@@ -21,7 +23,7 @@ const PurplePlus = () => {
 const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
-    marginTop: 65,
+    marginTop: height*0.07,
 
   },
   image: {

@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, StyleSheet, ScrollView, View, Platform, Pressable, Image } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, ScrollView, View, Platform, Pressable, Image, Dimensions } from 'react-native';
 import React, { useState } from 'react';
 import { PreviousButton, ContinueButtonS } from '../components';
 import { useNavigation } from '@react-navigation/native';
@@ -7,6 +7,8 @@ import { getUserId, getApiUrl } from '../tempstore/userPreferenceStore';
 
 
 API_URL = getApiUrl();
+
+const { width, height } = Dimensions.get("window");
 
 
 const OnboardingBodyshape = () => {

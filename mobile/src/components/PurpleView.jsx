@@ -1,9 +1,11 @@
-import { View, Text, Pressable, StyleSheet, Image } from 'react-native';
+import { View, Text, Pressable, StyleSheet, Image, Dimensions } from 'react-native';
 import React from 'react';
 import TwoButton from './TwoButton';
 import ThreeButton from './ThreeButton';
 import FourButton from './FourButton';
 
+
+const { width, height } = Dimensions.get("window");
 const PurpleView = ({ is2Press, is3Press, is4Press }) => {
 
   return (
@@ -23,7 +25,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: 214,
     height: 50,
-    bottom: 78,
+    bottom: height*0.092,
     alignItems: 'center',
     position: 'absolute'
   },

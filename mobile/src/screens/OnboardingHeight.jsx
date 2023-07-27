@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, TextInput, Platform } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, TextInput, Platform, Dimensions } from 'react-native'
 import React, { useState } from 'react'
 import { ContinueButtonS, PreviousButton } from '../components'
 import { useNavigation } from '@react-navigation/native'
@@ -7,6 +7,9 @@ import { getUserId, getApiUrl } from '../tempstore/userPreferenceStore';
 
 
 API_URL = getApiUrl();
+
+const { width, height } = Dimensions.get("window");
+
 
 const OnboardingHeight = () => {
   const navigation = useNavigation()
@@ -63,11 +66,11 @@ const styles = StyleSheet.create({
     flex: 2,
     justifyContent: 'flex-start', //vertical
     alignItems: 'center', //horizontal
-    paddingTop: 100,
-    top: 100,
+    top: height*0.1,
+
   },
   buttonContainer: {
-    top: 400,
+    top: height*0.55,
   },
   containerbox: {
     justifyContent: 'center',

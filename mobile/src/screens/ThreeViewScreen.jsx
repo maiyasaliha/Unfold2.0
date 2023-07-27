@@ -164,7 +164,7 @@ const ThreeViewScreen = () => {
               onSnapToItem={handleBottomSelection}
             />
           </View>
-          <View style={{ height: 300, top: -150 }}>
+          <View style={{ height: 300, top: -180 }}>
             <Carousel
               data={listOfShoes}
               renderItem={renderShoeItem}

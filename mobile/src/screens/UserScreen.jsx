@@ -172,7 +172,7 @@ const UserScreen = () => {
         </TouchableOpacity>
       ) : (
         <TouchableOpacity onPress={pickImage} style={styles.addProfilePictureButton}>
-          <Text style={styles.profilePictureText}>Add Profile Picture</Text>
+          <Image style={styles.image} source={require('../assets/images/deafultusericonjpg.jpg')} />
         </TouchableOpacity>
       )}
       <View style={styles.fieldcontainer}>
@@ -271,6 +271,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#D8BFD8',
     left: 130,
   },
+  image: {
+    width: 120,
+    height: 120,
+    borderRadius: 60
+},
 
 })
 

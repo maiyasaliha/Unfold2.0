@@ -15,9 +15,6 @@ const OutfitsContainer = ({ top, bottom, onePiece, shoes, accessory }) => {
     return (
         <View style={styles.container}>
             <Pressable onPress={handlePress} style={styles.whitebox}>
-                <View style={styles.heartcontainer}>
-                    <HeartOutfits />
-                </View>
                 <Image style={styles.bottom} source={{ uri: bottom }} />
                 <Image style={styles.top} source={{ uri: top }} />
                 <Image style={styles.onePiece} source={{ uri: onePiece }} />
@@ -53,8 +50,8 @@ const styles = StyleSheet.create({
         bottom: 67
     },
     top: {
-        height: 70,
-        width: 70,
+        height: 80,
+        width: 80,
         top: 40,
         right: 20,
     },

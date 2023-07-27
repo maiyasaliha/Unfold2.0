@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, Dimensions, Pressable, Image } from 'react-native';
 import ChooseOutfitButton from './ChooseOutfitButton';
 
-
+const { width, height } = Dimensions.get("window");
 const OverlayCentre = ({ visible, onPress }) => {
   if (!visible) {
     return null; // Render nothing if the overlay is not visible
@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-    top: -260,
-    left: -107,
+    top: -height*0.35,
+    left: -width*0.275
   },
   overlayContent: {
     justifyContent: 'center',
@@ -39,12 +39,14 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    bottom: 339,
+    bottom: height*0.37,
     left: 2,
+    
   },
   image: {
     width: 180,
     height: 180,
+    tintColor: 'rgba(0, 0, 0, 0)'
   },
 });
 

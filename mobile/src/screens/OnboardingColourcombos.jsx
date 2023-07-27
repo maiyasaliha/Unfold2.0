@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, View, Text, Platform } from 'react-native';
+import { SafeAreaView, StyleSheet, View, Text, Platform, Dimensions } from 'react-native';
 import ColorPicker from 'react-native-wheel-color-picker';
 import { ContinueButtonS, PreviousButton, SaveButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
@@ -7,6 +7,7 @@ import axios from 'axios';
 import { getUserId, getApiUrl } from '../tempstore/userPreferenceStore';
 
 API_URL = getApiUrl();
+const { width, height } = Dimensions.get("window");
 
 const OnboardingColourcombos = () => {
   const [colourCombos, setColor] = useState('');
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     width: 280,
   },
   buttonContainer: {
-    top: 20,
+    top: 60,
   },
   text: {
     fontSize: 36,
@@ -78,8 +79,8 @@ const styles = StyleSheet.create({
     flex: 2,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingTop: 100,
-    top: 100,
+    top: height*0.1,
+
   },
   colorPicker: {
     flex: 1,
