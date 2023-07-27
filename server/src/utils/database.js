@@ -1,8 +1,8 @@
 import { Sequelize } from 'sequelize';
 
-const sequelize = new Sequelize('if0_34692434_Items', 'if0_34692434', '***REMOVED***', {
+const sequelize = new Sequelize('u100872040_ufdb', 'u100872040_unfold_user', '***REMOVED***', {
     dialect: 'mysql',
-    host: 'sql208.infinityfree.com', 
+    host: '185.210.145.52', 
     define: {
         timestamps: false
     }
