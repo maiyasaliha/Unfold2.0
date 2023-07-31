@@ -1,10 +1,12 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { ToggleBar } from '../components';
+import { EditButton, ToggleBar } from '../components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
-import * as ImagePicker from 'expo-image-picker';
 import { getUserId, getApiUrl } from '../tempstore/userPreferenceStore';
+import { useNavigation } from '@react-navigation/native';
+import ModifySettingsScreen from './ModifySettingsScreen';
+
 
 
 API_URL = getApiUrl();
@@ -22,8 +24,7 @@ const UserScreen = () => {
   const [style, setStyle] = useState();
 
   const [profilePicture, setProfilePicture] = useState(null);
-  const [picture, setPicture] = useState(null);
-  const [galleryPermission, setGalleryPermission] = useState(false);
+  const navigation = useNavigation();
 
 
 
@@ -86,94 +87,19 @@ const UserScreen = () => {
     fetchPicture();
   }, []);
 
-  // // Use the user state inside the component's return statement or other useEffect
-  // useEffect(() => {
-  //   console.log('User updated:', user);
-  //   console.log('Birthday updated:', birthday);
-  //   console.log('Bodyshape updated:', bodyshape);
-  //   console.log('Colour Combo updated:', colourCombos);
-  //   console.log('Faceshape updated:', faceshape);
-  //   console.log('Gender updated:', gender);
-  //   console.log('Height updated:', height);
-  //   console.log('Location updated:', location);
-  //   console.log('Skintone updated:', skintone);
-  //   console.log('Style updated:', style);
-
-  // }, [user, birthday, bodyshape, colourCombos, faceshape, gender, height, location, skintone, style]);
-  useEffect(() => {
-    (async () => {
-      const gallerStatus = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      setGalleryPermission(gallerStatus.status == 'granted');
-    })();
-  }, []);
-
-  const pickImage = async () => {
-    try {
-      const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        quality: 1,
-      });
-      console.log(result);
-
-      if (!result.canceled) {
-        let newfile = {
-          uri: result.uri,
-          type: `test/${result.uri.split('.')[1]}`,
-          name: `test.${result.uri.split('.')[1]}`,
-        };
-        handleUpload(newfile);
-      }
-    } catch (err) {
-      console.log('Error picking image:', err);
-    }
-  };
-
-  const handleUpload = (image) => {
-    const data = new FormData();
-    data.append('file', image);
-    data.append('upload_preset', '***REMOVED***');
-    data.append('cloud_name', '***REMOVED***');
-
-    fetch('https://api.cloudinary.com/v1_1/***REMOVED***/image/upload', {
-      method: 'post',
-      body: data,
-    })
-      .then((res) => res.json())
-      .then((d) => {
-        setProfilePicture(d.url);
-        console.log('successfully uploaded to Cloudinary');
-        saveProfilePictureToDatabase(d.url);
-      });
-  };
-
-  const saveProfilePictureToDatabase = async (url) => {
-    try {
-      const response = await axios.post(`${API_URL}/SetDp`, {
-        userId: id,
-        profilepicture: url,
-      });
-
-      if (response.status === 200) {
-        console.log('Profile Picture saved successfully to the database.');
-      } else {
-        console.error('Failed to save profile picture to the database.');
-      }
-    } catch (error) {
-      console.error('Error saving profile picture to the database:', error);
-    }
-  };
 
   return (
     <SafeAreaView style={styles.container}>
-       {profilePicture ? (
+
+      <EditButton navigation={navigation} screenName="ModifySettingsScreen" />
+      {profilePicture ? (
         <TouchableOpacity style={styles.profilePictureContainer}>
           <Image source={{ uri: profilePicture }} style={styles.profilePicture} />
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity onPress={pickImage} style={styles.addProfilePictureButton}>
+        <View style={styles.addProfilePictureButton}>
           <Image style={styles.image} source={require('../assets/images/deafultusericonjpg.jpg')} />
-        </TouchableOpacity>
+        </View>
       )}
       <View style={styles.fieldcontainer}>
         <Text style={styles.title}>Name</Text>
@@ -228,7 +154,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   title: {
     fontSize: 20,
@@ -275,8 +201,8 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 60
-},
-
+  },
+ 
 })
 
 export default UserScreen;

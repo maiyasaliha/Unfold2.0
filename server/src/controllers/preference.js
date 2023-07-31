@@ -156,6 +156,18 @@ const SetDp = (req, res, next) => {
     res.json({ message: "profile picture inserted/updated" })
 };
 
+const updateBirthday = (req, res, next) => {
+    const { userId, birthday } = req.body;
+    UserPreference.update({ birthday: birthday }, { where: { userId: userId } })
+        .then(() => {
+            console.log('birthday inserted/updated');
+        })
+        .catch(err => {
+            console.error('Error inserting/updating birthday:', err);
+        });
+    res.json({ message: "birthday inserted/updated" })
+};
+
 const location = (req, res, next) => {
     const { userId, location } = req.body;
     UserPreference.update({ location: location }, { where: { userId: userId } })
@@ -268,5 +280,6 @@ export {
     getName,
     SetDp,
     getPicture,
-    getUsers
+    getUsers,
+    updateBirthday
 };

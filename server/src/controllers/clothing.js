@@ -307,6 +307,18 @@ const getOutfits = (req, res, next) => {
     });
 };
 
+const getnumItems = (req, res, next) => {
+  
+};
+
+const getnumOutfits = (req, res, next) => {
+  
+};
+
+const getLikedItems = (req, res, next) => {
+  
+};
+
 export {
   addItem,
   getItems,

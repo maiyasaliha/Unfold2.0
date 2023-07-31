@@ -29,7 +29,8 @@ import {
 	ItemCardScreen,
 	ThreeViewScreen,
 	FourViewScreen,
-	FriendScreen
+	FriendScreen,
+	ModifySettingsScreen
 } from './src/screens';
 import { TailwindProvider } from 'tailwindcss-react-native';
 import * as Font from 'expo-font';
@@ -52,6 +53,11 @@ export default function App() {
 	return (
 		<NavigationContainer>
 			<Stack.Navigator>
+				<Stack.Screen name="UserScreen" component={UserScreen}
+					options={{
+						headerShown: false,
+					}}
+				/>
 				<Stack.Screen name="LogoScreen" component={LogoScreen}
 					options={{
 						headerShown: false,
@@ -72,7 +78,6 @@ export default function App() {
 						headerShown: false,
 					}}
 				/>
-
 				<Stack.Screen name="AddItemScreen" component={AddItemScreen}
 					options={{
 						headerShown: false,
@@ -173,7 +178,8 @@ export default function App() {
 						headerShown: false,
 					}}
 				/>
-				<Stack.Screen name="UserScreen" component={UserScreen}
+
+				<Stack.Screen name="ModifySettingsScreen" component={ModifySettingsScreen}
 					options={{
 						headerShown: false,
 					}}
