@@ -156,6 +156,18 @@ const SetDp = (req, res, next) => {
     res.json({ message: "profile picture inserted/updated" })
 };
 
+const updateBirthday = (req, res, next) => {
+    const { userId, birthday } = req.body;
+    UserPreference.update({ birthday: birthday }, { where: { userId: userId } })
+        .then(() => {
+            console.log('birthday inserted/updated');
+        })
+        .catch(err => {
+            console.error('Error inserting/updating birthday:', err);
+        });
+    res.json({ message: "birthday inserted/updated" })
+};
+
 const location = (req, res, next) => {
     const { userId, location } = req.body;
     UserPreference.update({ location: location }, { where: { userId: userId } })
@@ -251,6 +263,33 @@ const styles = (req, res, next) => {
         });
     res.json({ message: "styles inserted/updated" })
 };
+
+const updatePreference = (req, res, next) => {
+    const { userId, birthday, location, gender, height, skintone, faceshape, bodyshape, colourCombos, styles, profilepicture } = req.body;
+    UserPreference.update({
+        birthday: birthday,
+        location: location,
+        gender: gender,
+        height: height,
+        skintone: skintone,
+        faceshape: faceshape,
+        bodyshape: bodyshape, 
+        colourCombos: colourCombos, 
+        styles: styles,
+        profilepicture: profilepicture
+     }, { 
+            where: { 
+                userId: userId
+             } })
+        .then(() => {
+            console.log('preference updated');
+        })
+        .catch(err => {
+            console.error('Error updating preference:', err);
+        });
+    res.json({ message: "preference updated" })
+};
+
 export {
     birthday,
     gender,
@@ -268,5 +307,7 @@ export {
     getName,
     SetDp,
     getPicture,
-    getUsers
+    getUsers,
+    updateBirthday,
+    updatePreference
 };

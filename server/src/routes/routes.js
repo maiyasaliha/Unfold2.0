@@ -18,7 +18,9 @@ import {
     getName,
     SetDp,
     getPicture,
-    getUsers
+    getUsers,
+    updateBirthday,
+    updatePreference
 } from '../controllers/preference.js';
 
 import {
@@ -65,6 +67,9 @@ router.get('/getUser', getUser);
 router.get('/getName', getName);
 router.post('/SetDp', SetDp);
 router.get('/getPicture', getPicture);
+router.post('/updateBirthday', updateBirthday);
+router.post('/updatePreference', updatePreference);
+
 
 
 //clothing
