@@ -47,7 +47,6 @@ const OnboardingColourcombos = () => {
           style={styles.colorPicker}
         />
       </View>
-      <SaveButton />
       <View style={styles.buttonContainer}>
         <ContinueButtonS onPress={handlePress} />
         <PreviousButton navigation={navigation} screenName="OnboardingBodyshape" />

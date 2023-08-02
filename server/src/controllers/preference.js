@@ -263,6 +263,33 @@ const styles = (req, res, next) => {
         });
     res.json({ message: "styles inserted/updated" })
 };
+
+const updatePreference = (req, res, next) => {
+    const { userId, birthday, location, gender, height, skintone, faceshape, bodyshape, colourCombos, styles, profilepicture } = req.body;
+    UserPreference.update({
+        birthday: birthday,
+        location: location,
+        gender: gender,
+        height: height,
+        skintone: skintone,
+        faceshape: faceshape,
+        bodyshape: bodyshape, 
+        colourCombos: colourCombos, 
+        styles: styles,
+        profilepicture: profilepicture
+     }, { 
+            where: { 
+                userId: userId
+             } })
+        .then(() => {
+            console.log('preference updated');
+        })
+        .catch(err => {
+            console.error('Error updating preference:', err);
+        });
+    res.json({ message: "preference updated" })
+};
+
 export {
     birthday,
     gender,
@@ -281,5 +308,6 @@ export {
     SetDp,
     getPicture,
     getUsers,
-    updateBirthday
+    updateBirthday,
+    updatePreference
 };

@@ -1,28 +1,32 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { ToggleBar } from '../components';
+import { ToggleBar, CheckboxButton } from '../components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 import { getUserId, getApiUrl } from '../tempstore/userPreferenceStore';
+import { useNavigation } from '@react-navigation/native'
+
 
 
 API_URL = getApiUrl();
 
 const ModifySettingsScreen = () => {
     const [user, setUser] = useState();
-    const [birthday, setBirthday] = useState();
-    const [bodyshape, setBodyshape] = useState();
-    const [colourCombos, setColourCombos] = useState();
-    const [faceshape, setFaceshape] = useState();
-    const [gender, setGender] = useState();
-    const [height, setHeight] = useState();
-    const [location, setLocation] = useState();
-    const [skintone, setSkintone] = useState();
-    const [style, setStyle] = useState();
+    const [birthday, setBirthday] = useState("");
+    const [bodyshape, setBodyshape] = useState("");
+    const [colourCombos, setColourCombos] = useState("");
+    const [faceshape, setFaceshape] = useState("");
+    const [gender, setGender] = useState("");
+    const [height, setHeight] = useState("");
+    const [location, setLocation] = useState("");
+    const [skintone, setSkintone] = useState("");
+    const [style, setStyle] = useState("");
 
     const [profilePicture, setProfilePicture] = useState(null);
     const [galleryPermission, setGalleryPermission] = useState(false);
+
+  const navigation = useNavigation()
 
 
 
@@ -189,15 +193,38 @@ const ModifySettingsScreen = () => {
         }
     };
 
+    const updatePreference = () => {
+        axios.post(`${API_URL}/updatePreference`, {
+            userId: id,
+            birthday: birthday,
+            height: height,
+            gender: gender,
+            colourCombos: colourCombos,
+            location: location,
+            faceshape: faceshape,
+            bodyshape: bodyshape,
+            styles: style,
+            skintone: skintone,
+            profilepicture: profilePicture
+          }).then((response) => {
+            console.log('preference updated')
+            navigation.navigate('UserScreen')
+            console.log('Done onPress')
+          }).catch((err) =>
+            console.log('Error updating preference:', err)
+          )
+    }
+
     return (
         <SafeAreaView style={styles.container}>
+            <CheckboxButton onPress ={updatePreference} />
             {profilePicture ? (
                 <TouchableOpacity style={styles.profilePictureContainer}>
                     <Image source={{ uri: profilePicture }} style={styles.profilePicture} />
                 </TouchableOpacity>
             ) : (
                 <TouchableOpacity onPress={pickImage} style={styles.addProfilePictureButton}>
-                    <Text style={styles.profilePictureText}>Add profile picture</Text>
+                    <Text style={styles.profilePictureText}>Update profile picture</Text>
                 </TouchableOpacity>
             )}
             <View style={styles.fieldcontainer}>
@@ -258,7 +285,8 @@ const ModifySettingsScreen = () => {
                 <Text style={styles.title}>Height</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder={height || "enter height"}
+                    placeholder={height.toString() || "enter height"}
+                    placeholderTextColor={"#654F77"}
                     value={height}
                     onChangeText={handleHeightChange}
                     textAlign='center'
@@ -268,7 +296,7 @@ const ModifySettingsScreen = () => {
                 <Text style={styles.title}>Location</Text>
                 <TextInput
                     style={styles.input}
-                    placeholder={location || "enter location"}
+                    placeholder={location.toString() || "enter location"}
                     value={location}
                     onChangeText={handleLocationChange}
                     textAlign='center'
@@ -308,7 +336,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'flex-start',
-        paddingTop: 20
+        paddingTop: 30
     },
     title: {
         fontSize: 20,

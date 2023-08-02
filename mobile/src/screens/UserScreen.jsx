@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { EditButton, ToggleBar } from '../components';
+import { EditButton, LogoutButton, ToggleBar } from '../components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 import { getUserId, getApiUrl } from '../tempstore/userPreferenceStore';
@@ -25,6 +25,7 @@ const UserScreen = () => {
 
   const [profilePicture, setProfilePicture] = useState(null);
   const navigation = useNavigation();
+  const [refresh, setRefresh] = useState(false);
 
 
 
@@ -54,6 +55,7 @@ const UserScreen = () => {
       setLocation(response.data.location);
       setSkintone(response.data.skintone);
       setStyle(response.data.styles);
+      setProfilePicture(response.data.profilepicture);
       console.log('successfully retrieved user preference');
     } catch (error) {
       console.error('Error fetching user preference:', error);
@@ -65,7 +67,8 @@ const UserScreen = () => {
       const response = await axios.get(`${API_URL}/getPicture?userId=${id}`);
       console.log(response.data);
       setProfilePicture(response.data.profilepicture);
-      console.log('successfully retrieved picture');
+      console.log('successfully retrieved picture:', response.data.profilepicture);
+      console.log('profilePicture:', profilePicture);
     } catch (error) {
       console.error('Error fetching picture:', error);
     }
@@ -79,19 +82,40 @@ const UserScreen = () => {
     return `${day}-${month}-${year}`;
   };
 
+  const triggerRefresh = () => {
+    setRefresh(true);
+  };
+
+  const handleScreenFocus = () => {
+    // Call the triggerRefresh function to refresh the data when the screen is in focus
+    triggerRefresh();
+  };
 
   // Call fetchItems when the component mounts
   useEffect(() => {
-    fetchUser();
-    fetchPreference();
-    fetchPicture();
-  }, []);
+    if (refresh) {
+      fetchUser();
+      fetchPreference();
+      // After refreshing, set the refresh state back to false
+      setRefresh(false);
+    }
+  }, [refresh]);
 
+  useEffect(() => {
+    const focusListener = navigation.addListener('focus', handleScreenFocus);
+
+    // Clean up the listener when the component is unmounted
+    return () => {
+      focusListener();
+    };
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-
-      <EditButton navigation={navigation} screenName="ModifySettingsScreen" />
+      <View style={styles.buttoncontainer}>
+        <LogoutButton />
+        <EditButton />
+      </View>
       {profilePicture ? (
         <TouchableOpacity style={styles.profilePictureContainer}>
           <Image source={{ uri: profilePicture }} style={styles.profilePicture} />
@@ -156,6 +180,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
   },
+  buttoncontainer: {
+    flexDirection: 'row',
+    paddingHorizontal: 40,
+    justifyContent: 'space-between'
+  },
   title: {
     fontSize: 20,
     color: "#937CA7",
@@ -202,7 +231,7 @@ const styles = StyleSheet.create({
     height: 120,
     borderRadius: 60
   },
- 
+
 })
 
 export default UserScreen;

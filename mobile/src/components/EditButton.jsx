@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     paddingTop: 10,
     marginRight: 40,
-    paddingBottom: 10
+    paddingBottom: 10,
+    left: 40
   },
 
 });
