@@ -1,9 +1,7 @@
 //initialize application, create and hold the environment config
 import express from 'express';
-import sequelize from './src/utils/database.js';
 import router from './src/routes/routes.js';
 import cors from 'cors';
-import { PORT } from './config.js';
 
 const app = express();
 
@@ -22,8 +20,4 @@ app.use((_, res, next) => {
 
 app.use(router);
 
-sequelize.sync(); 
-
-app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`);
-}); //listening for requests
+export default app;
