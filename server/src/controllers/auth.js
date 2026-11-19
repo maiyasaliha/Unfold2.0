@@ -47,6 +47,7 @@ const signup = (req, res, next) => { //signup method
     })
     .catch(err => {
         console.log('error', err);
+        res.status(500).json({message: "error creating user"});
     });
 };
 
