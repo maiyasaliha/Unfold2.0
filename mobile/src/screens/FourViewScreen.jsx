@@ -28,8 +28,6 @@ const FourViewScreen = () => {
       const response = await axios.get(`${API_URL}/getTops?userId=${id}`);
       console.log(response.data);
       setlistOfTops(response.data);
-      //setlistOfItems(listOfItems.map(x => x.imageurl));
-      // console.log(item);
       console.log('successfully retrieved tops');
     } catch (error) {
       console.error('Error fetching tops:', error);
@@ -41,8 +39,6 @@ const FourViewScreen = () => {
       const response = await axios.get(`${API_URL}/getBottoms?userId=${id}`);
       console.log(response.data);
       setlistOfBottoms(response.data);
-      //setlistOfItems(listOfItems.map(x => x.imageurl));
-      // console.log(item);
       console.log('successfully retrieved bottoms');
     } catch (error) {
       console.error('Error fetching bottoms:', error);
@@ -54,8 +50,6 @@ const FourViewScreen = () => {
       const response = await axios.get(`${API_URL}/getShoes?userId=${id}`);
       console.log(response.data);
       setlistOfShoes(response.data);
-      //setlistOfItems(listOfItems.map(x => x.imageurl));
-      // console.log(item);
       console.log('successfully retrieved shoes');
     } catch (error) {
       console.error('Error fetching shoes:', error);
@@ -66,8 +60,6 @@ const FourViewScreen = () => {
       const response = await axios.get(`${API_URL}/getAccessories?userId=${id}`);
       console.log(response.data);
       setlistOfAccessories(response.data);
-      //setlistOfItems(listOfItems.map(x => x.imageurl));
-      // console.log(item);
       console.log('successfully retrieved accessories');
     } catch (error) {
       console.error('Error fetching accessories:', error);

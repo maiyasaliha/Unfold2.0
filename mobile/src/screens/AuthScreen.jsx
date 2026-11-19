@@ -72,11 +72,6 @@ const AuthScreen = () => {
                     console.log(err);
                 };
             })
-            // .then((data) => {
-            //     // Extract the userId from the response data
-            //     const userId = data.userId;
-            //     setUserId(userId);
-            // })
             .catch((error) => {
                 // Handle any errors that occurred during the fetch
                 console.log('Error fetching user ID:', error.message);
