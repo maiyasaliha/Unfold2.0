@@ -4,7 +4,7 @@ import { ToggleBar, CheckboxButton } from '../components';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
-import { getUserId, getApiUrl } from '../tempstore/userPreferenceStore';
+import { getUserId, getApiUrl, getCloudinaryUploadUrl, getCloudinaryPreset } from '../tempstore/userPreferenceStore';
 import { useNavigation } from '@react-navigation/native'
 
 
@@ -161,10 +161,9 @@ const ModifySettingsScreen = () => {
     const handleUpload = (image) => {
         const data = new FormData();
         data.append('file', image);
-        data.append('upload_preset', '***REMOVED***');
-        data.append('cloud_name', '***REMOVED***');
+        data.append('upload_preset', getCloudinaryPreset());
 
-        fetch('https://api.cloudinary.com/v1_1/***REMOVED***/image/upload', {
+        fetch(getCloudinaryUploadUrl(), {
             method: 'post',
             body: data,
         })

@@ -6,7 +6,7 @@ import axios from 'axios';
 import { BackArrowButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
 import { getUserId } from '../tempstore/userPreferenceStore';
-import { getApiUrl } from '../tempstore/userPreferenceStore'
+import { getApiUrl, getCloudinaryUploadUrl, getCloudinaryPreset } from '../tempstore/userPreferenceStore'
 
 
 API_URL = getApiUrl();
@@ -120,10 +120,9 @@ const AddItemScreen = () => {
     const handleUpload = (image) => {
         const data = new FormData()
         data.append('file', image)
-        data.append('upload_preset', '***REMOVED***')
-        data.append("could_name", "***REMOVED***")
+        data.append('upload_preset', getCloudinaryPreset())
 
-        fetch("https://api.cloudinary.com/v1_1/***REMOVED***/image/upload", {
+        fetch(getCloudinaryUploadUrl(), {
             method: "post",
             body: data
         }).then(res => res.json())

@@ -68,6 +68,19 @@ let userId = null;
 // when testing on a phone, e.g. http://192.168.1.10:5000).
 let API_URL = Constants.expoConfig?.extra?.apiUrl ?? 'http://localhost:5000';
 
+// Image uploads go straight from the app to Cloudinary with an unsigned
+// upload preset; set your own cloud name and preset in app.json "extra".
+const CLOUDINARY_CLOUD = Constants.expoConfig?.extra?.cloudinaryCloudName;
+const CLOUDINARY_PRESET = Constants.expoConfig?.extra?.cloudinaryUploadPreset;
+
+export function getCloudinaryUploadUrl() {
+  return `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`;
+}
+
+export function getCloudinaryPreset() {
+  return CLOUDINARY_PRESET;
+}
+
 export function setUserId(int) {
   userId = int;
 }

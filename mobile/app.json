@@ -32,7 +32,9 @@
       "eas": {
         "projectId": "20b7aff6-6a91-4193-8c6d-1e48459bf8b7"
       },
-      "apiUrl": "http://localhost:5000"
+      "apiUrl": "http://localhost:5000",
+      "cloudinaryCloudName": "your-cloud-name",
+      "cloudinaryUploadPreset": "your-unsigned-preset"
     }
   }
 }
