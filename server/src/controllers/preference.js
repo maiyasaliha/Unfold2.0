@@ -1,5 +1,4 @@
 //contains actions to be executed when requests are received
-import jwt from 'jsonwebtoken';
 import UserPreference from '../models/userPreference.js';
 import User from '../models/user.js';
 

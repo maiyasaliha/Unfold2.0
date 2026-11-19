@@ -1,57 +1,5 @@
-import User from '../models/user.js';
-import Items from '../models/items.js';
 import ItemsWardrobe from '../models/itemsWardrobe.js';
 import Outfits from '../models/outfits.js';
-import { col } from 'sequelize';
-
-// const addItem = async (req, res, next) => {
-//   const { userId, imageurl } = req.body;
-
-//   try {
-//     ItemsWardrobe.create({
-//       userId: userId,
-//       imageurl: imageurl,
-//     });
-//     console.log('item added');
-//     res.status(200).json({ message: 'item added successfully' });
-//   } catch (err) {
-//     console.error('Error adding item:', err);
-//     res.status(500).json({ message: 'Failed to upload' });
-//   }
-// };
-
-
-// const getItems = async (req, res, next) => {
-//   try {
-//     const listOfItems = await ItemsWardrobe.findAll();
-//     res.json(listOfItems);
-//   } catch (error) {
-//     // Handle the error here
-//     console.error('Error fetching items:', error);
-//     res.status(500).json({ error: 'Failed to fetch items.' });
-//   }
-// };
-
-const addItem = async (req, res, next) => {
-  const { userId, imageBase64 } = req.body;
-  if (typeof imageBase64 !== 'string' || imageBase64.length === 0) {
-    return res.status(400).json({ message: 'imageBase64 is required' });
-  }
-
-  try {
-    const image = Buffer.from(imageBase64, 'base64');
-
-    await Items.create({
-      userId: userId,
-      image: image,
-    });
-    console.log('item added');
-    res.status(200).json({ message: 'item added successfully' });
-  } catch (err) {
-    console.error('Error adding item:', err);
-    res.status(500).json({ message: 'Failed to upload' });
-  }
-};
 
 const addItemwithdesc = (req, res, next) => {
   const { userId, image, colour, type, comments, length, material, style, neckline, straptype, sleeveLength, toe, heelheight, others, season } = req.body;
@@ -98,17 +46,6 @@ const addOutfit = (req, res, next) => {
     console.error('Error adding outfit:', err);
     res.status(500).json({ message: 'Failed to upload' });
   })
-};
-
-const getItems = async (req, res, next) => {
-  try {
-    const listOfItems = await ItemsWardrobe.findAll();
-    res.json(listOfItems);
-  } catch (error) {
-    // Handle the error here
-    console.error('Error fetching items:', error);
-    res.status(500).json({ error: 'Failed to fetch items.' });
-  }
 };
 
 const getTops = async (req, res, next) => {
@@ -232,20 +169,6 @@ const getItemfromurl = (req, res, next) => {
     });
 };
 
-// const getFavItems = async (req, res, next) => {
-//   try {
-//     const listOfItems = await ItemsWardrobe.findAll({
-//       where: {
-//         favourite: 1,
-//       }
-//     });
-//     res.json(listOfItems);
-//   } catch (error) {
-//     // Handle the error here
-//     console.error('Error fetching items:', error);
-//     res.status(500).json({ error: 'Failed to fetch items.' });
-//   }
-// };
 const getFavItems = (req, res, next) => {
   const { userId } = req.query;
   ItemsWardrobe.findAll({
@@ -312,21 +235,7 @@ const getOutfits = (req, res, next) => {
     });
 };
 
-const getnumItems = (req, res, next) => {
-  
-};
-
-const getnumOutfits = (req, res, next) => {
-  
-};
-
-const getLikedItems = (req, res, next) => {
-  
-};
-
 export {
-  addItem,
-  getItems,
   addItemwithdesc,
   getItem,
   getFavItems,

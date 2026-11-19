@@ -25,8 +25,6 @@ import {
 } from '../controllers/preference.js';
 
 import {
-    addItem,
-    getItems,
     addItemwithdesc,
     getItem,
     getFavItems,
@@ -79,9 +77,7 @@ router.post('/updatePreference', ...self, updatePreference);
 
 
 //clothing
-router.post('/addItem', ...self, addItem);
 router.post('/addItemwithdesc', ...self, addItemwithdesc);
-router.get('/getItems', ...self, getItems);
 router.get('/getFavItems', ...self, getFavItems);
 router.get('/getItem', ...reader, getItem);
 router.post('/like', ...self, like);
