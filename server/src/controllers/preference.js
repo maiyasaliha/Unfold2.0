@@ -78,7 +78,7 @@ const getUser = (req, res, next) => {
 
 const getPicture = (req, res, next) => {
     const { userId } = req.query;
-    User.findOne({
+    UserPreference.findOne({
         where: {
             userId: userId,
         }
