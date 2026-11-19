@@ -11,16 +11,13 @@ import {
     colourCombos,
     skintone,
     styles,
-    preference,
     getId,
     location,
-    getUser,
     getPreference,
     getName,
     SetDp,
     getPicture,
     getUsers,
-    updateBirthday,
     updatePreference
 } from '../controllers/preference.js';
 
@@ -54,8 +51,6 @@ router.post('/login', login);
 router.post('/signup', signup);
 router.get('/private', requireAuth, isAuth);
 
-//preference
-router.post('/preference', ...self, preference);
 router.post('/birthday', ...self, birthday);
 router.post('/location', ...self, location);
 router.post('/gender', ...self, gender);
@@ -67,11 +62,9 @@ router.post('/skintone', ...self, skintone);
 router.post('/styles', ...self, styles);
 router.get('/getId', ...self, getId);
 router.get('/getPreference', ...self, getPreference);
-router.get('/getUser', ...self, getUser);
 router.get('/getName', ...self, getName);
 router.post('/SetDp', ...self, SetDp);
 router.get('/getPicture', ...self, getPicture);
-router.post('/updateBirthday', ...self, updateBirthday);
 router.post('/updatePreference', ...self, updatePreference);
 
 
@@ -91,15 +84,6 @@ router.get('/getOutfits', ...reader, getOutfits);
 router.post('/addOutfit', ...self, addOutfit);
 router.get('/getUsers', requireAuth, getUsers);
 router.get('/getLike', ...self, getLike);
-
-
-
-
-
-//general
-router.get('/public', (req, res, next) => {
-    res.status(200).json({ message: "here is your public resource" });
-});
 
 // will match any other path
 router.use('/', (req, res, next) => {

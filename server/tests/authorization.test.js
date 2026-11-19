@@ -36,13 +36,6 @@ test('/getUsers never exposes emails or password hashes', async () => {
     }
 });
 
-test('/getUser does not return the password hash', async () => {
-    const token = await signupAndLogin('alice@x.com');
-    const res = await api().get('/getUser').set(bearer(token));
-    assert.equal(res.status, 200);
-    assert.equal(res.body.password, undefined);
-});
-
 test('writes use the logged-in user, not a userId in the body', async () => {
     const alice = await signupAndLogin('alice@x.com');
     const bob = await signupAndLogin('bob@x.com');

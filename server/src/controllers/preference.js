@@ -54,27 +54,6 @@ const getUsers = async (req, res, next) => {
     }
   };
 
-const getUser = (req, res, next) => {
-    const { userId } = req.query;
-    User.findOne({
-        where: {
-            userId: userId,
-        },
-        attributes: { exclude: ['password'] },
-    }).then(dbUser => {
-        if (dbUser) {
-            // If the user is found in the database, send the user in the response
-            return res.status(200).json(dbUser);
-        } else {
-            return res.status(404).json({ error: 'User not found' });
-        }
-    })
-        .catch(err => {
-            console.error('Error executing query:', err);
-            return res.status(500).json({ error: 'Internal server error' });
-        });
-};
-
 const getPicture = (req, res, next) => {
     const { userId } = req.query;
     UserPreference.findOne({
@@ -131,30 +110,6 @@ const birthday = (req, res, next) => {
         });
 };
 
-const preference = (req, res, next) => {
-    const { userId, birthday, location, gender, height, skintone, colourCombos, faceshape, bodyshape, styles } = req.body;
-    UserPreference.upsert({
-        userId: userId,
-        birthday: birthday,
-        location: location,
-        height: height,
-        gender: gender,
-        skintone: skintone,
-        faceshape: faceshape,
-        bodyshape: bodyshape,
-        colourCombos: colourCombos,
-        styles: styles,
-    })
-        .then(() => {
-            console.log('user preference created');
-            res.json({ message: "user preference created" });
-        })
-        .catch(err => {
-            console.error('Error saving preference:', err);
-            res.status(500).json({ error: "failed to save preference" });
-        });
-};
-
 const SetDp = (req, res, next) => {
     const { userId, profilepicture } = req.body;
     UserPreference.upsert({ userId: userId, profilepicture: profilepicture })
@@ -168,7 +123,7 @@ const SetDp = (req, res, next) => {
         });
 };
 
-// Each onboarding step (and the birthday edit) saves a single preference field.
+// Each onboarding step saves a single preference field.
 const setPreference = (field) => (req, res, next) => {
     const { userId } = req.body;
     UserPreference.upsert({ userId: userId, [field]: req.body[field] })
@@ -182,7 +137,6 @@ const setPreference = (field) => (req, res, next) => {
         });
 };
 
-const updateBirthday = setPreference('birthday');
 const location = setPreference('location');
 const gender = setPreference('gender');
 const height = setPreference('height');
@@ -228,15 +182,12 @@ export {
     bodyshape,
     colourCombos,
     styles,
-    preference,
     getId,
     location,
     getPreference,
-    getUser,
     getName,
     SetDp,
     getPicture,
     getUsers,
-    updateBirthday,
     updatePreference
 };
