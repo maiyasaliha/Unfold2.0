@@ -30,7 +30,7 @@ test('signup responds with an error instead of hanging when the DB fails', async
 // B3
 test('a failed preference update is reported as an error, not success', async () => {
     const t = await signupAndLogin('a@x.com');
-    mock.method(UserPreference, 'update', async () => { throw new Error('db down'); });
+    mock.method(UserPreference, 'upsert', async () => { throw new Error('db down'); });
     const res = await api().post('/gender').set(bearer(t)).send({ gender: 'female' });
     assert.equal(res.status, 500);
 });
@@ -41,5 +41,23 @@ test('a preference update is saved before the response is sent', async () => {
     await api().post('/gender').set(bearer(t)).send({ gender: 'female' });
     const res = await api().get('/getPreference').set(bearer(t));
     assert.equal(res.body.gender, 'female');
+});
+
+// B4
+test('redoing onboarding updates the birthday instead of failing silently', async () => {
+    const t = await signupAndLogin('a@x.com');
+    await api().post('/birthday').set(bearer(t)).send({ birthday: '2000-01-01' });
+    const res = await api().post('/birthday').set(bearer(t)).send({ birthday: '1999-05-05' });
+    assert.equal(res.status, 200);
+    const pref = await api().get('/getPreference').set(bearer(t));
+    assert.match(pref.body.birthday, /^1999-05-05/);
+});
+
+test('a preference update before onboarding still creates the row', async () => {
+    const t = await signupAndLogin('a@x.com');
+    await api().post('/gender').set(bearer(t)).send({ gender: 'female' });
+    const pref = await api().get('/getPreference').set(bearer(t));
+    assert.equal(pref.status, 200);
+    assert.equal(pref.body.gender, 'female');
 });
 

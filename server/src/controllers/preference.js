@@ -118,7 +118,7 @@ const getPreference = (req, res, next) => {
 
 const birthday = (req, res, next) => {
     const { userId, birthday } = req.body;
-    UserPreference.create({
+    UserPreference.upsert({
         userId: userId,
         birthday: birthday,
     })
@@ -134,7 +134,7 @@ const birthday = (req, res, next) => {
 
 const preference = (req, res, next) => {
     const { userId, birthday, location, gender, height, skintone, colourCombos, faceshape, bodyshape, styles } = req.body;
-    UserPreference.create({
+    UserPreference.upsert({
         userId: userId,
         birthday: birthday,
         location: location,
@@ -158,7 +158,7 @@ const preference = (req, res, next) => {
 
 const SetDp = (req, res, next) => {
     const { userId, profilepicture } = req.body;
-    UserPreference.update({ profilepicture: profilepicture }, { where: { userId: userId } })
+    UserPreference.upsert({ userId: userId, profilepicture: profilepicture })
         .then(() => {
             console.log('profile picture inserted/updated');
             res.json({ message: "profile picture inserted/updated" });
@@ -171,7 +171,7 @@ const SetDp = (req, res, next) => {
 
 const updateBirthday = (req, res, next) => {
     const { userId, birthday } = req.body;
-    UserPreference.update({ birthday: birthday }, { where: { userId: userId } })
+    UserPreference.upsert({ userId: userId, birthday: birthday })
         .then(() => {
             console.log('birthday inserted/updated');
             res.json({ message: "birthday inserted/updated" });
@@ -184,7 +184,7 @@ const updateBirthday = (req, res, next) => {
 
 const location = (req, res, next) => {
     const { userId, location } = req.body;
-    UserPreference.update({ location: location }, { where: { userId: userId } })
+    UserPreference.upsert({ userId: userId, location: location })
         .then(() => {
             console.log('location inserted/updated');
             res.json({ message: "location inserted/updated" });
@@ -197,7 +197,7 @@ const location = (req, res, next) => {
 
 const gender = (req, res, next) => {
     const { userId, gender } = req.body;
-    UserPreference.update({ gender: gender }, { where: { userId: userId } })
+    UserPreference.upsert({ userId: userId, gender: gender })
         .then(() => {
             console.log('gender inserted/updated');
             res.json({ message: "gender inserted/updated" });
@@ -210,7 +210,7 @@ const gender = (req, res, next) => {
 
 const height = (req, res, next) => {
     const { userId, height } = req.body;
-    UserPreference.update({ height: height }, { where: { userId: userId } })
+    UserPreference.upsert({ userId: userId, height: height })
         .then(() => {
             console.log('height inserted/updated');
             res.json({ message: "height inserted/updated" });
@@ -223,7 +223,7 @@ const height = (req, res, next) => {
 
 const skintone = (req, res, next) => {
     const { userId, skintone } = req.body;
-    UserPreference.update({ skintone: skintone }, { where: { userId: userId } })
+    UserPreference.upsert({ userId: userId, skintone: skintone })
         .then(() => {
             console.log('skintone inserted/updated');
             res.json({ message: "skintone inserted/updated" });
@@ -236,7 +236,7 @@ const skintone = (req, res, next) => {
 
 const faceshape = (req, res, next) => {
     const { userId, faceshape } = req.body;
-    UserPreference.update({ faceshape: faceshape }, { where: { userId: userId } })
+    UserPreference.upsert({ userId: userId, faceshape: faceshape })
         .then(() => {
             console.log('faceshape inserted/updated');
             res.json({ message: "faceshape inserted/updated" });
@@ -249,7 +249,7 @@ const faceshape = (req, res, next) => {
 
 const bodyshape = (req, res, next) => {
     const { userId, bodyshape } = req.body;
-    UserPreference.update({ bodyshape: bodyshape }, { where: { userId: userId } })
+    UserPreference.upsert({ userId: userId, bodyshape: bodyshape })
         .then(() => {
             console.log('bodyshape inserted/updated');
             res.json({ message: "bodyshape inserted/updated" });
@@ -262,7 +262,7 @@ const bodyshape = (req, res, next) => {
 
 const colourCombos = (req, res, next) => {
     const { userId, colourCombos } = req.body;
-    UserPreference.update({ colourCombos: colourCombos }, { where: { userId: userId } })
+    UserPreference.upsert({ userId: userId, colourCombos: colourCombos })
         .then(() => {
             console.log('colours inserted/updated');
             res.json({ message: "colourCombos inserted/updated" });
@@ -275,7 +275,7 @@ const colourCombos = (req, res, next) => {
 
 const styles = (req, res, next) => {
     const { userId, styles } = req.body;
-    UserPreference.update({ styles: styles }, { where: { userId: userId } })
+    UserPreference.upsert({ userId: userId, styles: styles })
         .then(() => {
             console.log('styles inserted/updated');
             res.json({ message: "styles inserted/updated" });
