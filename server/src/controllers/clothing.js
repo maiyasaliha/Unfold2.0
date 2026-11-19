@@ -48,69 +48,24 @@ const addOutfit = (req, res, next) => {
   })
 };
 
-const getTops = async (req, res, next) => {
+// The closet and dress-up screens list the caller's items of one clothing type.
+const getByType = (type, label) => async (req, res, next) => {
   const { userId } = req.query;
 
   try {
-    const listOfItems = await ItemsWardrobe.findAll({ where: { type: "top", userId: userId } });
+    const listOfItems = await ItemsWardrobe.findAll({ where: { type: type, userId: userId } });
     res.json(listOfItems);
   } catch (error) {
-    // Handle the error here
-    console.error('Error fetching tops:', error);
-    res.status(500).json({ error: 'Failed to fetch tops.' });
+    console.error(`Error fetching ${label}:`, error);
+    res.status(500).json({ error: `Failed to fetch ${label}.` });
   }
 };
 
-const getShoes = async (req, res, next) => {
-  const { userId } = req.query;
-
-  try {
-    const listOfItems = await ItemsWardrobe.findAll({ where: { type: "shoe", userId: userId } });
-    res.json(listOfItems);
-  } catch (error) {
-    // Handle the error here
-    console.error('Error fetching shoes:', error);
-    res.status(500).json({ error: 'Failed to fetch shoes.' });
-  }
-};
-
-const getBottoms = async (req, res, next) => {
-  const { userId } = req.query;
-
-  try {
-    const listOfItems = await ItemsWardrobe.findAll({ where: { type: "bottom", userId: userId } });
-    res.json(listOfItems);
-  } catch (error) {
-    // Handle the error here
-    console.error('Error fetching bottoms:', error);
-    res.status(500).json({ error: 'Failed to fetch bottoms.' });
-  }
-};
-
-const getOnepiece = async (req, res, next) => {
-  const { userId } = req.query;
-
-  try {
-    const listOfItems = await ItemsWardrobe.findAll({ where: { type: "onepiece", userId: userId } });
-    res.json(listOfItems);
-  } catch (error) {
-    // Handle the error here
-    console.error('Error fetching onepiece:', error);
-    res.status(500).json({ error: 'Failed to fetch onepiece.' });
-  }
-};
-
-const getAccessories = async (req, res, next) => {
-  const { userId } = req.query;
-  try {
-    const listOfItems = await ItemsWardrobe.findAll({ where: { type: "accessories", userId: userId } });
-    res.json(listOfItems);
-  } catch (error) {
-    // Handle the error here
-    console.error('Error fetching accessories:', error);
-    res.status(500).json({ error: 'Failed to fetch accessories.' });
-  }
-};
+const getTops = getByType('top', 'tops');
+const getShoes = getByType('shoe', 'shoes');
+const getBottoms = getByType('bottom', 'bottoms');
+const getOnepiece = getByType('onepiece', 'onepiece');
+const getAccessories = getByType('accessories', 'accessories');
 
 const like = (req, res, next) => {
   const { userId, imageurl, favourite } = req.body;

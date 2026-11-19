@@ -168,122 +168,29 @@ const SetDp = (req, res, next) => {
         });
 };
 
-const updateBirthday = (req, res, next) => {
-    const { userId, birthday } = req.body;
-    UserPreference.upsert({ userId: userId, birthday: birthday })
+// Each onboarding step (and the birthday edit) saves a single preference field.
+const setPreference = (field) => (req, res, next) => {
+    const { userId } = req.body;
+    UserPreference.upsert({ userId: userId, [field]: req.body[field] })
         .then(() => {
-            console.log('birthday inserted/updated');
-            res.json({ message: "birthday inserted/updated" });
+            console.log(`${field} inserted/updated`);
+            res.json({ message: `${field} inserted/updated` });
         })
         .catch(err => {
-            console.error('Error inserting/updating birthday:', err);
-            res.status(500).json({ error: "birthday failed" });
+            console.error(`Error inserting/updating ${field}:`, err);
+            res.status(500).json({ error: `${field} failed` });
         });
 };
 
-const location = (req, res, next) => {
-    const { userId, location } = req.body;
-    UserPreference.upsert({ userId: userId, location: location })
-        .then(() => {
-            console.log('location inserted/updated');
-            res.json({ message: "location inserted/updated" });
-        })
-        .catch(err => {
-            console.error('Error inserting/updating location:', err);
-            res.status(500).json({ error: "location failed" });
-        });
-};
-
-const gender = (req, res, next) => {
-    const { userId, gender } = req.body;
-    UserPreference.upsert({ userId: userId, gender: gender })
-        .then(() => {
-            console.log('gender inserted/updated');
-            res.json({ message: "gender inserted/updated" });
-        })
-        .catch(err => {
-            console.error('Error inserting/updating gender:', err);
-            res.status(500).json({ error: "gender failed" });
-        });
-};
-
-const height = (req, res, next) => {
-    const { userId, height } = req.body;
-    UserPreference.upsert({ userId: userId, height: height })
-        .then(() => {
-            console.log('height inserted/updated');
-            res.json({ message: "height inserted/updated" });
-        })
-        .catch(err => {
-            console.error('Error inserting/updating height:', err);
-            res.status(500).json({ error: "height failed" });
-        });
-};
-
-const skintone = (req, res, next) => {
-    const { userId, skintone } = req.body;
-    UserPreference.upsert({ userId: userId, skintone: skintone })
-        .then(() => {
-            console.log('skintone inserted/updated');
-            res.json({ message: "skintone inserted/updated" });
-        })
-        .catch(err => {
-            console.error('Error inserting/updating skintone:', err);
-            res.status(500).json({ error: "skintone failed" });
-        });
-};
-
-const faceshape = (req, res, next) => {
-    const { userId, faceshape } = req.body;
-    UserPreference.upsert({ userId: userId, faceshape: faceshape })
-        .then(() => {
-            console.log('faceshape inserted/updated');
-            res.json({ message: "faceshape inserted/updated" });
-        })
-        .catch(err => {
-            console.error('Error inserting/updating faceshape:', err);
-            res.status(500).json({ error: "faceshape failed" });
-        });
-};
-
-const bodyshape = (req, res, next) => {
-    const { userId, bodyshape } = req.body;
-    UserPreference.upsert({ userId: userId, bodyshape: bodyshape })
-        .then(() => {
-            console.log('bodyshape inserted/updated');
-            res.json({ message: "bodyshape inserted/updated" });
-        })
-        .catch(err => {
-            console.error('Error inserting/updating bodyshape:', err);
-            res.status(500).json({ error: "bodyshape failed" });
-        });
-};
-
-const colourCombos = (req, res, next) => {
-    const { userId, colourCombos } = req.body;
-    UserPreference.upsert({ userId: userId, colourCombos: colourCombos })
-        .then(() => {
-            console.log('colours inserted/updated');
-            res.json({ message: "colourCombos inserted/updated" });
-        })
-        .catch(err => {
-            console.error('Error inserting/updating colours:', err);
-            res.status(500).json({ error: "colourCombos failed" });
-        });
-};
-
-const styles = (req, res, next) => {
-    const { userId, styles } = req.body;
-    UserPreference.upsert({ userId: userId, styles: styles })
-        .then(() => {
-            console.log('styles inserted/updated');
-            res.json({ message: "styles inserted/updated" });
-        })
-        .catch(err => {
-            console.error('Error inserting/updating styles:', err);
-            res.status(500).json({ error: "styles failed" });
-        });
-};
+const updateBirthday = setPreference('birthday');
+const location = setPreference('location');
+const gender = setPreference('gender');
+const height = setPreference('height');
+const skintone = setPreference('skintone');
+const faceshape = setPreference('faceshape');
+const bodyshape = setPreference('bodyshape');
+const colourCombos = setPreference('colourCombos');
+const styles = setPreference('styles');
 
 const updatePreference = (req, res, next) => {
     const { userId, birthday, location, gender, height, skintone, faceshape, bodyshape, colourCombos, styles, profilepicture } = req.body;
