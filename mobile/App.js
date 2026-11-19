@@ -4,14 +4,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
 	OnboardingBirthday,
 	OnboardingLocation,
-	SignUpScreen,
 	LogoScreen,
 	OnboardingHeight,
 	OnboardingSkintone,
 	OnboardingGender,
 	HomeScreen,
-	ForgotPassword,
-	LoginScreen,
 	OnboardingFaceshape,
 	OnboardingStyles,
 	OnboardingBodyshape,
@@ -84,21 +81,6 @@ export default function App() {
 					}}
 				/>
 				<Stack.Screen name="AuthScreen" component={AuthScreen}
-					options={{
-						headerShown: false,
-					}}
-				/>
-				<Stack.Screen name="SignUpScreen" component={SignUpScreen}
-					options={{
-						headerShown: false,
-					}}
-				/>
-				<Stack.Screen name="LoginScreen" component={LoginScreen}
-					options={{
-						headerShown: false,
-					}}
-				/>
-				<Stack.Screen name="ForgotPassword" component={ForgotPassword}
 					options={{
 						headerShown: false,
 					}}
