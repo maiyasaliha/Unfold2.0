@@ -2,6 +2,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/user.js';
+import { JWT_SECRET } from '../../config.js';
 
 //can separate signup, login and aunthentication 
 
@@ -65,7 +66,7 @@ const login = (req, res, next) => { // login method
                 if (err) { // error while comparing
                     res.status(502).json({message: "error while checking user password"});
                 } else if (compareRes) { // password match, compare response
-                    const token = jwt.sign({ email: req.body.email }, 'secret', { expiresIn: '1h' });
+                    const token = jwt.sign({ email: req.body.email }, JWT_SECRET, { expiresIn: '1h' });
                     res.status(200).json({message: "Welcome!", "token": token});
                 } else { // password doesnt match
                     res.status(401).json({message: "invalid credentials"});
@@ -89,7 +90,7 @@ const isAuth = (req, res, next) => { //authentication method
     const token = authHeader.split(' ')[1];
     let decodedToken; 
     try {
-        decodedToken = jwt.verify(token, 'secret');
+        decodedToken = jwt.verify(token, JWT_SECRET);
     } catch (err) {
         return res.status(500).json({ message: err.message || 'could not decode the token' });
     };
@@ -100,4 +101,4 @@ const isAuth = (req, res, next) => { //authentication method
     };
 };
 
-export { signup, login, isAuth };
+export { signup, login, isAuth };

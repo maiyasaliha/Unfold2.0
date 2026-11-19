@@ -1,8 +1,8 @@
 import { Sequelize } from 'sequelize';
+import { DATABASE_URL } from '../../config.js';
 
-const sequelize = new Sequelize('u100872040_ufdb', 'u100872040_unfold_user', '***REMOVED***', {
-    dialect: 'mysql',
-    host: '185.210.145.52', 
+const sequelize = new Sequelize(DATABASE_URL, {
+    logging: false,
     define: {
         timestamps: false
     }
