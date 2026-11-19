@@ -121,9 +121,15 @@ const birthday = (req, res, next) => {
     UserPreference.create({
         userId: userId,
         birthday: birthday,
-    });
-    console.log('entry created and birthday inserted');
-    res.json({ message: "entry created and birthday inserted" })
+    })
+        .then(() => {
+            console.log('entry created and birthday inserted');
+            res.json({ message: "entry created and birthday inserted" });
+        })
+        .catch(err => {
+            console.error('Error saving birthday:', err);
+            res.status(500).json({ error: "failed to save birthday" });
+        });
 };
 
 const preference = (req, res, next) => {
@@ -139,9 +145,15 @@ const preference = (req, res, next) => {
         bodyshape: bodyshape,
         colourCombos: colourCombos,
         styles: styles,
-    });
-    console.log('user preference created');
-    res.json({ message: "user preference created" })
+    })
+        .then(() => {
+            console.log('user preference created');
+            res.json({ message: "user preference created" });
+        })
+        .catch(err => {
+            console.error('Error saving preference:', err);
+            res.status(500).json({ error: "failed to save preference" });
+        });
 };
 
 const SetDp = (req, res, next) => {
@@ -149,11 +161,12 @@ const SetDp = (req, res, next) => {
     UserPreference.update({ profilepicture: profilepicture }, { where: { userId: userId } })
         .then(() => {
             console.log('profile picture inserted/updated');
+            res.json({ message: "profile picture inserted/updated" });
         })
         .catch(err => {
             console.error('Error inserting/updating profile picture:', err);
+            res.status(500).json({ error: "profile picture failed" });
         });
-    res.json({ message: "profile picture inserted/updated" })
 };
 
 const updateBirthday = (req, res, next) => {
@@ -161,11 +174,12 @@ const updateBirthday = (req, res, next) => {
     UserPreference.update({ birthday: birthday }, { where: { userId: userId } })
         .then(() => {
             console.log('birthday inserted/updated');
+            res.json({ message: "birthday inserted/updated" });
         })
         .catch(err => {
             console.error('Error inserting/updating birthday:', err);
+            res.status(500).json({ error: "birthday failed" });
         });
-    res.json({ message: "birthday inserted/updated" })
 };
 
 const location = (req, res, next) => {
@@ -173,11 +187,12 @@ const location = (req, res, next) => {
     UserPreference.update({ location: location }, { where: { userId: userId } })
         .then(() => {
             console.log('location inserted/updated');
+            res.json({ message: "location inserted/updated" });
         })
         .catch(err => {
             console.error('Error inserting/updating location:', err);
+            res.status(500).json({ error: "location failed" });
         });
-    res.json({ message: "location inserted/updated" })
 };
 
 const gender = (req, res, next) => {
@@ -185,11 +200,12 @@ const gender = (req, res, next) => {
     UserPreference.update({ gender: gender }, { where: { userId: userId } })
         .then(() => {
             console.log('gender inserted/updated');
+            res.json({ message: "gender inserted/updated" });
         })
         .catch(err => {
             console.error('Error inserting/updating gender:', err);
+            res.status(500).json({ error: "gender failed" });
         });
-    res.json({ message: "gender inserted/updated" })
 };
 
 const height = (req, res, next) => {
@@ -197,11 +213,12 @@ const height = (req, res, next) => {
     UserPreference.update({ height: height }, { where: { userId: userId } })
         .then(() => {
             console.log('height inserted/updated');
+            res.json({ message: "height inserted/updated" });
         })
         .catch(err => {
             console.error('Error inserting/updating height:', err);
+            res.status(500).json({ error: "height failed" });
         });
-    res.json({ message: "height inserted/updated" })
 };
 
 const skintone = (req, res, next) => {
@@ -209,11 +226,12 @@ const skintone = (req, res, next) => {
     UserPreference.update({ skintone: skintone }, { where: { userId: userId } })
         .then(() => {
             console.log('skintone inserted/updated');
+            res.json({ message: "skintone inserted/updated" });
         })
         .catch(err => {
             console.error('Error inserting/updating skintone:', err);
+            res.status(500).json({ error: "skintone failed" });
         });
-    res.json({ message: "skintone inserted/updated" })
 };
 
 const faceshape = (req, res, next) => {
@@ -221,11 +239,12 @@ const faceshape = (req, res, next) => {
     UserPreference.update({ faceshape: faceshape }, { where: { userId: userId } })
         .then(() => {
             console.log('faceshape inserted/updated');
+            res.json({ message: "faceshape inserted/updated" });
         })
         .catch(err => {
             console.error('Error inserting/updating faceshape:', err);
+            res.status(500).json({ error: "faceshape failed" });
         });
-    res.json({ message: "faceshape inserted/updated" })
 };
 
 const bodyshape = (req, res, next) => {
@@ -233,11 +252,12 @@ const bodyshape = (req, res, next) => {
     UserPreference.update({ bodyshape: bodyshape }, { where: { userId: userId } })
         .then(() => {
             console.log('bodyshape inserted/updated');
+            res.json({ message: "bodyshape inserted/updated" });
         })
         .catch(err => {
             console.error('Error inserting/updating bodyshape:', err);
+            res.status(500).json({ error: "bodyshape failed" });
         });
-    res.json({ message: "bodyshape inserted/updated" })
 };
 
 const colourCombos = (req, res, next) => {
@@ -245,11 +265,12 @@ const colourCombos = (req, res, next) => {
     UserPreference.update({ colourCombos: colourCombos }, { where: { userId: userId } })
         .then(() => {
             console.log('colours inserted/updated');
+            res.json({ message: "colourCombos inserted/updated" });
         })
         .catch(err => {
             console.error('Error inserting/updating colours:', err);
+            res.status(500).json({ error: "colourCombos failed" });
         });
-    res.json({ message: "colourCombos inserted/updated" })
 };
 
 const styles = (req, res, next) => {
@@ -257,11 +278,12 @@ const styles = (req, res, next) => {
     UserPreference.update({ styles: styles }, { where: { userId: userId } })
         .then(() => {
             console.log('styles inserted/updated');
+            res.json({ message: "styles inserted/updated" });
         })
         .catch(err => {
             console.error('Error inserting/updating styles:', err);
+            res.status(500).json({ error: "styles failed" });
         });
-    res.json({ message: "styles inserted/updated" })
 };
 
 const updatePreference = (req, res, next) => {
@@ -283,11 +305,12 @@ const updatePreference = (req, res, next) => {
              } })
         .then(() => {
             console.log('preference updated');
+            res.json({ message: "preference updated" });
         })
         .catch(err => {
             console.error('Error updating preference:', err);
+            res.status(500).json({ error: "preference update failed" });
         });
-    res.json({ message: "preference updated" })
 };
 
 export {

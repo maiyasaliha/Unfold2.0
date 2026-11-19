@@ -27,3 +27,19 @@ test('signup responds with an error instead of hanging when the DB fails', async
     assert.equal(res.status, 500);
 });
 
+// B3
+test('a failed preference update is reported as an error, not success', async () => {
+    const t = await signupAndLogin('a@x.com');
+    mock.method(UserPreference, 'update', async () => { throw new Error('db down'); });
+    const res = await api().post('/gender').set(bearer(t)).send({ gender: 'female' });
+    assert.equal(res.status, 500);
+});
+
+test('a preference update is saved before the response is sent', async () => {
+    const t = await signupAndLogin('a@x.com');
+    await api().post('/birthday').set(bearer(t)).send({ birthday: '2000-01-01' });
+    await api().post('/gender').set(bearer(t)).send({ gender: 'female' });
+    const res = await api().get('/getPreference').set(bearer(t));
+    assert.equal(res.body.gender, 'female');
+});
+

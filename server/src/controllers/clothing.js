@@ -177,11 +177,12 @@ const like = (req, res, next) => {
   ItemsWardrobe.update({ favourite: favourite }, { where: { imageurl: imageurl, userId: userId } })
     .then(() => {
       console.log('favourite updated');
+      res.json({ message: "favourite updated" });
     })
     .catch(err => {
       console.error('Error liking item:', err);
+      res.status(500).json({ error: "favourite update failed" });
     });
-  res.json({ message: "favourite updated" })
 };
 
 
