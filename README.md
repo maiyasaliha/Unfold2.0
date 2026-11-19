@@ -39,7 +39,7 @@ Built for NUS Orbital 2023 as a team of two, where it reached Apollo 11, the sec
 | Database | Relational schema in Sequelize (users, preferences, wardrobe items, outfits), originally on MySQL |
 | Media | Image uploads to Cloudinary, replacing base64 storage in the database |
 | Deployment (2023) | API on Render and MySQL on Hostinger so testers could use the app |
-| Cleanup (2026) | Token-derived authorization on every route, 31 API tests, GitHub Actions CI, PostgreSQL with Docker, secrets removed from code and git history. AI-assisted; every change reviewed by me. |
+| Cleanup (2026) | Token-derived authorization on every route, 31 API tests, GitHub Actions CI, PostgreSQL with Docker, secrets removed from code and git history. Done with my own Claude agent skills (repo-audit → repo-fix → repo-showcase); every change reviewed by me. |
 
 ## Tech stack
 
