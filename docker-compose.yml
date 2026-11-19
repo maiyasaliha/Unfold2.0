@@ -1,0 +1,17 @@
+# Local Postgres for the Unfold API.
+#   docker compose up -d
+# then in server/: cp .env.example .env && npm install && npm start
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: unfold
+      POSTGRES_PASSWORD: unfold
+      POSTGRES_DB: unfold
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
