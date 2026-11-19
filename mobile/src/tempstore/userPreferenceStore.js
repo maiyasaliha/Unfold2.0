@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Constants from 'expo-constants';
 
 // const temp = {
 //     userId: null,
@@ -63,9 +64,9 @@ import axios from 'axios';
 
 let userId = null;
 
-//let API_URL = Platform.OS === 'ios' ? 'https://unfold-backend.onrender.com:5000' : 'https://unfold-backend.onrender.com:5000';
-//let API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
-let API_URL = Platform.OS === 'ios' ? 'https://unfold-backend.onrender.com' : 'https://unfold-backend.onrender.com';
+// Backend URL: set "extra.apiUrl" in app.json (use your computer's LAN IP
+// when testing on a phone, e.g. http://192.168.1.10:5000).
+let API_URL = Constants.expoConfig?.extra?.apiUrl ?? 'http://localhost:5000';
 
 export function setUserId(int) {
   userId = int;
