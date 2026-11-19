@@ -11,6 +11,8 @@ Unfold is your closet in your pocket. Snap your clothes, mix them into outfits, 
 
 Built for NUS Orbital 2023 as a team of two, where it reached Apollo 11, the second-highest level. Tested by two fellow groups and our mentor.
 
+Orbital teammate: [Nivetha Sekar](https://github.com/nivviee)
+
 <table>
   <tr>
     <td align="center"><img src="docs/screenshots/home.png" width="190" alt="Today screen"><br><sub>Today</sub></td>
