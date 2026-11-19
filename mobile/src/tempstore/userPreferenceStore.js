@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 // const temp = {
 //     userId: null,
 //     birthday: null,
@@ -59,7 +61,7 @@
 //     return temp;
 //   }
 
-let userId = 1;
+let userId = null;
 
 //let API_URL = Platform.OS === 'ios' ? 'https://unfold-backend.onrender.com:5000' : 'https://unfold-backend.onrender.com:5000';
 //let API_URL = Platform.OS === 'ios' ? 'http://192.168.0.31:5000' : 'http://192.168.0.31:5000';
@@ -75,4 +77,16 @@ export function getUserId() {
 
 export function getApiUrl() {
   return API_URL;
+}
+
+// Login token: attached to every axios request once the user logs in or signs up.
+let token = null;
+
+export function setToken(newToken) {
+  token = newToken;
+  axios.defaults.headers.common.Authorization = `Bearer ${newToken}`;
+}
+
+export function getToken() {
+  return token;
 }

@@ -4,10 +4,9 @@ import UserPreference from '../models/userPreference.js';
 import User from '../models/user.js';
 
 const getId = (req, res, next) => {
-    const { email } = req.query;
     User.findOne({
         where: {
-            email: email,
+            userId: req.user.userId,
         }
     }).then(dbUser => {
         if (dbUser) {
@@ -47,7 +46,7 @@ const getName = (req, res, next) => {
 
 const getUsers = async (req, res, next) => {
     try {
-      const listOfUsers = await User.findAll();
+      const listOfUsers = await User.findAll({ attributes: ['userId', 'name'] });
       res.json(listOfUsers);
     } catch (error) {
       // Handle the error here
@@ -61,7 +60,8 @@ const getUser = (req, res, next) => {
     User.findOne({
         where: {
             userId: userId,
-        }
+        },
+        attributes: { exclude: ['password'] },
     }).then(dbUser => {
         if (dbUser) {
             // If the user is found in the database, send the user in the response

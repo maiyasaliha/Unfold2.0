@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TextInput, Platform, Pressable } from 'react-na
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BackArrowButton } from '../components';
 import { useNavigation } from '@react-navigation/native';
-import { setUserId } from '../tempstore/userPreferenceStore';
+import { setUserId, setToken, getToken } from '../tempstore/userPreferenceStore';
 import { getApiUrl } from '../tempstore/userPreferenceStore'
 
 
@@ -27,6 +27,7 @@ const AuthScreen = () => {
     };
 
     const onLoggedIn = token => {
+        setToken(token);
         fetch(`${API_URL}/private`, {
             method: 'GET',
             headers: {
@@ -56,6 +57,7 @@ const AuthScreen = () => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken()}`,
             },
         })
             .then(async response => {

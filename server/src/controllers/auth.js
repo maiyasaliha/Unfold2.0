@@ -29,8 +29,9 @@ const signup = (req, res, next) => { //signup method
                         password: passwordHash,
                         activeUser: true,
                     }))
-                    .then(() => {
-                        res.status(200).json({message: "user created"});
+                    .then(user => {
+                        const token = jwt.sign({ userId: user.userId, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
+                        res.status(200).json({message: "user created", "token": token});
                     })
                     .catch(err => { //if theres any error creating user
                         console.log(err);
@@ -66,7 +67,7 @@ const login = (req, res, next) => { // login method
                 if (err) { // error while comparing
                     res.status(502).json({message: "error while checking user password"});
                 } else if (compareRes) { // password match, compare response
-                    const token = jwt.sign({ email: req.body.email }, JWT_SECRET, { expiresIn: '1h' });
+                    const token = jwt.sign({ userId: dbUser.userId, email: dbUser.email }, JWT_SECRET, { expiresIn: '1h' });
                     res.status(200).json({message: "Welcome!", "token": token});
                 } else { // password doesnt match
                     res.status(401).json({message: "invalid credentials"});
@@ -80,25 +81,10 @@ const login = (req, res, next) => { // login method
 };
 
 /*
-verification
+verification: requireAuth has already checked the token by the time this runs
 */
-const isAuth = (req, res, next) => { //authentication method
-    const authHeader = req.get("Authorization");
-    if (!authHeader) {
-        return res.status(401).json({ message: 'authentication failed' });
-    };
-    const token = authHeader.split(' ')[1];
-    let decodedToken; 
-    try {
-        decodedToken = jwt.verify(token, JWT_SECRET);
-    } catch (err) {
-        return res.status(500).json({ message: err.message || 'could not decode the token' });
-    };
-    if (!decodedToken) {
-        res.status(401).json({ message: 'unauthorized' });
-    } else {
-        res.status(200).json({ message: 'Welcome!' });
-    };
+const isAuth = (req, res, next) => {
+    res.status(200).json({ message: 'Welcome!' });
 };
 
 export { signup, login, isAuth };

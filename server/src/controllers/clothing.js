@@ -173,8 +173,8 @@ const getAccessories = async (req, res, next) => {
 };
 
 const like = (req, res, next) => {
-  const { imageurl, favourite } = req.body;
-  ItemsWardrobe.update({ favourite: favourite }, { where: { imageurl: imageurl } })
+  const { userId, imageurl, favourite } = req.body;
+  ItemsWardrobe.update({ favourite: favourite }, { where: { imageurl: imageurl, userId: userId } })
     .then(() => {
       console.log('favourite updated');
     })
@@ -186,10 +186,11 @@ const like = (req, res, next) => {
 
 
 const getLike = (req, res, next) => {
-  const { imageurl } = req.query;
+  const { userId, imageurl } = req.query;
   ItemsWardrobe.findOne({
       where: {
         imageurl: imageurl,
+        userId: userId,
       }
   }).then(dbUser => {
       if (dbUser) {
