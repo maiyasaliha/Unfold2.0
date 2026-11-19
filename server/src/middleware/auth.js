@@ -12,7 +12,7 @@ export const requireAuth = (req, res, next) => {
         const { userId, email } = jwt.verify(token, JWT_SECRET);
         req.user = { userId, email };
         return next();
-    } catch (err) {
+    } catch {
         return res.status(401).json({ message: 'invalid or expired token' });
     }
 };
