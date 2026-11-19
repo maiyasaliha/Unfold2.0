@@ -34,6 +34,9 @@ import { col } from 'sequelize';
 
 const addItem = async (req, res, next) => {
   const { userId, imageBase64 } = req.body;
+  if (typeof imageBase64 !== 'string' || imageBase64.length === 0) {
+    return res.status(400).json({ message: 'imageBase64 is required' });
+  }
 
   try {
     const image = Buffer.from(imageBase64, 'base64');

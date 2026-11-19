@@ -61,3 +61,9 @@ test('a preference update before onboarding still creates the row', async () => 
     assert.equal(pref.body.gender, 'female');
 });
 
+// B6
+test('addItem without an image is a 400, not a crash', async () => {
+    const t = await signupAndLogin('a@x.com');
+    const res = await api().post('/addItem').set(bearer(t)).send({});
+    assert.equal(res.status, 400);
+});
